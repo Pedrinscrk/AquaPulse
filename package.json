@@ -1,0 +1,21 @@
+{
+    "scripts": {
+        "test": "echo \"Nenhum teste configurado\" && exit 1",
+        "dev": "nodemon server.js",
+        "start": "node server.js"
+    },
+    "description": "Web Site de Mostruario e vendas do Sistema AquaPulse.",
+    "dependencies": {
+        "dotenv": "^16.4.7",
+        "express": "^4.18.2",
+        "express-handlebars": "^7.0.2"
+    },
+    "version": "0.0.1",
+    "author": "Osmar & Pedro",
+    "name": "AquaPulseOFC",
+    "main": "server.js",
+    "devDependencies": {
+        "nodemon": "^2.0.22"
+    },
+    "license": "ISC"
+}

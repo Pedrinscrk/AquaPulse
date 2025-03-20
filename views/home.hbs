@@ -1,0 +1,120 @@
+﻿{{> header}}
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+{{!-- Video inicio --}}
+<div id="video-container">
+  <video id="meu-video" autoplay muted loop playsinline>
+    <source src="video/Video.mp4" type="video/mp4">
+    Seu navegador não suporta vídeos.
+  </video>
+</div>
+{{!-- Produtos destaques texto --}}
+<h1 style="
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5rem;
+  color: aliceblue;
+  text-align: center;
+  margin: 30px 0;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+">
+ NOTICIAS DESTAQUES
+</h1>
+{{!-- Produtos destaques --}}
+  <div class="container">
+    <div class="box-container">
+      <div class="box">
+        <img src="img/produto1.png" alt="Imagem 1">
+        <div class="info">
+          <div class="text">
+            Descrição do produto1: Texto que descreve o produto, sempre visível.
+          </div>
+          <button class="saiba-mais" onclick="alert('Saiba Mais 1')">Saiba Mais</button>
+        </div>
+      </div>
+      <div class="box">
+        <img src="img/produto2.png" alt="Imagem 2">
+        <div class="info">
+          <div class="text">
+            Descrição do produto2: Texto que descreve o produto, sempre visível.
+          </div>
+          <button class="saiba-mais" onclick="alert('Saiba Mais 2')">Saiba Mais</button>
+        </div>
+      </div>
+      <div class="box">
+        <img src="img/produto3.png" alt="Imagem 3">
+        <div class="info">
+          <div class="text">
+            Descrição do produto3: Texto que descreve o produto, sempre visível.
+          </div>
+          <button class="saiba-mais" onclick="alert('Saiba Mais 3')">Saiba Mais</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <section class="section" id="pequeno" data-aos="fade-up">
+    <div class="section-content">
+      <div class="text-col">
+        <div class="info-header">
+          <i class="fa-solid fa-leaf"></i>
+          <span>Pequeno Porte - Residencial</span>
+        </div>
+        <h2>Irrigador Automático<br>Pequeno Porte</h2>
+        <p>
+          Ideal para jardins residenciais, hortas e pequenas plantações. Sistema compacto, eficiente e econômico, 
+          com fácil instalação e controle inteligente.
+        </p>
+        <a href="#" class="btn"><i class="fa-solid fa-arrow-right"></i> Saiba Mais</a>
+      </div>
+      <div class="img-col" data-aos="zoom-in" data-aos-delay="300">
+        <img src="https://via.placeholder.com/500x400?text=Pequeno+Porte" alt="Produto Pequeno Porte">
+      </div>
+    </div>
+  </section>
+  
+  <!-- Seção para Médio Porte (layout reverso) -->
+  <section class="section reverse" id="medio" data-aos="fade-up">
+    <div class="section-content">
+      <div class="text-col">
+        <div class="info-header">
+          <i class="fa-solid fa-industry"></i>
+          <span>Médio Porte - Comercial/Agro</span>
+        </div>
+        <h2>Irrigador Automático<br>Médio Porte</h2>
+        <p>
+          Projetado para estufas, áreas de cultivo e uso comercial. Tecnologia avançada com sensores inteligentes, 
+          monitoramento em tempo real e otimização do uso de água.
+        </p>
+        <a href="#" class="btn"><i class="fa-solid fa-arrow-right"></i> Saiba Mais</a>
+      </div>
+      <div class="img-col" data-aos="zoom-in" data-aos-delay="300">
+        <img src="https://via.placeholder.com/500x400?text=M%C3%A9dio+Porte" alt="Produto Médio Porte">
+      </div>
+    </div>
+  </section>
+  
+  <!-- Seção para Grande Porte -->
+  <section class="section" id="grande" data-aos="fade-up">
+    <div class="section-content">
+      <div class="text-col">
+        <div class="info-header">
+          <i class="fa-solid fa-tractor"></i>
+          <span>Grande Porte - Industrial</span>
+        </div>
+        <h2>Irrigador Automático<br>Grande Porte</h2>
+        <p>
+          Soluções robustas para grandes propriedades agrícolas e projetos industriais. 
+          Sistema automatizado com monitoramento em tempo real e suporte técnico especializado para máxima eficiência.
+        </p>
+        <a href="#" class="btn"><i class="fa-solid fa-arrow-right"></i> Saiba Mais</a>
+      </div>
+      <div class="img-col" data-aos="zoom-in" data-aos-delay="300">
+        <img src="https://via.placeholder.com/500x400?text=Grande+Porte" alt="Produto Grande Porte">
+      </div>
+    </div>
+  </section>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
