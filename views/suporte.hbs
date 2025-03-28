@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaPulse - Suporte Técnico</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    {{> header}}
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Efeitos Globais */
+        .cyber-glow {
+            text-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+        }
+
+        .neon-border {
+            border: 1px solid rgba(40, 167, 69, 0.3);
+            box-shadow: 0 0 15px rgba(40, 167, 69, 0.2);
+        }
+
+        /* Layout Principal */
+        .support-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            gap: 2rem;
+        }
+
+        /* Seção Hero */
+        .support-hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(45deg, #001510 0%, #00280f 100%);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            
+        }
+
+        .support-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                from 180deg at 50% 50%,
+                #28a745 0deg,
+                transparent 180deg,
+                #28a745 360deg
+            );
+            animation: rotate 20s linear infinite;
+            opacity: 0.1;
+        }
+
+        /* Cards de Suporte */
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .support-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            padding: 2rem;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .support-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 15px;
+            padding: 2px;
+            background: linear-gradient(45deg, #28a745, transparent);
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+
+        /* FAQ Interativo */
+        .faq-container {
+            margin-top: 3rem;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.03);
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, rgba(40, 167, 69, 0.1) 0%, transparent 100%);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 1.5rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        /* Formulário de Contato */
+        .contact-form {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .form-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            color: #fff;
+        }
+
+        .form-input:focus {
+            border-color: #28a745;
+            box-shadow: 0 0 15px rgba(40, 167, 69, 0.2);
+        }
+
+        /* Animações */
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .support-container {
+                padding: 1rem;
+            }
+            
+            .support-hero {
+                padding: 2rem 0;
+            }
+            
+            .support-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="support-container">
+        <!-- Seção Hero -->
+        <section class="support-hero">
+            <h1 class="cyber-glow" style="font-size: 2.5rem; margin-bottom: 1rem;">
+                <i class="bi bi-life-preserver"></i> SUPORTE AQUAPULSE
+            </h1>
+            <p>Soluções inteligentes para sua irrigação</p>
+            <div class="status-indicator" style="margin-top: 1rem;">
+                <span class="status-dot" style="background: #28a745; width: 10px; height: 10px; border-radius: 50%; display: inline-block;"></span>
+                <span>Status do Serviço: Operacional</span>
+            </div>
+        </section>
+
+        <!-- Grid de Suporte -->
+        <div class="support-grid">
+            <div class="support-card">
+                <h3><i class="bi bi-chat-dots"></i> Chat ao Vivo</h3>
+                <p>Converse agora com nosso suporte técnico</p>
+                <button class="form-input" style="margin-top: 1rem; background: #28a745; border: none;">
+                    Iniciar Conversa
+                </button>
+            </div>
+
+            <div class="support-card">
+                <h3><i class="bi bi-envelope"></i> Ticket de Suporte</h3>
+                <p>Acompanhe ou abra um novo ticket</p>
+                <div style="margin-top: 1rem; display: grid; gap: 0.5rem;">
+                    <input type="text" class="form-input" placeholder="Número do Ticket">
+                    <button class="form-input" style="background: rgba(40, 167, 69, 0.3); border: none;">
+                        Acompanhar
+                    </button>
+                </div>
+            </div>
+
+            <div class="support-card">
+                <h3><i class="bi bi-file-earmark-text"></i> Documentação</h3>
+                <p>Manuais técnicos e guias de uso</p>
+                <div style="margin-top: 1rem; display: grid; gap: 0.5rem;">
+                    <button class="form-input" style="text-align: left; background: none;">
+                        <i class="bi bi-download"></i> Manual do Usuário
+                    </button>
+                    <button class="form-input" style="text-align: left; background: none;">
+                        <i class="bi bi-download"></i> Guia de Instalação
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="faq-container">
+            <h2 class="cyber-glow">Perguntas Frequentes</h2>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Como reiniciar o sistema?</span>
+                    <i class="bi bi-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Mantenha pressionado o botão power por 10 segundos até o LED piscar 3 vezes...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulário de Contato -->
+        <div class="contact-form">
+            <h2 class="cyber-glow">Contato Direto</h2>
+            <input type="text" class="form-input" placeholder="Seu Nome">
+            <input type="email" class="form-input" placeholder="Seu E-mail">
+            <textarea class="form-input" rows="5" placeholder="Mensagem"></textarea>
+            <button class="form-input" style="background: #28a745; border: none; cursor: pointer;">
+                Enviar Mensagem
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Interatividade do FAQ
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                const answer = parent.querySelector('.faq-answer');
+                
+                parent.classList.toggle('active');
+                answer.style.maxHeight = parent.classList.contains('active') 
+                    ? answer.scrollHeight + 'px' 
+                    : '0';
+            });
+        });
+
+        // Validação de Formulário
+        const form = document.querySelector('.contact-form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Mensagem enviada com sucesso!');
+            form.reset();
+        });
+    </script>
+</body>
+</html>
