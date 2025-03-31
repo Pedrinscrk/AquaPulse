@@ -1,3 +1,4 @@
+
 <footer style="background: #0a0a0a; border-top: 1px solid rgba(40, 167, 69, 0.1); margin-top: 5rem;">
     <div class="footer-container" style="max-width: 1200px; margin: 0 auto; padding: 4rem 2rem;">
 
@@ -110,6 +111,7 @@
                 style="position: fixed; bottom: 2rem; right: 2rem; 
                        background: #28a745; color: white; border: none;
                        width: 40px; height: 40px; border-radius: 50%;
+                       display: none;
                        cursor: pointer; box-shadow: 0 0 15px rgba(40, 167, 69, 0.3);">
             <i class="bi bi-arrow-up"></i>
         </button>
@@ -127,16 +129,29 @@
         });
     });
 
-    // Botão voltar ao topo
-    document.querySelector('.back-to-top').addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+// Botão voltar ao topo
+document.querySelector('.back-to-top').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 
-    // Mostrar/ocultar botão
-    window.addEventListener('scroll', () => {
-        const button = document.querySelector('.back-to-top');
-        button.style.display = window.scrollY > 500 ? 'block' : 'none';
-    });
+// Mostrar/ocultar botão
+function toggleBackToTop() {
+    const button = document.querySelector('.back-to-top');
+    const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
+    
+    // Verifica se a página tem scroll suficiente
+    if (scrollTotal > 0) {
+        const isNearBottom = (window.scrollY + window.innerHeight) >= (scrollTotal - 50);
+        button.style.display = isNearBottom ? 'block' : 'none';
+    } else {
+        // Se não houver scroll suficiente, mantém o botão oculto
+        button.style.display = 'none';
+    }
+}
+
+// Executa ao carregar e ao scrollar
+window.addEventListener('load', toggleBackToTop);
+window.addEventListener('scroll', toggleBackToTop);
 
     // Submit newsletter
     document.querySelector('form').addEventListener('submit', (e) => {

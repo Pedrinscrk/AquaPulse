@@ -479,5 +479,20 @@ body {
     padding-top: 20px;
   }
 }
+ /* Desabilita seleção de texto */
+ * {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
 
+/* Desabilita arrastar imagens */
+img {
+  pointer-events: none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+}
 

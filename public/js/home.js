@@ -55,3 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
+
+
+// Bloqueio de clique direito
+document.addEventListener('contextmenu', (e) => {
+  e.preventDefault();
+  console.log('Clique direito bloqueado!');
+  return false;
+});
