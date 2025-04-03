@@ -16,6 +16,10 @@ router.get('/suporte', (req, res) => {
 router.get('/aplicativo', (req, res) => {
     res.render('aplicativo', { title: 'AquaPulse Aplicativo' });
     });  
+
+router.get('/botanica', (req, res) => {
+    res.render('botanica', { title: 'AquaPulse Botanica' });
+    });      
 module.exports = router;
 
 

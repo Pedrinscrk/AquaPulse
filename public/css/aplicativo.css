@@ -1,0 +1,206 @@
+
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0a0a0a;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Espaço para o Header */
+.dev-container {
+    padding-top: 6rem; /* Espaço aumentado para o header */
+}
+
+/* Efeitos Globais */
+.cyber-glow {
+    text-shadow: 0 0 15px rgba(40, 167, 69, 0.4);
+}
+
+.neon-border {
+    border: 1px solid rgba(40, 167, 69, 0.4);
+    box-shadow: 0 0 25px rgba(40, 167, 69, 0.15);
+}
+
+/* Container Principal */
+.dev-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Seção Hero Ajustada */
+.dev-hero {
+    padding: 4rem 0;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 4rem;
+}
+
+.dev-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+        conic-gradient(from 180deg at 50% 50%, 
+            #28a745 0deg, 
+            transparent 180deg, 
+            #28a745 360deg),
+        linear-gradient(45deg, 
+            rgba(40, 167, 69, 0.05) 0%, 
+            rgba(0,0,0,0) 100%);
+    animation: rotate 20s linear infinite;
+    opacity: 0.15;
+}
+
+.dev-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(40, 167, 69, 0.03) 0px,
+        rgba(40, 167, 69, 0.03) 1px,
+        transparent 1px,
+        transparent 20px
+    );
+}
+
+/* Ícone Flutuante */
+.floating-icon {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Progresso Aprimorado */
+.progress-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    margin: 4rem 0;
+}
+
+.progress-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.progress-card:hover {
+    transform: translateY(-5px);
+}
+
+.progress-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(45deg, 
+        rgba(40, 167, 69, 0.4) 0%, 
+        rgba(40, 167, 69, 0.1) 100%);
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+}
+
+.progress-bar {
+    height: 10px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, 
+        #28a745 0%, 
+        rgba(40, 167, 69, 0.6) 100%);
+    width: 0;
+    transition: width 1s ease 0.3s;
+    position: relative;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: rgba(255,255,255,0.3);
+}
+
+/* Novidades */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 3rem 0;
+}
+
+.feature-card {
+    padding: 2rem;
+    background: rgba(40, 167, 69, 0.05);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    background: rgba(40, 167, 69, 0.08);
+}
+
+/* Contato */
+.contact-section {
+    margin-top: 5rem;
+    padding: 3rem 0;
+    background: rgba(255,255,255,0.02);
+    border-radius: 20px;
+}
+
+/* Animações */
+@keyframes rotate {
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .dev-container {
+        padding: 4rem 1rem 1rem; /* Ajuste fino para mobile */
+    }
+
+    .progress-grid {
+        gap: 1.5rem;
+    }
+
+    .dev-hero {
+        padding: 3rem 0;
+    }
+}

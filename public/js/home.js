@@ -64,3 +64,6 @@ document.addEventListener('contextmenu', (e) => {
   console.log('Clique direito bloqueado!');
   return false;
 });
+
+
+

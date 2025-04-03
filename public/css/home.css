@@ -117,7 +117,7 @@
       
 /* === BANNER CONFIG === */
 :root {
-  --banner-height: 310px; /* Altere este valor para ajustar a altura */
+  --banner-height: 365px; /* Altere este valor para ajustar a altura */
   --banner-image-fit: cover; /* ou 'cover' para preencher o espaço */
 }
 
