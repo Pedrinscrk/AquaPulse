@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaPulse - Documentação</title>
+    {{> header}}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #080808;
+            color: white;
+            line-height: 1.8;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 300px;
+            background-color: #080808;
+            border-right: 1px solid #333;
+            padding: 30px 20px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar h2 {
+            color: white;
+            margin-bottom: 30px;
+            font-size: 1.8em;
+            border-bottom: 2px solid white;
+            padding-bottom: 10px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin: 15px 0;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: block;
+            padding: 8px 15px;
+            border-radius: 4px;
+        }
+
+        .sidebar a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        /* Conteúdo principal */
+        .main-content {
+            margin-left: 320px;
+            padding: 50px;
+            flex: 1;
+        }
+
+        section {
+            margin-bottom: 50px;
+            padding: 30px;
+            border: 1px solid #333;
+            border-radius: 8px;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 40px;
+            border-bottom: 2px solid white;
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin: 40px 0 25px;
+            color: white;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            margin: 30px 0 15px;
+        }
+
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+
+        ul {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        .authors {
+            background-color: rgba(255,255,255,0.05);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        .figure-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        figure {
+            border: 1px solid #333;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #ccc;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            border: 1px solid #333;
+        }
+
+        th, td {
+            border: 1px solid #333;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .links a {
+            color: white;
+            text-decoration: none;
+            border: 1px solid #333;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .links a:hover {
+            background-color: rgba(255,255,255,0.05);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                border-right: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 30px;
+            }
+
+            .figure-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h2>AquaPulse</h2>
+            <ul>
+                <li><a href="#autores">Autores</a></li>
+                <li><a href="#abstract">Abstract</a></li>
+                <li><a href="#resumo">Resumo</a></li>
+                <li><a href="#introducao">1. Introdução</a></li>
+                <li><a href="#metodologia">2. Metodologia</a>
+                    <ul>
+                        <li><a href="#requisitos">2.1 Requisitos</a></li>
+                        <li><a href="#design">2.2 Design</a></li>
+                        <li><a href="#implementacao">2.3 Implementação</a></li>
+                        <li><a href="#testes">2.4 Testes</a></li>
+                    </ul>
+                </li>
+                <li><a href="#resultados">3. Resultados</a></li>
+                <li><a href="#conclusao">4. Conclusão</a></li>
+                <li><a href="#links">Links</a></li>
+                <li><a href="#referencias">Referências</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <h1>AquaPulse - Documentação Técnica</h1>
+            
+            <section id="autores" class="authors">
+                <h2>Autores</h2>
+                <p>Iago Gabriel Bortoluzzi¹, Iago Henrico P. Fouletto², Osmar A. de Souza do Amaral³, Pedro A. Oliveira⁴</p>
+                <p>¹Instituto Federal de Educação, Ciência e Tecnologia de Mato Grosso (IFMT)<br>
+                Rua Ananias Martins de Souza, 861 - 78721-520 - Rondonópolis – MT - Brasil<br>
+                
+            </section>
+
+            <section id="abstract">
+                <h2>Abstract</h2>
+                <p>This project aims to design and develop an automatic system to support the conscious and sustainable use of water [...]</p>
+                <h3>Keywords</h3>
+                <p>Irrigation; Conscientious use of water; Sustainability.</p>
+            </section>
+
+            <section id="resumo">
+                <h2>Resumo</h2>
+                <p>Este projeto tem o objetivo de conceber e desenvolver um sistema automático para apoiar no uso consciente [...]</p>
+                <h3>Palavras-chave</h3>
+                <p>Aplicativo de Irrigação; Uso consciente da água; Sustentabilidade.</p>
+            </section>
+
+            <section id="introducao">
+                <h2>1. Introdução</h2>
+                <p>Este artigo se debruça sobre a questão da escassez dos recursos hídricos [...]</p>
+                <div class="figure-grid">
+                    <figure>
+                        <img src="grafico-eficiencia.jpg" alt="Gráfico de eficiência hídrica" style="width:100%">
+                        <figcaption>Figura 1: Comparativo de eficiência</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <section id="metodologia">
+                <h2>2. Metodologia</h2>
+                <p>O desenvolvimento do AquaPulse seguiu quatro fases principais [...]</p>
+                
+                <h3 id="requisitos">2.1 Levantamento de Requisitos</h3>
+                <ul>
+                    <li>Monitoramento de dados ambientais</li>
+                    <li>Automação da irrigação</li>
+                    <li>Interface intuitiva</li>
+                </ul>
+
+                <h3 id="design">2.2 Design e Desenvolvimento</h3>
+                <div class="figure-grid">
+                    <figure>
+                        <img src="fluxograma.jpg" alt="Fluxograma do sistema" style="width:100%">
+                        <figcaption>Figura 2: Fluxograma do sistema</figcaption>
+                    </figure>
+                </div>
+
+                <h3 id="implementacao">2.3 Implementação</h3>
+                <pre>
+Algoritmo de Controle:
+1. Coletar dados dos sensores
+2. Analisar valores críticos
+3. Acionar válvulas conforme necessidade
+                </pre>
+            </section>
+
+            <section id="resultados">
+                <h2>3. Resultados e Discussões</h2>
+                <div class="figure-grid">
+                    <figure>
+                        <img src="prototipo.jpg" alt="Protótipo físico" style="width:100%">
+                        <figcaption>Figura 3: Protótipo físico</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="interface.jpg" alt="Interface do aplicativo" style="width:100%">
+                        <figcaption>Figura 4: Interface mobile</figcaption>
+                    </figure>
+                </div>
+
+                <table>
+                    <tr>
+                        <th>Métrica</th>
+                        <th>Resultado</th>
+                    </tr>
+                    <tr>
+                        <td>Redução do consumo</td>
+                        <td>50%</td>
+                    </tr>
+                    <tr>
+                        <td>Precisão dos sensores</td>
+                        <td>95%</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="conclusao">
+                <h2>4. Considerações Finais</h2>
+                <p>No decorrer deste artigo, apresentamos uma solução viável [...]</p>
+            </section>
+
+            <section id="links">
+                <h2>Links Relacionados</h2>
+                <div class="links">
+                    <a href="https://encurtador.com.br/zZaMc" target="_blank">Protótipo</a>
+                    <a href="https://youtu.be/4CHOYyyLLGs" target="_blank">Vídeo Demo</a>
+                    <a href="https://encurtador.com.br/niOj9" target="_blank">Artefatos</a>
+                </div>
+            </section>
+
+            <section id="referencias">
+                <h2>Referências</h2>
+                <ul>
+                    <li>POSTEL, S. L. et al. Drip irrigation for small farmers [...] 2019.</li>
+                    <li>FERERES, E.; SORIANO, M. A. Deficit irrigation [...] 2021.</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
