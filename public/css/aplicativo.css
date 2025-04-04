@@ -13,12 +13,10 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     min-height: 100vh;
+    padding: 50px 2rem 2rem;
 }
 
-/* Espaço para o Header */
-.dev-container {
-    padding-top: 6rem; /* Espaço aumentado para o header */
-}
+
 
 /* Efeitos Globais */
 .cyber-glow {
