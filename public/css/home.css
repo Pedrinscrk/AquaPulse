@@ -480,12 +480,6 @@ body {
   }
 }
  /* Desabilita seleção de texto */
- * {
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-}
 
 /* Desabilita arrastar imagens */
 img {

@@ -1,77 +1,132 @@
- {{> header}}
+{{> header}}
     <link rel="stylesheet" href="css/suporte.css">
     <script src="js/suporte.js" defer></script>
 
-    <div class="support-container">
-        <!-- Seção Hero -->
-        <section class="support-hero">
-            <h1 class="cyber-glow" style="font-size: 2.5rem; margin-bottom: 1rem;">
-                <i class="bi bi-life-preserver"></i> SUPORTE AQUAPULSE
-            </h1>
-            <p>Soluções inteligentes para sua irrigação</p>
-            <div class="status-indicator" style="margin-top: 1rem;">
-                <span class="status-dot" style="background: #28a745; width: 10px; height: 10px; border-radius: 50%; display: inline-block;"></span>
-                <span>Status do Serviço: Operacional</span>
-            </div>
-        </section>
-
-        <!-- Grid de Suporte -->
-        <div class="support-grid">
-            <div class="support-card">
-                <h3><i class="bi bi-chat-dots"></i> Chat ao Vivo</h3>
-                <p>Converse agora com nosso suporte técnico</p>
-                <button class="form-input" style="margin-top: 1rem; background: #28a745; border: none;">
-                    Iniciar Conversa
-                </button>
-            </div>
-
-            <div class="support-card">
-                <h3><i class="bi bi-envelope"></i> Ticket de Suporte</h3>
-                <p>Acompanhe ou abra um novo ticket</p>
-                <div style="margin-top: 1rem; display: grid; gap: 0.5rem;">
-                    <input type="text" class="form-input" placeholder="Número do Ticket">
-                    <button class="form-input" style="background: rgba(40, 167, 69, 0.3); border: none;">
-                        Acompanhar
-                    </button>
-                </div>
-            </div>
-
-            <div class="support-card">
-                <h3><i class="bi bi-file-earmark-text"></i> Documentação</h3>
-                <p>Manuais técnicos e guias de uso</p>
-                <div style="margin-top: 1rem; display: grid; gap: 0.5rem;">
-                    <button class="form-input" style="text-align: left; background: none;">
-                        <i class="bi bi-download"></i> Manual do Usuário
-                    </button>
-                    <button class="form-input" style="text-align: left; background: none;">
-                        <i class="bi bi-download"></i> Guia de Instalação
-                    </button>
-                </div>
-            </div>
+  <div class="support-container">
+    <!-- Seção Hero -->
+    <section class="support-hero">
+      <h1 class="cyber-glow" style="font-size: 2.5rem; margin-bottom: 1rem;">
+        <i class="bi bi-life-preserver"></i> SUPORTE AQUAPULSE
+      </h1>
+      <p>Soluções inteligentes para sua irrigação</p>
+      <div class="status-indicator" style="margin-top: 1rem;">
+        <span class="status-dot" style="background: #28a745; width: 10px; height: 10px; border-radius: 50%; display: inline-block;"></span>
+        <span>Status do Serviço: online</span>
+      </div>
+    </section>
+    
+     <div class="support-grid">
+      <div class="support-card">
+        <h3><i class="bi bi-chat-dots"></i> Chat ao Vivo</h3>
+        <p>Converse agora com nosso suporte técnico</p>
+        <button id="chat-button" class="custom-btn" style="margin-top: 1rem;">
+          <i class="bi bi-chat-dots-fill"></i> Iniciar Conversa
+        </button>
+      </div>
+      
+      <div class="support-card">
+        <h3><i class="bi bi-envelope"></i> Ticket de Suporte</h3>
+        <p>Acompanhe ou abra um novo ticket</p>
+        <div style="margin-top: 1rem; display: grid; gap: 0.5rem;">
+          <input type="text" class="form-input" placeholder="Número do Ticket">
+          <button id="ticket-button" class="custom-btn-alt">
+            Acompanhar
+          </button>
         </div>
-
-        <!-- FAQ -->
-        <div class="faq-container">
-            <h2 class="cyber-glow">Perguntas Frequentes</h2>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>Como reiniciar o sistema?</span>
-                    <i class="bi bi-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Mantenha pressionado o botão power por 10 segundos até o LED piscar 3 vezes...</p>
-                </div>
-            </div>
+      </div>
+      
+      <div class="support-card">
+        <h3><i class="bi bi-file-earmark-text"></i> Documentação</h3>
+        <p>Manuais técnicos e guias de uso</p>
+        <div style="margin-top: 1rem; display: grid; gap: 0.5rem;">
+          <button id="manual-btn" class="custom-btn-link">
+            <i class="bi bi-download"></i> Manual do Usuário
+          </button>
+          <button id="guide-btn" class="custom-btn-link">
+            <i class="bi bi-download"></i> Guia de Instalação
+          </button>
         </div>
-
-        <!-- Formulário de Contato -->
-        <div class="contact-form">
-            <h2 class="cyber-glow">Contato Direto</h2>
-            <input type="text" class="form-input" placeholder="Seu Nome">
-            <input type="email" class="form-input" placeholder="Seu E-mail">
-            <textarea class="form-input" rows="5" placeholder="Mensagem"></textarea>
-            <button class="form-input" style="background: #28a745; border: none; cursor: pointer;">
-                Enviar Mensagem
-            </button>
-        </div>
+      </div>
     </div>
+    
+    <!-- FAQ -->
+    <div class="faq-container">
+      <h2 class="cyber-glow">Perguntas Frequentes</h2>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Como reiniciar o sistema?</span>
+          <i class="bi bi-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Mantenha pressionado o botão power por 10 segundos até o LED piscar 3 vezes...</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Como configurar o cronograma de irrigação?</span>
+          <i class="bi bi-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Acesse o menu 'Programação' no aplicativo e siga os passos:</p>
+          <ol>
+            <li>Toque no ícone de calendário</li>
+            <li>Selecione os dias da semana</li>
+            <li>Defina os horários desejados</li>
+          </ol>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>O sistema é compatível com assistentes virtuais?</span>
+          <i class="bi bi-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Sim, integre com:</p>
+          <ul>
+            <li>Google Assistant: "Ok Google, conectar AquaPulse"</li>
+            <li>Alexa: "Alexa, descobrir dispositivos"</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Como atualizar o firmware?</span>
+          <i class="bi bi-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Siga estas etapas para atualização:</p>
+          <p>1. Acesse Configurações > Atualizações<br>
+          2. Mantenha o sistema conectado à internet<br>
+          3. Não desligue durante o processo</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Como verificar consumo de água?</span>
+          <i class="bi bi-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>No painel principal do aplicativo:</p>
+          <p>• Toque no gráfico na barra superior<br>
+          • Selecione o período desejado</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Formulário de Contato -->
+    <div class="contact-form">
+      <h2 class="cyber-glow">Contato Direto</h2>
+      <input type="text" class="form-input" placeholder="Seu Nome">
+      <input type="email" class="form-input" placeholder="Seu E-mail">
+      <textarea class="form-input" rows="5" placeholder="Mensagem"></textarea>
+      <button id="contact-button" class="custom-btn">
+        Enviar Mensagem
+      </button>
+    </div>
+  </div>
+  
+

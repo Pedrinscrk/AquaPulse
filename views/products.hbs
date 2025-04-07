@@ -3,17 +3,18 @@
     <script src="js/products.js" defer></script>
 
  
-    <!-- Seção 1: Pivot Central -->
+    {{!-- Pequenas areas --}}
     <div class="section">
         <div class="section-content">
             <div class="content">
-                <h1>Irrigador Pivot Central</h1>
-                <p>Ideal para irrigar grandes áreas com eficiência e economia.</p>
+                <h1>Irrigador Aquapulse B45 - Pequenas Áreas</h1>
+                <p>Ideal para irrigar pequenas áreas com eficiência e economia.</p>
                 <ul class="info-list">
-                    <li><i class="bi bi-water"></i> Vazão: 25 L/min</li>
-                    <li><i class="bi bi-lightning"></i> Voltagem: 220V</li>
-                    <li><i class="bi bi-graph-up"></i> Economia: 30%</li>
+                    <li><i class="bi bi-water"></i> Vazão: 0 L/min</li>
+                    <li><i class="bi bi-lightning"></i> Método: Aspersor </li>
+                    <li style="color: green;"><i class="bi bi-coin"></i> R$00,00</li>
                 </ul>
+                
                 <div class="buttons">
                     <a href="#" class="saiba-mais" onclick="event.preventDefault(); openModal('pivotCentral');">
                        Saiba Mais
@@ -29,19 +30,19 @@
         </div>
     </div>
 
-    <!-- Seção 2: Linear -->
+    {{!-- Medias Areas --}}
     <div class="section">
         <div class="section-content">
             <div class="image-container">
                 <img src="img/produto2.png" alt="Imagem do Irrigador Linear">
             </div>
             <div class="content">
-                <h1>Irrigador Linear</h1>
+                <h1>Irrigador Aquapulse G100 - Grandes Áreas </h1>
                 <p>Perfeito para áreas retangulares com distribuição uniforme de água.</p>
                 <ul class="info-list">
-                    <li><i class="bi bi-water"></i> Vazão: 20 L/min</li>
-                    <li><i class="bi bi-lightning"></i> Voltagem: 110V</li>
-                    <li><i class="bi bi-graph-up"></i> Economia: 25%</li>
+                    <li><i class="bi bi-water"></i> Vazão: 0 L/min</li>
+                    <li><i class="bi bi-lightning"></i> Método: Aspersor</li>
+                     <li style="color: green;"><i class="bi bi-coin"></i> R$00,00</li>
                 </ul>
                 <div class="buttons">
                     <a href="#" class="saiba-mais" onclick="event.preventDefault(); openModal('linear');">
@@ -58,19 +59,19 @@
     <!-- MODAL OVERLAY -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal-content" id="modalContent">
-            <!-- Botão de fechar -->
+           
             <button class="modal-close" onclick="closeModal()">×</button>
 
             <div class="modal-header">
                 <h2 id="modalTitle"></h2>
             </div>
-            <!-- Área de Tabs -->
+    
             <div class="modal-tabs" id="modalTabs">
-                <!-- Tabs gerados dinamicamente -->
+             
             </div>
-            <!-- Conteúdo das Tabs -->
+        
             <div id="modalTabContents">
-                <!-- Cada tab terá seu próprio container, gerado dinamicamente -->
+            
             </div>
         </div>
     </div>
