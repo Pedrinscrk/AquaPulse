@@ -601,3 +601,82 @@ img {
   }
 }
 
+
+
+
+.animated-list {
+  display: grid; /* Transforma a lista em um grid */
+  grid-template-columns: auto 1fr; /* Define duas colunas: uma automática para o ícone/título e uma que ocupa o restante para a descrição */
+  gap: 8px 12px; /* Espaçamento entre as linhas e colunas */
+}
+
+.animated-list li {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.5s ease-out forwards;
+  display: flex; /* Mantém o flex para alinhar ícone e título */
+  align-items: flex-start;
+  margin-bottom: 0; /* Removido o margin-bottom do li, o espaçamento agora é controlado pelo gap do grid */
+}
+
+.animated-list li:nth-child(odd) { /* Estiliza apenas os itens ímpares (ícone e título) */
+  grid-column: 1; /* Garante que fiquem na primeira coluna */
+}
+
+.animated-list li:nth-child(even) { /* Estiliza apenas os itens pares (descrição) */
+  grid-column: 2; /* Garante que fiquem na segunda coluna */
+}
+
+@keyframes fadeIn {
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.animated-list {
+  display: grid; /* Transforma a lista em um grid */
+  grid-template-columns: auto 1fr; /* Define duas colunas: uma automática para o ícone/título e uma que ocupa o restante para a descrição */
+  gap: 8px 12px; /* Espaçamento entre as linhas e colunas */
+}
+
+.animated-list li {
+  opacity: 0;
+  transform: translateY(20px);
+  display: flex; /* Mantém o flex para alinhar ícone e título */
+  align-items: flex-start;
+  margin-bottom: 0; /* Removido o margin-bottom do li, o espaçamento agora é controlado pelo gap do grid */
+}
+
+.animated-list.animate li {
+  animation: fadeIn 0.5s ease-out forwards; /* Adiciona a animação quando a classe 'animate' está presente */
+}
+
+.animated-list li:nth-child(odd) { /* Estiliza apenas os itens ímpares (ícone e título) */
+  grid-column: 1; /* Garante que fiquem na primeira coluna */
+}
+
+.animated-list li:nth-child(even) { /* Estiliza apenas os itens pares (descrição) */
+  grid-column: 2; /* Garante que fiquem na segunda coluna */
+}
+
+@keyframes fadeIn {
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.animated-list li i {
+  margin-top: 4px;
+  margin-right: 12px; /* Adiciona um espaço entre o ícone e o título */
+}
+
+.animated-list li strong {
+  white-space: nowrap; /* Evita que o título quebre para a próxima linha */
+}
+@media screen and (min-width: 769px) {
+  .exibir-celular {
+    display: none;
+  }
+}

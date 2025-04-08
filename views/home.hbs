@@ -1,8 +1,9 @@
 ﻿{{> header}}
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
 
 {{!-- Video inicio --}}
 <div id="video-container">
@@ -21,10 +22,10 @@
   letter-spacing: 1px;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 ">
- NOTICIAS DESTAQUES
+  NOTICIAS DESTAQUES
 </h1>
 {{!-- Produtos destaques --}}
- <div class="container">
+<div class="container">
   <div class="box-container">
     <div class="box">
       <img src="img/instagramAQ.png" alt="Imagem 1">
@@ -101,8 +102,8 @@
         SUAS PLANTAS ESTÃO MORRENDO POR FALTA OU EXCESSO DE ÁGUA?
       </div>
       <div class="descricao-texto">
-        Com o <strong>AquaPulse</strong>, você tem controle total da irrigação.  
-        Pelo app, ajuste a quantidade de água liberada com base na umidade real do solo.  
+        Com o <strong>AquaPulse</strong>, você tem controle total da irrigação.
+        Pelo app, ajuste a quantidade de água liberada com base na umidade real do solo.
         Veja em tempo real a vazão ideal para o crescimento saudável das suas plantas.
       </div>
     </div>
@@ -117,7 +118,24 @@
 
 
 
-{{!-- 
+
+
+
+
+
+<h1 class="exibir-celular" style="
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    color: aliceblue;
+    text-align: center;
+    margin: 30px 0;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  ">
+  PROTÓTIPO INTERATIVO DO APP
+</h1>
+
+{{!--
 {{!-- Banner --}}
 <div class="Banner-conteiner">
   <div class="Banner">
@@ -125,8 +143,76 @@
   </div>
 </div> --}}
 
+<section class="secao-prototipo-app" style="background-color: #080808; padding: 80px 20px;">
+  <div class="container-prototipo-app"
+    style="display: flex; max-width: 1100px; margin: 0 auto; align-items: center; justify-content: center; gap: 45px; flex-wrap: wrap;">
+
+    <iframe src="/aquapulse_prototype.html" width="290" height="580"
+      style="border: none; overflow: hidden; flex-shrink: 0; border-radius: 25px; box-shadow: 0 20px 50px rgba(0,0,0,0.35);"
+      title="Protótipo Interativo AquaPulse App">
+      Seu navegador não suporta iframes.
+    </iframe>
+
+    <div class="texto-explicativo-app" style="max-width: 480px; color: #f0f4f8; font-family: 'Poppins', sans-serif;">
+      <h2
+        style="font-size: 1.7rem; font-weight: 600; margin-bottom: 15px; display: flex; align-items: center; gap: 12px;">
+        <i class="bi bi-phone-vibrate" style="font-size: 1.5rem; color: #28a745;"></i> Explore o App AquaPulse
+      </h2>
+      <p style="font-size: 0.95rem; line-height: 1.7; margin-bottom: 18px; opacity: 0.85;">
+        Este é um <strong>protótipo interativo</strong> do aplicativo AquaPulse. Use os controles no celular ao lado
+        para simular como você pode gerenciar seu sistema de irrigação inteligente de forma simples e eficaz.
+      </p>
+      <ul class="animated-list"
+        style="list-style: none; padding-left: 0; font-size: 0.9rem; line-height: 1.55; opacity: 0.9; display: grid; grid-template-columns: auto 1fr; gap: 8px 12px;">
+        <li style="display: flex; align-items: flex-start;"><i class="bi bi-droplet-half"
+            style="color:#28a745; font-size: 1.1rem; margin-top: 3px;"></i> <strong style="white-space: nowrap;">Ajuste
+            a Umidade:</strong></li>
+        <li style="display: flex; align-items: flex-start;">Defina o nível ideal de umidade do solo deslizando o
+          controle.</li>
+        <li style="display: flex; align-items: flex-start;"><i class="bi bi-speedometer2"
+            style="color:#28a745; font-size: 1.1rem; margin-top: 3px;"></i> <strong
+            style="white-space: nowrap;">Controle a Vazão:</strong></li>
+        <li style="display: flex; align-items: flex-start;">Monitore a vazão atual e ajuste o limite máximo desejado.
+        </li>
+        <li style="display: flex; align-items: flex-start;"><i class="bi bi-power"
+            style="color:#28a745; font-size: 1.1rem; margin-top: 3px;"></i> <strong
+            style="white-space: nowrap;">Gerencie o Sistema:</strong></li>
+        <li style="display: flex; align-items: flex-start;">Ligue, pause ou desligue a irrigação a qualquer momento com
+          os botões.</li>
+        <li style="display: flex; align-items: flex-start;"><i class="bi bi-cloud-sun"
+            style="color:#28a745; font-size: 1.1rem; margin-top: 3px;"></i> <strong style="white-space: nowrap;">Veja a
+            Previsão:</strong></li>
+        <li style="display: flex; align-items: flex-start;">Consulte a previsão do tempo para planejar melhor as regas.
+        </li>
+        <li style="display: flex; align-items: flex-start;"><i class="bi bi-graph-up-arrow"
+            style="color:#28a745; font-size: 1.1rem; margin-top: 3px;"></i> <strong style="white-space: nowrap;">Analise
+            Dados:</strong></li>
+        <li style="display: flex; align-items: flex-start;">Navegue até a aba de gráficos para visualizar o consumo de
+          água.</li>
+        <li style="display: flex; align-items: flex-start;"><i class="bi bi-clock-history"
+            style="color:#28a745; font-size: 1.1rem; margin-top: 3px;"></i> <strong style="white-space: nowrap;">Confira
+            o Histórico:</strong></li>
+        <li style="display: flex; align-items: flex-start;">Acesse o histórico para ver os registros das últimas regas.
+        </li>
+        <li style="display: flex; align-items: flex-start;"><i class="bi bi-gear-wide-connected"
+            style="color:#28a745; font-size: 1.1rem; margin-top: 3px;"></i> <strong
+            style="white-space: nowrap;">Personalize:</strong></li>
+        <li style="display: flex; align-items: flex-start;">Acesse as configurações para simular ajustes no sistema.
+        </li>
+      </ul>
+      <p
+        style="margin-top: 25px; font-size: 0.9rem; opacity: 0.8; background-color: rgba(40, 167, 69, 0.05); padding: 10px; border-radius: 5px; text-align: center;">
+        <strong>Clique nos botões, ajuste os sliders</strong> e explore as abas para experimentar todas as
+        funcionalidades simuladas!
+      </p>
+    </div>
+
+  </div>
 
 
+
+
+</section>
 <h1 style="
   font-family: 'Poppins', sans-serif;
   font-size: 1.5rem;
@@ -136,15 +222,14 @@
   letter-spacing: 1px;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 ">
- NOSSA HISTORIA 
+  NOSSA HISTORIA
 </h1>
- <div class="scroller-container">
-        <div class="scroller-content">
-            <img src="img/1.png" alt="Imagem 1">
-            <img src="img/2.png" alt="Imagem 2">
-            <img src="img/1.png" alt="Imagem 1">
-            <img src="img/2.png" alt="Imagem 2">
-        </div>
-    </div>
-
+<div class="scroller-container">
+  <div class="scroller-content">
+    <img src="img/1.png" alt="Imagem 1">
+    <img src="img/2.png" alt="Imagem 2">
+    <img src="img/1.png" alt="Imagem 1">
+    <img src="img/2.png" alt="Imagem 2">
+  </div>
+</div>
 {{> footer }}

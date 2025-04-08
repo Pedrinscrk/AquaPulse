@@ -8,142 +8,6 @@ document.querySelectorAll('.faq-question').forEach(item => {
     });
   });
   
-  // Banco de respostas
-  const respostas = [
-    {
-      keywords: ['oi', 'olá', 'bom dia', 'boa tarde', 'boa noite'],
-      respostas: [
-        "Olá! Como posso ajudar?",
-        "Saudações! Em que posso auxiliar hoje?",
-        "Oi! Conte comigo para resolver suas dúvidas.",
-        "Bem-vindo ao suporte AquaPulse! Como posso ajudar?",
-        "Olá! Estou aqui para ajudar com suas dúvidas."
-      ]
-    },
-    {
-      keywords: ['erro', 'problema', 'não funciona', 'quebrado', 'defeito'],
-      respostas: [
-        "Vamos resolver isso! Verifique a conexão com água e energia.",
-        "Por favor, reinicie o dispositivo e tente novamente.",
-        "Verifique se há entupimentos nos filtros.",
-        "Poderia descrever o problema com mais detalhes?",
-        "Vou te ajudar! Qual luz está piscando no painel?"
-      ]
-    },
-    {
-      keywords: ['manual', 'instruções', 'documentação'],
-      respostas: [
-        "📥 Manual completo: [LINK_DOWNLOAD]",
-        "Baixe o manual aqui: [LINK_DOWNLOAD]",
-        "Documentação disponível em: [LINK_DOWNLOAD]"
-      ]
-    },
-    {
-      keywords: ['garantia', 'troca', 'devolução'],
-      respostas: [
-        "Garantia de 2 anos contra defeitos de fabricação.",
-        "Para acionar a garantia, precisamos do número de série.",
-        "Entre em contato com nossa equipe técnica para trocas.",
-        "Processo de devolução: [LINK_PROCESSO]"
-      ]
-    },
-    {
-      keywords: ['contato', 'humano', 'atendente', 'whatsapp'],
-      respostas: [
-        "Claro! Nosso WhatsApp: +55 66 99252-4707",
-        "Fale diretamente conosco: +55 66 99252-4707",
-        "Transferindo para WhatsApp..."
-      ]
-    }
-  ];
-  
-  // Função de busca de respostas
-  function encontrarResposta(mensagem) {
-    const mensagemLower = mensagem.toLowerCase();
-    const respostaEncontrada = respostas.find(item => 
-      item.keywords.some(keyword => mensagemLower.includes(keyword))
-    );
-  
-    if (!respostaEncontrada) return null;
-    
-    return respostaEncontrada.respostas[
-      Math.floor(Math.random() * respostaEncontrada.respostas.length)
-    ];
-  }
-  
-  // Inicialização do Chat
-  document.addEventListener("DOMContentLoaded", () => {
-    // Botão do Chat
-    const chatBtn = document.getElementById('chat-button');
-    if (chatBtn) {
-      chatBtn.addEventListener('click', () => {
-        const chatWindow = window.open('', 'ChatWindow', 'width=400,height=600');
-        if (!chatWindow) {
-          alert('Por favor permita pop-ups para usar o chat');
-          return;
-        }
-  
-        chatWindow.document.write(`
-          <!DOCTYPE html>
-          <html>
-          <head>
-              <title>Chat AquaPulse</title>
-              <style>
-                  body { font-family: 'Poppins', sans-serif; background: #080808; color: white; margin: 0; padding: 0; display: flex; flex-direction: column; height: 100vh; }
-                  .chat-header { background: #28a745; padding: 1rem; text-align: center; font-weight: bold; color: #000; }
-                  .chat-body { flex: 1; padding: 1rem; overflow-y: auto; display: flex; flex-direction: column; gap: 0.5rem; }
-                  .chat-input { display: flex; padding: 1rem; background: #111; border-top: 1px solid #333; }
-                  .chat-input input { flex: 1; padding: 0.75rem; border-radius: 5px; border: none; background: #222; color: white; outline: none; }
-                  .message { background: #1c1c1c; padding: 0.75rem; border-radius: 8px; max-width: 80%; }
-                  .user { align-self: flex-end; background: #28a745; color: #000; }
-                  .bot { align-self: flex-start; background: #333; }
-              </style>
-          </head>
-          <body>
-              <div class="chat-header">Chat AquaPulse</div>
-              <div class="chat-body" id="chatBody">
-                  <div class="message bot">${['Olá! Como posso ajudar?', 'Bem-vindo! Conte comigo.'][Math.floor(Math.random() * 2)]}</div>
-              </div>
-              <div class="chat-input">
-                  <input type="text" id="messageInput" placeholder="Digite sua mensagem..." autofocus>
-              </div>
-              <script>
-                  const input = document.getElementById('messageInput');
-                  const chatBody = document.getElementById('chatBody');
-                  
-                  function addMessage(msg, isUser) {
-                      const msgDiv = document.createElement('div');
-                      msgDiv.className = \`message \${isUser ? 'user' : 'bot'}\`;
-                      msgDiv.textContent = msg;
-                      chatBody.appendChild(msgDiv);
-                      chatBody.scrollTop = chatBody.scrollHeight;
-                  }
-  
-                  input.addEventListener('keypress', async (e) => {
-                      if (e.key === 'Enter' && input.value.trim()) {
-                          const msg = input.value.trim();
-                          addMessage(msg, true);
-                          
-                          setTimeout(() => {
-                              const resposta = window.opener.encontrarResposta(msg);
-                              if (resposta) {
-                                  addMessage(resposta, false);
-                              } else {
-                                  addMessage(\`Desculpe, não entendi. Por favor, entre em contato via WhatsApp: +55 66 99252-4707\`, false);
-                              }
-                          }, 800);
-                          
-                          input.value = '';
-                      }
-                  });
-              <\/script>
-          </body>
-          </html>
-        `);
-        chatWindow.document.close();
-      });
-    }
-  
     // Botão de Ticket
     const ticketButton = document.getElementById("ticket-button");
     if (ticketButton) {
@@ -152,21 +16,7 @@ document.querySelectorAll('.faq-question').forEach(item => {
       });
     }
   
-    // Botão de Manual
-    const manualButton = document.getElementById("manual-btn");
-    if (manualButton) {
-      manualButton.addEventListener("click", () => {
-        window.location.href = '[LINK_MANUAL]';
-      });
-    }
-  
-    // Botão de Guia
-    const guideButton = document.getElementById("guide-btn");
-    if (guideButton) {
-      guideButton.addEventListener("click", () => {
-        window.location.href = '[LINK_GUIA]';
-      });
-    }
+ 
   
     // Botão de Contato
     const contactButton = document.getElementById("contact-button");
@@ -175,4 +25,315 @@ document.querySelectorAll('.faq-question').forEach(item => {
         window.open('https://api.whatsapp.com/send?phone=5566992524707', '_blank');
       });
     }
-  });
+
+    class Chatbot {
+      constructor() {
+        this.chatButton = document.getElementById('chat-button');
+        this.chatbotContainer = document.getElementById('chatbot-container');
+        this.chatBody = document.getElementById('chatBody');
+        this.messageInput = document.getElementById('messageInput');
+        this.sendButton = document.getElementById('sendButton');
+        this.chatbotOverlay = document.getElementById('chatbot-overlay');
+        this.closeChatButton = document.getElementById('close-chat-button');
+        this.faqCategoriesContainer = document.getElementById('faqCategories');
+        this.faqButtonsContainer = document.getElementById('faqButtons');
+        this.backButtonContainer = document.getElementById('backButtonContainer');
+        this.searchInput = document.getElementById('searchQuestions');
+        this.typingIndicator = document.getElementById('typing-indicator');
+        this.localStorageKey = 'aquapulseChatHistory';
+        this.currentCategory = null;
+    
+        this.respostas = [
+          { keywords: ['umidade', 'nível de umidade', 'ajustar umidade'], respostas: [{ text: 'Para ajustar a umidade, você pode usar os controles no painel principal.' }, { text: 'O nível ideal de umidade depende do tipo de planta. Consulte o manual para mais informações.' }] },
+          { keywords: ['vazão', 'controlar vazão', 'problemas de vazão'], respostas: [{ text: 'A vazão pode ser controlada através das configurações do sistema.' }, { text: 'Se você estiver tendo problemas com a vazão, verifique se não há obstruções nas tubulações.' }] },
+          { keywords: ['ligar sistema', 'desligar sistema', 'modo de pausa', 'agendar irrigações'], respostas: [{ text: 'Você pode ligar e desligar o sistema usando o botão de energia no aplicativo.' }, { text: 'O modo de pausa interrompe temporariamente a irrigação. As irrigações podem ser agendadas na seção de configurações.' }] },
+          { keywords: ['previsão do tempo', 'ver previsão', 'chuva'], respostas: [{ text: 'A previsão do tempo é exibida no painel principal do aplicativo.' }, { text: 'O sistema considera a previsão de chuva para ajustar a irrigação automaticamente.' }] },
+          { keywords: ['gráficos', 'histórico de regas', 'dados'], respostas: [{ text: 'Você pode acessar os gráficos e o histórico de regas na seção de dados do aplicativo.' }, { text: 'O histórico de regas é armazenado por 30 dias.' }] },
+          { keywords: ['configurações', 'personalizar', 'unidades de medida', 'wi-fi'], respostas: [{ text: 'Sim, você pode personalizar várias configurações no aplicativo, como unidades de medida e conexão Wi-Fi.' }] },
+          { keywords: ['manual', 'suporte', 'garantia'], respostas: [{ text: 'O manual do produto pode ser encontrado em nosso site na seção de downloads.' }, { text: 'Para entrar em contato com o suporte, você pode usar o chat ao vivo ou enviar um e-mail para suporte@aquapulse.com.' }, { text: 'Nosso produto tem garantia de 1 ano contra defeitos de fabricação.' }] },
+          { keywords: ['olá', 'oi', 'bom dia', 'boa tarde', 'boa noite'], respostas: [{ text: 'Olá! Como posso ajudar hoje?' }] },
+          { keywords: ['tchau', 'até logo', 'obrigado'], respostas: [{ text: 'De nada! Tenha um ótimo dia!' }] },
+        ];
+    
+        this.fuseOptions = {
+          keys: ['keywords'],
+          threshold: 0.6
+        };
+    
+        this.fuse = new Fuse(this.respostas, this.fuseOptions);
+    
+        this.initialize();
+      }
+    
+      initialize() {
+        // Event listeners
+        if (this.chatButton) this.chatButton.addEventListener('click', this.openChatbot.bind(this));
+        if (this.closeChatButton) this.closeChatButton.addEventListener('click', this.closeChatbot.bind(this));
+        if (this.chatbotOverlay) this.chatbotOverlay.addEventListener('click', this.handleOverlayClick.bind(this));
+        if (this.sendButton) this.sendButton.addEventListener('click', this.sendMessage.bind(this));
+        if (this.messageInput) this.messageInput.addEventListener('keypress', this.handleEnterPress.bind(this));
+        if (this.searchInput) this.searchInput.addEventListener('input', this.debounceFilterQuestions.bind(this));
+    
+        // Adicionar atributos ARIA
+        this.chatbotContainer.setAttribute('aria-modal', 'true');
+        this.chatbotContainer.setAttribute('role', 'dialog');
+        this.chatbotContainer.setAttribute('aria-label', 'Chat ao Vivo com AquaPulse');
+        this.messageInput.setAttribute('aria-label', 'Digite sua mensagem');
+        this.sendButton.setAttribute('aria-label', 'Enviar mensagem');
+        this.closeChatButton.setAttribute('aria-label', 'Fechar chat');
+        this.searchInput.setAttribute('aria-label', 'Buscar perguntas frequentes');
+    
+        // Inicializar FAQ Categories
+        this.renderFaqCategories();
+    
+        // Carregar histórico ao inicializar se o chat já estiver aberto
+        if (this.chatbotContainer && this.chatbotContainer.style.display === 'flex') {
+          this.loadChatHistory();
+        }
+      }
+    
+      // Funções de controle do modal
+      openChatbot() {
+        this.chatbotContainer.style.display = 'flex';
+        this.chatbotOverlay.style.display = 'block';
+        this.loadChatHistory();
+      }
+    
+      closeChatbot() {
+        this.chatbotContainer.style.display = 'none';
+        this.chatbotOverlay.style.display = 'none';
+      }
+    
+      handleOverlayClick(event) {
+        if (event.target === this.chatbotOverlay) {
+          this.closeChatbot();
+        }
+      }
+    
+      // Função para adicionar uma mensagem ao chat e salvar o histórico
+      addMessage(text, isUser) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('chatbot-message', isUser ? 'user' : 'bot');
+        messageDiv.innerHTML = text;
+    
+        const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const timestampSpan = document.createElement('span');
+        timestampSpan.classList.add('message-timestamp');
+        timestampSpan.style.fontSize = '0.7rem';
+        timestampSpan.style.color = '#777';
+        timestampSpan.style.marginLeft = '0.5rem';
+        timestampSpan.textContent = timestamp;
+    
+        messageDiv.appendChild(timestampSpan);
+        this.chatBody.appendChild(messageDiv);
+        this.chatBody.scrollTop = this.chatBody.scrollHeight;
+        this.saveChatHistory();
+      }
+    
+      // Obter resposta do bot
+      getBotResponse(userMessage) {
+        const results = this.fuse.search(userMessage);
+        if (results.length > 0) {
+          const bestMatch = results[0].item;
+          return bestMatch.respostas[Math.floor(Math.random() * bestMatch.respostas.length)];
+        } else {
+          return { text: 'Desculpe, não encontrei uma resposta para sua pergunta.' };
+        }
+      }
+    
+      // Enviar mensagem
+      sendMessage() {
+        const messageText = this.messageInput.value.trim();
+        if (messageText) {
+          this.addMessage(messageText, true);
+          this.messageInput.value = '';
+          this.showTypingIndicator();
+    
+          setTimeout(() => {
+            const botResponseObj = this.getBotResponse(messageText);
+            this.hideTypingIndicator();
+            let botResponseHTML = '';
+            if (botResponseObj && botResponseObj.text) {
+              botResponseHTML = botResponseObj.text;
+              if (botResponseObj.image) {
+                botResponseHTML += `<br><img src="${botResponseObj.image}" alt="Imagem da Resposta" style="max-width: 100%;">`;
+              }
+              if (botResponseObj.action) {
+                botResponseHTML += `<br><button class="bot-response-action">${botResponseObj.action}</button>`;
+              }
+            } else {
+              botResponseHTML = 'Desculpe, não encontrei uma resposta para sua pergunta.';
+            }
+            this.addMessage(botResponseHTML, false);
+          }, 800);
+        }
+      }
+    
+      // Funções para mostrar/esconder o indicador de digitação
+      showTypingIndicator() {
+        if (this.typingIndicator) {
+          this.typingIndicator.style.display = 'block';
+          this.chatBody.scrollTop = this.chatBody.scrollHeight;
+        }
+      }
+    
+      hideTypingIndicator() {
+        if (this.typingIndicator) {
+          this.typingIndicator.style.display = 'none';
+        }
+      }
+    
+      // Funções para salvar e carregar o histórico do chat
+      saveChatHistory() {
+        const chatMessages = this.chatBody.innerHTML;
+        localStorage.setItem(this.localStorageKey, chatMessages);
+      }
+    
+      loadChatHistory() {
+        const savedMessages = localStorage.getItem(this.localStorageKey);
+        if (savedMessages) {
+          this.chatBody.innerHTML = savedMessages;
+          this.chatBody.scrollTop = this.chatBody.scrollHeight;
+        }
+      }
+    
+      // Lógica do FAQ
+      categorizedQuestions = {
+        "Umidade": [
+          "Como ajustar a umidade?",
+          "Qual o nível ideal de umidade?",
+          "O que fazer se a umidade estiver muito alta/baixa?"
+        ],
+        "Vazão": [
+          "Como controlar a vazão?",
+          "Qual a vazão ideal para minhas plantas?",
+          "Como solucionar problemas de vazão?"
+        ],
+        "Sistema": [
+          "Como ligo/desligo o sistema?",
+          "O que significa o modo de pausa?",
+          "Como agendar irrigações?"
+        ],
+        "Previsão do Tempo": [
+          "Onde vejo a previsão do tempo?",
+          "Como a previsão afeta a irrigação?",
+          "O app considera a chuva?"
+        ],
+        "Dados e Histórico": [
+          "Como acesso os gráficos?",
+          "O que os gráficos mostram?",
+          "Onde está o histórico de regas?",
+          "Por quanto tempo o histórico é armazenado?"
+        ],
+        "Configurações": [
+          "Posso personalizar algo?",
+          "Como alterar as unidades de medida?",
+          "Como conectar o Wi-Fi?"
+        ],
+        "Geral": [
+          "Onde encontro o manual?",
+          "Como entro em contato com o suporte?",
+          "Qual a garantia do produto?"
+        ]
+      };
+    
+      renderFaqCategories() {
+        this.faqCategoriesContainer.innerHTML = '';
+        for (const category in this.categorizedQuestions) {
+          const categoryButton = document.createElement('button');
+          categoryButton.textContent = category;
+          categoryButton.addEventListener('click', () => this.showQuestions(category));
+          this.faqCategoriesContainer.appendChild(categoryButton);
+        }
+      }
+    
+      showQuestions(category) {
+        this.faqButtonsContainer.innerHTML = '';
+        this.categorizedQuestions[category].forEach(question => {
+          const button = document.createElement('button');
+          button.textContent = question;
+          button.addEventListener('click', () => this.sendMessage(question));
+          this.faqButtonsContainer.appendChild(button);
+        });
+        this.faqCategoriesContainer.style.display = 'none';
+        this.faqButtonsContainer.style.display = 'flex';
+        this.backButtonContainer.style.display = 'block';
+        this.currentCategory = category;
+      }
+    
+      showCategories() {
+        this.faqCategoriesContainer.style.display = 'flex';
+        this.faqButtonsContainer.style.display = 'none';
+        this.backButtonContainer.style.display = 'none';
+        this.currentCategory = null;
+        this.searchInput.value = '';
+        this.filterQuestions();
+      }
+    
+      filterQuestions() {
+        const searchTerm = this.searchInput.value.toLowerCase();
+        this.faqButtonsContainer.innerHTML = '';
+    
+        if (searchTerm) {
+          this.faqCategoriesContainer.style.display = 'none';
+          this.faqButtonsContainer.style.display = 'flex';
+          this.backButtonContainer.style.display = 'block';
+    
+          let foundQuestions = false;
+          for (const category in this.categorizedQuestions) {
+            this.categorizedQuestions[category].forEach(question => {
+              if (question.toLowerCase().includes(searchTerm)) {
+                const button = document.createElement('button');
+                button.textContent = question;
+                button.addEventListener('click', () => this.sendMessage(question));
+                this.faqButtonsContainer.appendChild(button);
+                foundQuestions = true;
+              }
+            });
+          }
+          if (!foundQuestions) {
+            this.faqButtonsContainer.innerHTML = '<div class="chatbot-message bot">Nenhuma pergunta encontrada para sua busca.</div>';
+          }
+        } else if (this.currentCategory) {
+          this.showQuestions(this.currentCategory);
+        } else {
+          this.faqButtonsContainer.style.display = 'none';
+          this.faqCategoriesContainer.style.display = 'flex';
+          this.backButtonContainer.style.display = 'none';
+        }
+      }
+    
+      debounceFilterQuestions() {
+        clearTimeout(this.timer);
+        this.timer = setTimeout(this.filterQuestions.bind(this), 300);
+      }
+    
+      handleEnterPress(event) {
+        if (event.key === 'Enter') {
+          this.sendMessage();
+        }
+      }
+    
+      handleBotActionClick(event) {
+        if (event.target.classList.contains('bot-response-action')) {
+          const action = event.target.textContent;
+          console.log('Ação do bot clicada:', action);
+          this.addMessage(`Você clicou em: ${action}`, true);
+        }
+      }
+    }
+    
+    document.addEventListener("DOMContentLoaded", () => {
+      const chatbot = new Chatbot();
+    
+      // Event listener para o botão de Ticket
+      const ticketButton = document.getElementById("ticket-button");
+      if (ticketButton) ticketButton.addEventListener("click", () => { alert("Ticket enviado com sucesso! Você receberá uma resposta em breve."); });
+    
+      // Event listener para o botão de Contato
+      const contactButton = document.getElementById("contact-button");
+      if (contactButton) contactButton.addEventListener("click", () => { window.open('https://api.whatsapp.com/send?phone=5566992524707', '_blank'); });
+    
+      // Event listener para cliques no corpo do chat (para ações do bot)
+      chatbot.chatBody.addEventListener('click', chatbot.handleBotActionClick.bind(chatbot));
+    });
