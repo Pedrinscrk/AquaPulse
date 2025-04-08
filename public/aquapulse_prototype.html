@@ -417,8 +417,8 @@
             }
         }
 
-        // ---- Funções de Controle e Atualização de Dados ----
 
+        // ---- Funções de Controle e Atualização de Dados ----
         function updateMoistureTarget(value) {
             targetMoisture = parseInt(value);
             const targetEl = getElem('moistureTarget');
@@ -528,7 +528,7 @@
               fill.style.backgroundColor = currentFlow > 0.1 ? 'var(--primary)' : '#cccccc';
         }
 
-          function updateMoistureCircle() {
+        function updateMoistureCircle() {
               const circle = getElem('moistureCircleProgress');
               const text = getElem('currentMoistureValue');
               if (!circle || !text) return;
@@ -561,7 +561,7 @@
             updateFlowGauge();
             updateLastWatering();
         }
-
+    
         // ---- Inicialização e Gráfico ----
         function initializeChart(type = currentChartType) {
               const canvas=getElem('waterChart'); if(!canvas || canvas.offsetParent === null) return;
