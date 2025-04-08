@@ -24,37 +24,48 @@
  NOTICIAS DESTAQUES
 </h1>
 {{!-- Produtos destaques --}}
-  <div class="container">
-    <div class="box-container">
-      <div class="box">
-        <img src="img/Desconto.png" alt="Imagem 1">
-        <div class="info">
-          <div class="text">
-            CEO : O CEO Osmar amaral deu a doida e lançou um desconto...
-          </div>
-          <button class="saiba-mais" onclick="alert('Saiba Mais 1')">Saiba Mais</button>
+ <div class="container">
+  <div class="box-container">
+    <div class="box">
+      <img src="img/instagramAQ.png" alt="Imagem 1">
+      <div class="info">
+        <div class="text">
+          Marketing: Agora o Aquapulse está presente nas redes sociais...
         </div>
+        <button class="saiba-mais" onclick="abrirModal(0)">Saiba Mais</button>
       </div>
-      <div class="box">
-        <img src="img/produto2.png" alt="Imagem 2">
-        <div class="info">
-          <div class="text">
-            Lançamento de produto: AquaPulse Inova é lança um novo produto...
-          </div>
-          <button class="saiba-mais" onclick="alert('Saiba Mais 2')">Saiba Mais</button>
+    </div>
+    <div class="box">
+      <img src="img/novoMembro.jpeg" alt="Imagem 2">
+      <div class="info">
+        <div class="text">
+          Informe: Novo membro do time Aquapulse...
         </div>
+        <button class="saiba-mais" onclick="abrirModal(1)">Saiba Mais</button>
       </div>
-      <div class="box">
-        <img src="img/Inovação.png" alt="Imagem 3">
-        <div class="info">
-          <div class="text">
-            Inovação: Aquapulse Inova novamente quando assunto é...
-          </div>
-          <button class="saiba-mais" onclick="alert('Saiba Mais 3')">Saiba Mais</button>
+    </div>
+    <div class="box">
+      <img src="img/Banca.jpeg" alt="Imagem 3">
+      <div class="info">
+        <div class="text">
+          IFMT: AquaPulse é destaque na banca de 2024...
         </div>
+        <button class="saiba-mais" onclick="abrirModal(2)">Saiba Mais</button>
       </div>
     </div>
   </div>
+</div>
+
+
+<!-- Modal -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="fecharModal()">&times;</span>
+    <h2 id="modal-title"></h2>
+    <img id="modal-image" src="" alt="Imagem da Notícia">
+    <p id="modal-text"></p>
+  </div>
+</div>
 
 
 
@@ -106,11 +117,34 @@
 
 
 
-
+{{!-- 
 {{!-- Banner --}}
 <div class="Banner-conteiner">
   <div class="Banner">
     <img src="img/BannerPromoçãoproduto.png" alt="Banner">
   </div>
-</div>
+</div> --}}
+
+
+
+<h1 style="
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5rem;
+  color: aliceblue;
+  text-align: center;
+  margin: 30px 0;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+">
+ NOSSA HISTORIA 
+</h1>
+ <div class="scroller-container">
+        <div class="scroller-content">
+            <img src="img/1.png" alt="Imagem 1">
+            <img src="img/2.png" alt="Imagem 2">
+            <img src="img/1.png" alt="Imagem 1">
+            <img src="img/2.png" alt="Imagem 2">
+        </div>
+    </div>
+
 {{> footer }}
