@@ -680,3 +680,261 @@ img {
     display: none;
   }
 }
+
+
+
+    /* === INÍCIO DO CSS EMBUTIDO E ESCOPADO PARA AQUAPULSE === */
+
+    /* Opcional: Se a fonte Poppins não estiver carregada globalmente, você pode manter este import aqui,
+       mas idealmente, fontes devem ser carregadas uma vez na página principal. */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+    /* Container principal agora define o escopo e as variáveis */
+    aquapulse-super-container {
+        /* Define as variáveis CSS *apenas* para este componente e seus filhos */
+        /* Cores Principais */
+        --cor-fundo-comp: #080808; /* Renomeado para evitar conflito potencial com --cor-fundo global */
+        --cor-texto-comp: #cccccc;
+        --cor-titulo-comp: #ffffff;
+        --cor-subtitulo-comp: #aaaaaa;
+       
+        --cor-etapa-fundo-comp: #1a1a1a;
+        --cor-etapa-borda-comp: #383838;
+        --cor-tooltip-fundo-comp: #252525;
+        --cor-tooltip-texto-comp: #e0e0e0;
+
+        /* Cores dos Segmentos (mantidas, nomes são específicos) */
+        --cor-seg-1: #e74c3c; --cor-seg-2: #3498db; --cor-seg-3: #9b59b6;
+        --cor-seg-4: #f1c40f; --cor-seg-5: #e67e22; --cor-seg-6: #1abc9c;
+        --cor-seg-7: #2ecc71;
+
+        /* Cor de hover - usa uma variável de segmento */
+        --cor-etapa-hover-borda-comp: var(--cor-seg-2);
+
+        /* Tamanhos e Espaçamentos */
+        --tamanho-etapa: 125px;
+        --espaco-vertical: 85px;
+        --espessura-linha: 7px;
+        --espessura-conector: 4px;
+        --largura-maxima-container: 1600px; /* Largura máxima do próprio componente */
+        --border-radius-geral: 15px;
+        --border-radius-etapa: 10px;
+
+        /* Estilos que antes estavam no body, agora aplicados ao container */
+        display: block; /* Necessário para tags customizadas */
+        font-family: 'Poppins', sans-serif; /* Define a fonte para o componente */
+        color: var(--cor-texto-comp);      /* Cor de texto padrão DENTRO do componente */
+        background-color: var(--cor-container-fundo-comp); /* Fundo do container */
+        border-radius: var(--border-radius-geral);
+       
+
+        width: 95%; /* Ou ajuste conforme necessário para sua página */
+        max-width: var(--largura-maxima-container);
+        margin: 30px auto; /* Centraliza o container */
+        padding: 45px;     /* Espaçamento interno */
+        box-sizing: border-box;
+        overflow: hidden; /* Previne conteúdo interno de vazar inesperadamente */
+    }
+
+    /* Estilos para elementos DENTRO de aquapulse-super-container */
+    aquapulse-super-container titulo-secao {
+        display: block;
+        text-align: center;
+        font-size: 2.6em;
+        color: var(--cor-titulo-comp);
+        margin-bottom: 15px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        text-shadow: 0 1px 3px rgba(255,255,255,0.1);
+    }
+    aquapulse-super-container subtitulo-secao {
+        display: block;
+        text-align: center;
+        font-size: 1.1em;
+        color: var(--cor-subtitulo-comp);
+        margin-bottom: 70px;
+        font-weight: 300;
+    }
+
+    aquapulse-super-container aquapulse-linha-tempo {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: calc(var(--tamanho-etapa) * 2 + var(--espaco-vertical) * 2 + 20px);
+        margin-top: 50px;
+    }
+
+    aquapulse-super-container linha-central-wrapper {
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        width: 90%;
+        height: var(--espessura-linha);
+        transform: translateY(-50%);
+        overflow: hidden;
+        border-radius: calc(var(--espessura-linha) / 2);
+        background-color: var(--cor-etapa-borda-comp);
+    }
+
+    aquapulse-super-container linha-central-colorida {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(
+            to right,
+            var(--cor-seg-1) 0%, var(--cor-seg-1) 14%,
+            var(--cor-seg-2) 14%, var(--cor-seg-2) 28%,
+            var(--cor-seg-3) 28%, var(--cor-seg-3) 42%,
+            var(--cor-seg-4) 42%, var(--cor-seg-4) 56%,
+            var(--cor-seg-5) 56%, var(--cor-seg-5) 70%,
+            var(--cor-seg-6) 70%, var(--cor-seg-6) 84%,
+            var(--cor-seg-7) 84%, var(--cor-seg-7) 100%
+        );
+        border-radius: calc(var(--espessura-linha) / 2);
+        z-index: 1;
+        transform: scaleX(0);
+        transform-origin: left;
+    }
+
+    aquapulse-super-container etapa-aquapulse {
+        display: block;
+        position: absolute;
+        width: var(--tamanho-etapa);
+        height: var(--tamanho-etapa);
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+        z-index: 10;
+    }
+
+    aquapulse-super-container etapa-aquapulse conteudo-etapa {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        background-color: var(--cor-etapa-fundo-comp);
+        border-radius: var(--border-radius-etapa);
+        border: 2px solid var(--cor-etapa-borda-comp);
+        padding: 10px;
+        box-sizing: border-box;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        cursor: default;
+        position: relative;
+        transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, border-color 0.25s ease-out;
+    }
+
+    aquapulse-super-container etapa-aquapulse:hover conteudo-etapa {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        border-color: var(--cor-etapa-hover-borda-comp);
+    }
+
+    aquapulse-super-container imagem-etapa {
+        display: block;
+        width: 60%;
+        margin-bottom: 8px;
+        overflow: hidden;
+        border-radius: 6px;
+    }
+    aquapulse-super-container imagem-etapa img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 6px;
+    }
+
+    aquapulse-super-container descricao-etapa {
+        display: block;
+        font-size: 0.85em;
+        line-height: 1.2;
+        font-weight: 400;
+        color: var(--cor-texto-comp); /* Usa a cor de texto do componente */
+        max-width: 95%;
+    }
+
+    aquapulse-super-container etapa-aquapulse.posicao-superior {
+        bottom: calc(50% + var(--espaco-vertical) / 2);
+    }
+    aquapulse-super-container etapa-aquapulse.posicao-inferior {
+        top: calc(50% + var(--espaco-vertical) / 2);
+    }
+
+    aquapulse-super-container conector-vertical {
+        display: block;
+        position: absolute;
+        width: var(--espessura-conector);
+        height: calc(var(--espaco-vertical) / 2 + var(--espessura-linha) / 2);
+        left: 50%;
+        opacity: 0;
+        transform: translateX(-50%) scaleY(0);
+        z-index: 5;
+        border-radius: calc(var(--espessura-conector) / 2);
+    }
+    aquapulse-super-container etapa-aquapulse.posicao-superior conector-vertical {
+        bottom: calc(-1 * (var(--espaco-vertical) / 2 + var(--espessura-linha) / 2));
+        transform-origin: top;
+    }
+    aquapulse-super-container etapa-aquapulse.posicao-inferior conector-vertical {
+        top: calc(-1 * (var(--espaco-vertical) / 2 + var(--espessura-linha) / 2));
+        transform-origin: bottom;
+    }
+
+    aquapulse-super-container .tooltip-dinamico {
+        position: absolute;
+        bottom: 110%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        visibility: hidden;
+        background-color: var(--cor-tooltip-fundo-comp, #252525); /* Fallback adicionado */
+        color: var(--cor-tooltip-texto-comp, #e0e0e0); /* Fallback adicionado */
+        padding: 8px 15px;
+        border-radius: 6px;
+        font-size: 0.85em;
+        font-weight: 400;
+        line-height: 1.4;
+        white-space: nowrap;
+        z-index: 100; /* Alto z-index para ficar sobre outros elementos da página */
+        box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        pointer-events: none;
+    }
+
+    aquapulse-super-container etapa-aquapulse.posicao-inferior .tooltip-dinamico {
+        bottom: auto;
+        top: 110%;
+    }
+
+    /* === Responsividade DENTRO do componente === */
+    /* As regras dentro @media afetam apenas elementos dentro de aquapulse-super-container */
+    @media (max-width: 1200px) {
+        aquapulse-super-container { --tamanho-etapa: 110px; --espaco-vertical: 75px; }
+        aquapulse-super-container titulo-secao { font-size: 2.4em; }
+    }
+    @media (max-width: 992px) {
+        aquapulse-super-container { --tamanho-etapa: 95px; --espaco-vertical: 65px; }
+        aquapulse-super-container titulo-secao { font-size: 2.1em; }
+        aquapulse-super-container { padding: 35px; } /* Ajusta padding do container */
+    }
+    @media (max-width: 768px) {
+        aquapulse-super-container { --tamanho-etapa: 80px; --espaco-vertical: 50px; }
+        /* O padding geral da página (body) não é definido aqui */
+        aquapulse-super-container titulo-secao { font-size: 1.8em; }
+        aquapulse-super-container subtitulo-secao { font-size: 1em; margin-bottom: 50px; }
+        aquapulse-super-container descricao-etapa { font-size: 0.7em; }
+        aquapulse-super-container imagem-etapa { width: 55%; }
+        /* aquapulse-super-container .tooltip-dinamico { display: none; } */
+    }
+    @media (max-width: 576px) {
+        aquapulse-super-container { --tamanho-etapa: 70px; --espaco-vertical: 40px; --espessura-linha: 5px; }
+        aquapulse-super-container titulo-secao { font-size: 1.5em; }
+        aquapulse-super-container subtitulo-secao { font-size: 0.9em; }
+        aquapulse-super-container imagem-etapa { width: 50%; }
+        aquapulse-super-container aquapulse-linha-tempo { height: calc(var(--tamanho-etapa) * 2 + var(--espaco-vertical) * 2 + 40px); }
+    }
+
+    /* === FIM DO CSS EMBUTIDO E ESCOPADO === */

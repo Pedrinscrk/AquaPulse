@@ -180,3 +180,140 @@ const notificacoes = [
   
     // Verifica na carga da página caso a seção já esteja visível
     document.addEventListener('DOMContentLoaded', checkScroll);
+
+
+        // === INÍCIO DO JAVASCRIPT EMBUTIDO ===
+        // Este script deve rodar DEPOIS que o HTML acima for carregado pelo navegador.
+        // Ele depende que o GSAP já esteja carregado globalmente na página.
+    
+        (function() { // Função auto-executável para criar um escopo local e evitar poluir o global
+            'use strict'; // Habilita modo estrito para boas práticas
+    
+            console.log("Tentando inicializar Aquapulse GSAP v2 (Embutido)...");
+    
+            // Verifica se GSAP está disponível (essencial!)
+            if (typeof gsap === 'undefined') {
+                console.error("GSAP não foi carregado globalmente. A animação Aquapulse não funcionará.");
+                // Considerar adicionar uma mensagem visual discreta dentro do próprio componente, se possível
+                const container = document.querySelector('aquapulse-super-container');
+                if(container) {
+                     container.insertAdjacentHTML('afterbegin', '<p style="color:red; text-align:center; padding: 10px; background: #333; border-radius: 5px; margin: 10px;">Erro: GSAP não encontrado.</p>');
+                }
+                return; // Aborta se GSAP não existe
+            }
+    
+            // Seleciona os elementos DENTRO do componente específico
+            // É crucial que o ID 'minhaLinhaTempo' seja ÚNICO na página inteira.
+            const linhaTempoContainer = document.getElementById('minhaLinhaTempo');
+    
+            // Se o container da linha do tempo não for encontrado, não faz nada.
+            if (!linhaTempoContainer) {
+                 console.error("Erro: Container da linha do tempo (#minhaLinhaTempo) não encontrado no HTML.");
+                 // Poderia adicionar uma mensagem dentro de 'aquapulse-super-container' se ele existir
+                  const superContainer = document.querySelector('aquapulse-super-container');
+                  if(superContainer) {
+                     superContainer.insertAdjacentHTML('afterbegin', '<p style="color:orange; text-align:center; padding: 10px; background: #333; border-radius: 5px; margin: 10px;">Aviso: Componente da linha do tempo não encontrado.</p>');
+                  }
+                 return;
+            }
+    
+            // Seleciona elementos internos a partir do container encontrado
+            const linhaColorida = linhaTempoContainer.querySelector('linha-central-colorida');
+            const conectores = linhaTempoContainer.querySelectorAll('conector-vertical');
+            const etapas = linhaTempoContainer.querySelectorAll('etapa-aquapulse'); // Seleciona todas as etapas DENTRO deste container
+    
+            // Verifica se todos os elementos essenciais da linha do tempo foram encontrados DENTRO do container
+            if (!linhaColorida || !conectores?.length || !etapas?.length) {
+                console.error("Erro: Elementos internos essenciais da linha do tempo não encontrados.");
+                 linhaTempoContainer.insertAdjacentHTML('beforebegin', '<p style="color:orange; text-align:center; padding: 10px; background: #333; border-radius: 5px; margin: 10px;">Aviso: Faltam partes internas da linha do tempo.</p>');
+                return; // Aborta se elementos essenciais faltam
+            }
+    
+            // --- Animação de Entrada com GSAP (Timeline Principal) ---
+            const masterTimeline = gsap.timeline({ paused: true });
+    
+            masterTimeline.to(linhaColorida, {
+                scaleX: 1, duration: 3.5, ease: "power3.out"
+            });
+            masterTimeline.to(conectores, {
+                opacity: 1, scaleY: 1, duration: 1, ease: "power2.out", stagger: 0.1
+            }, "-=0.8");
+            masterTimeline.to(etapas, {
+                opacity: 1, y: 0, duration: 1, ease: "back.out(1.4)", stagger: 0.15
+            }, "-=0.7");
+    
+            // --- Observer para disparar a Animação de Entrada ---
+            if ('IntersectionObserver' in window) {
+                const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+                const observerCallback = (entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            console.log("Linha do tempo Aquapulse entrou na viewport. Iniciando animação...");
+                            masterTimeline.play();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                };
+                const timelineObserver = new IntersectionObserver(observerCallback, observerOptions);
+                timelineObserver.observe(linhaTempoContainer); // Observa o container específico
+                console.log("Intersection Observer configurado para #minhaLinhaTempo.");
+            } else {
+                console.warn("IntersectionObserver não suportado. Iniciando animação Aquapulse imediatamente.");
+                masterTimeline.play();
+            }
+    
+            // --- Lógica de Tooltip Animado e Parallax com GSAP ---
+            etapas.forEach((etapa) => {
+                const tooltipElement = etapa.querySelector('.tooltip-dinamico');
+                const tooltipText = etapa.dataset.tooltip;
+                const conteudoEtapa = etapa.querySelector('conteudo-etapa');
+    
+                if (!tooltipElement || !tooltipText || !conteudoEtapa) {
+                    console.warn("Elemento de tooltip, texto ou conteúdo não encontrado para uma etapa Aquapulse:", etapa);
+                    return;
+                }
+    
+                tooltipElement.textContent = tooltipText;
+                const initialY = etapa.classList.contains('posicao-inferior') ? -15 : 15;
+                const finalY = 0;
+    
+                const tooltipAnimation = gsap.fromTo(tooltipElement,
+                    { opacity: 0, y: initialY, scale: 0.85, visibility: 'hidden' },
+                    { opacity: 1, y: finalY, scale: 1, visibility: 'visible', duration: 0.3, ease: 'power2.out', paused: true }
+                );
+    
+                etapa.addEventListener('mouseenter', () => tooltipAnimation.play());
+                etapa.addEventListener('mouseleave', () => tooltipAnimation.reverse());
+    
+                // Parallax no conteúdo da etapa
+                etapa.addEventListener('mousemove', (e) => {
+                     const rect = conteudoEtapa.getBoundingClientRect();
+                     const x = e.clientX - rect.left - rect.width / 2;
+                     const y = e.clientY - rect.top - rect.height / 2;
+                     const moveX = gsap.utils.clamp(-4, 4, -x * 0.06);
+                     const moveY = gsap.utils.clamp(-4, 4, -y * 0.06);
+                     gsap.to(conteudoEtapa, { x: moveX, y: moveY, duration: 0.4, ease: "power1.out" });
+                 });
+    
+                 etapa.addEventListener('mouseleave', () => {
+                     gsap.to(conteudoEtapa, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.6)" });
+                     // O tooltip já é escondido pelo outro listener 'mouseleave'
+                 });
+            });
+    
+            console.log("Tooltips e Parallax GSAP configurados para as etapas Aquapulse.");
+    
+            // Função de ajuste de layout em resize (mantida, mas pode não ser necessária)
+            function ajustarLayoutAquapulse() {
+                // console.log("Janela redimensionada, verificando layout Aquapulse...");
+                // Adicionar lógica de ajuste específica do componente aqui, se necessário
+            }
+            // Usar um listener com throttling/debouncing seria ideal para performance em produção
+            window.addEventListener('resize', ajustarLayoutAquapulse);
+    
+            console.log("Aquapulse JS setup v2 (Embutido) completo.");
+    
+        })(); // Fim da função auto-executável
+    
+        // === FIM DO JAVASCRIPT EMBUTIDO ===
+    

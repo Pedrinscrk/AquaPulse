@@ -1,1110 +1,373 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaPulse - Protótipo do App</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-    /* Variáveis de Cor */
-    :root {
-        --primary: #28a745;
-        --secondary: #264653;
-        --accent: #E9C46A;
-        --alert: #E76F51;
-        --background: #f0f4f8; /* Fundo da tela do app */
-        --text: #2B2D42;      /* Texto dentro do app */
-        --light-text: #f0f4f8; /* Texto claro para fundo escuro */
-        --dark-bg: #080808;   /* Fundo principal escuro */
-    }
-
-    /* Reset Básico */
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-
-    /* Estilos do Corpo Principal da Página */
-    body {
-        background: var(--dark-bg);
-        color: var(--light-text);
-        font-family: 'Poppins', sans-serif;
-        font-size: 16px;
-        line-height: 1.7;
-        letter-spacing: 0.3px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh; /* Altura mínima da viewport */
-        height: 100vh; /* Tenta forçar a altura da viewport */
-        overflow: hidden; /* Impede o scroll do BODY */
-        padding: 20px; /* Padding reduzido para dar mais espaço */
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
-
-    /* Container Principal */
-    .main-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 45px; /* Espaço ajustado */
-        flex-wrap: nowrap; /* Evita quebra de linha */
-        width: 100%;
-        max-width: 1100px; /* Largura máxima ajustada */
-        margin: 0 auto;
-    }
-
-    /* ---- ESTILOS DO PROTÓTIPO DO CELULAR ---- */
-    .phone-wrapper {
-         flex-shrink: 0; /* Impede que o wrapper do celular encolha */
-    }
-
-    .phone-frame {
-        width: 290px;  /* ALTERADO - Menor Largura */
-        height: 580px; /* ALTERADO - Menor Altura para caber na tela */
-        background: #1a1a1a;
-        border-radius: 25px; /* Raio ajustado */
-        padding: 12px;       /* Padding ajustado */
-        position: relative;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.35); /* Sombra ajustada */
-        flex-shrink: 0;
-        font-family: 'Poppins', sans-serif;
-    }
-
-    .screen-content {
-        height: 100%;
-        background: var(--background);
-        border-radius: 18px; /* Raio ajustado */
-        padding: 15px;       /* Padding ajustado */
-        display: flex;
-        flex-direction: column;
-        overflow: hidden; /* Conteúdo interno da tela não rola */
-        color: var(--text);
-    }
-
-    .status-bar {
-        font-size: 0.7rem; /* ~11px */
-        font-weight: 500;
-         margin-bottom: 10px;
-         padding: 0 5px;
-         flex-shrink: 0; /* Não encolher */
-    }
-     /* (Código duplicado removido, já estava no HTML)
-     .status-bar span { }
-     .status-bar div { display: flex; align-items: center; gap: 5px; }
-     .status-bar .bi { font-size: 0.9em; }
-     */
-
-
-    .screen-content h1 { /* Título "AQUAPULSE CONTROLE" */
-       font-size: 0.75rem; /* ~12px */
-       margin: 0 auto 12px auto;
-       color: var(--secondary);
-       font-weight: 600;
-       text-transform: uppercase;
-       letter-spacing: 0.5px;
-       flex-shrink: 0;
-    }
-
-
-    .main-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-        margin-bottom: 12px;
-        flex-shrink: 0;
-    }
-
-    .metric-card {
-        background: white;
-        padding: 10px; /* Padding reduzido */
-        border-radius: 15px;
-        text-align: center;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.07);
-        color: var(--text);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    .metric-card h4 {
-        font-size: 0.7rem; /* ~11px */
-        font-weight: 600;
-        margin-bottom: 6px;
-        color: var(--secondary);
-        line-height: 1.25;
-    }
-     .metric-card h4 .target-indicator {
-       display: block;
-       font-size: 0.8rem; /* ~13px */
-       color: var(--primary);
-       font-weight: 700;
-     }
-
-    .metric-card .value { /* Valor atual (umidade/vazão) */
-        font-size: 0.9rem; /* ~14.4px */
-        font-weight: 600;
-        color: var(--primary);
-        margin-top: 4px;
-    }
-     .metric-card .value-label { /* Label "Atual" */
-        font-size: 0.6rem; /* ~9.6px */
-        color: var(--secondary);
-        opacity: 0.8;
-        margin-top: -1px;
-     }
-
-    /* Ajustes para o círculo de umidade menor */
-    .moisture-circle {
-        width: 65px; /* ALTERADO - Menor */
-        height: 65px; /* ALTERADO - Menor */
-        margin: 4px auto 6px auto;
-        position: relative;
-    }
-
-    .moisture-progress {
-        fill: none;
-        stroke-width: 6; /* ALTERADO - Mais fino */
-        transform: rotate(-90deg);
-        transform-origin: 50% 50%;
-        transition: stroke-dashoffset 0.5s ease;
-    }
-    /* Raio: (65/2) - (6/2) = 32.5 - 3 = 29.5 */
-    /* Circunferência: 2 * PI * 29.5 ≈ 185.35 -> Usar 185 */
-
-
-    .flow-gauge {
-        width: 65px; /* Menor */
-        height: 30px; /* Menor */
-        margin: 4px auto 6px auto;
-        position: relative;
-        overflow: hidden;
-        border: 1px solid #e0e0e0;
-        border-radius: 6px; /* Menor raio */
-        background: #e9ecef;
-    }
-
-    .flow-fill {
-        position: absolute; bottom: 0; left:0; width: 100%;
-        background: var(--primary);
-        transition: height 0.5s ease, background-color 0.3s ease;
-        border-radius: 5px 5px 0 0; /* Menor raio */
-    }
-
-    .controls-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px; /* Espaço ajustado */
-        margin: 12px 0;
-        flex-shrink: 0;
-    }
-
-    .control-btn {
-        padding: 8px 4px; /* Padding ajustado */
-        border: none;
-        border-radius: 10px;
-        background: var(--primary);
-        color: white;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 4px; /* Espaço ajustado */
-        font-size: 0.65rem; /* ~10.4px - Pequeno, mas necessário */
-        font-weight: 600;
-        transition: all 0.2s ease;
-        cursor: pointer;
-        text-align: center;
-        min-height: 55px; /* Altura ajustada */
-        line-height: 1.15;
-    }
-    .control-btn .bi {
-      font-size: 1.1rem; /* ~17.6px */
-      margin-bottom: 1px;
-    }
-    /* Hover/Active mantidos */
-    .control-btn:hover { background: var(--secondary); transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-    .control-btn:active { transform: scale(0.95); box-shadow: none; }
-
-
-    .advanced-panel {
-        background: white;
-        border-radius: 15px; /* Raio ajustado */
-        padding: 12px; /* Padding ajustado */
-        margin-top: 10px;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.07);
-        flex-shrink: 0; /* Impede que encolha */
-        /* Adicionado para evitar crescimento excessivo se o conteúdo for dinâmico */
-        overflow: hidden;
-        max-height: 100px; /* Limitar altura se necessário */
-    }
-
-    .weather-alert {
-        display: flex;
-        align-items: center;
-        gap: 10px; /* Espaço ajustado */
-        margin-bottom: 8px; /* Margem ajustada */
-        font-size: 0.75rem; /* ~12px */
-        color: var(--text);
-    }
-     .weather-alert .bi {
-       font-size: 1.4rem; /* ~22.4px */
-       color: var(--accent);
-       flex-shrink: 0;
-     }
-     .weather-alert div { line-height: 1.3; }
-      #weatherTemp { font-weight: 600; }
-      #weatherRain { font-size: 0.7rem; opacity: 0.8; } /* ~11px */
-
-     .system-status {
-       font-size: 0.7rem; /* ~11px */
-       color: var(--secondary);
-       margin-top: 5px; /* Margem ajustada */
-       opacity: 0.9;
-       line-height: 1.3;
-       white-space: nowrap; /* Evita quebra de linha */
-       overflow: hidden; /* Esconde se não couber */
-       text-overflow: ellipsis; /* Adiciona "..." se não couber */
-    }
-     .system-status .bi { margin-right: 4px; font-size: 0.9em; vertical-align: middle; }
-     .system-status span { display: inline-block; margin-right: 8px; }
-
-
-     /* Container Principal das Abas para limitar altura */
-     .tab-content-container {
-         flex-grow: 1; /* Ocupa o espaço restante */
-         overflow: hidden; /* Esconde conteúdo que transborda */
-         position: relative; /* Necessário para posicionar abas */
-         display: flex; /* Usar flex para gerenciar abas */
-         flex-direction: column;
-     }
-     /* Estilo base para todas as abas */
-      .tab-pane {
-         position: absolute; /* Posiciona abas sobrepostas */
-         top: 0; left: 0; width: 100%; height: 100%;
-         opacity: 0; /* Começa invisível */
-         visibility: hidden; /* Começa escondido */
-         transition: opacity 0.3s ease, visibility 0.3s ease;
-         background-color: var(--background); /* Garante fundo */
-          overflow-y: auto; /* Permite scroll INTERNO na aba se necessário */
-          padding-bottom: 10px; /* Espaço no fim do scroll */
-      }
-      .tab-pane.active {
-         opacity: 1;
-         visibility: visible;
-         z-index: 1; /* Traz a aba ativa para frente */
-      }
-
-
-    .tab-bar {
-        display: flex;
-        justify-content: space-around;
-        margin-top: auto; /* Empurra para o final do .screen-content */
-        padding: 6px 0 8px 0; /* Padding ajustado */
-        border-top: 1px solid #ddd;
-        background: #ffffff;
-        border-radius: 0 0 15px 15px; /* Raio ajustado */
-        margin-left: -15px; /* Compensa padding */
-        margin-right: -15px;
-        margin-bottom: -15px;
-        box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
-        flex-shrink: 0; /* Não encolher */
-        z-index: 5; /* Garante que fique acima do conteúdo das abas */
-        position: relative; /* Para z-index funcionar */
-    }
-
-    .tab-btn {
-        padding: 6px 8px; /* Padding ajustado */
-        border-radius: 8px; /* Raio ajustado */
-        transition: all 0.2s ease;
-        cursor: pointer;
-        color: var(--secondary);
-        opacity: 0.7;
-    }
-     .tab-btn .bi {
-       font-size: 1.3rem; /* ~21px */
-       display: block;
-     }
-    .tab-btn.active { color: var(--primary); opacity: 1; background: rgba(40, 167, 69, 0.08); }
-    .tab-btn:not(.active):hover { opacity: 1; color: var(--primary); }
-
-    .notch {
-        width: 120px; /* Tamanho ajustado */
-        height: 22px; /* Tamanho ajustado */
-        background: #1a1a1a;
-        border-radius: 0 0 15px 15px; /* Raio ajustado */
-        position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 10;
-    }
-
-    .home-indicator {
-        width: 90px; /* Tamanho ajustado */
-        height: 3.5px; /* Tamanho ajustado */
-        background: rgba(0,0,0,0.2);
-        border-radius: 2px; /* Raio ajustado */
-        position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
-    }
-
-    /* Hidden agora é controlado pela classe .active nas .tab-pane */
-    /* .hidden { display: none; } */
-
-    /* Animações - Mantidas */
-    .pulse-active { animation: pulse 1.5s infinite ease-in-out; }
-    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
-    .rotate-refresh { animation: rotate 1s linear infinite; }
-    @keyframes rotate { 100% { transform: rotate(360deg); } }
-    .slide-in { animation: slideIn 0.5s ease-out forwards; }
-    @keyframes slideIn { from { transform: translateY(15px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-    .control-slider {
-        width: 85%; /* Largura ajustada */
-        margin: 6px auto 10px auto;
-        -webkit-appearance: none;
-        height: 5px; /* Altura ajustada */
-        background: #dcdcdc;
-        border-radius: 3px;
-        cursor: pointer;
-        outline: none;
-    }
-    .control-slider::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        width: 18px; /* Tamanho ajustado */
-        height: 18px;
-        background: var(--primary);
-        border-radius: 50%;
-        cursor: pointer;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-        border: 2.5px solid white; /* Borda ajustada */
-        box-shadow: 0 1.5px 3px rgba(0,0,0,0.18); /* Sombra ajustada */
-    }
-     .control-slider::-moz-range-thumb {
-        width: 14px; height: 14px; background: var(--primary); border-radius: 50%; cursor: pointer;
-        border: 2.5px solid white; box-shadow: 0 1.5px 3px rgba(0,0,0,0.18);
-     }
-    .control-slider::-webkit-slider-thumb:hover { transform: scale(1.1); box-shadow: 0 2.5px 5px rgba(0,0,0,0.25); }
-    .control-slider::-moz-range-thumb:hover { transform: scale(1.1); box-shadow: 0 2.5px 5px rgba(0,0,0,0.25); }
-
-    .alert-blink { animation: blink 1.2s infinite ease-in-out; }
-    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-
-    .chart-container {
-        height: 160px; /* Altura reduzida drasticamente */
-        padding: 5px 0;
-        position: relative;
-        margin-bottom: 8px; /* Margem ajustada */
-         min-height: 150px; /* Altura mínima */
-    }
-    .graph-tab h4 {
-         font-size: 0.8rem; /* ~13px */
-         text-align: center;
-         margin-bottom: 5px;
-         color: var(--secondary);
-         font-weight: 600;
-         padding-top: 5px; /* Espaço acima do título */
-    }
-    .graph-tab .controls-grid {
-         margin-top: 5px; /* Margem ajustada */
-         gap: 6px; /* Gap ajustado */
-    }
-
-
-    /* Aba de Configurações e Histórico precisam caber */
-     .settings-tab, .history-tab {
-         padding: 12px; /* Padding ajustado */
-         color: var(--text);
-     }
-     .settings-tab h4, .history-tab h4 {
-         text-align: center;
-         margin-bottom: 12px;
-         color: var(--secondary);
-         font-weight: 600;
-         font-size: 0.9rem; /* ~14.4px */
-         padding-top: 5px;
-     }
-     /* Ajustes internos Settings */
-     .settings-tab div { margin-bottom: 12px; }
-     .settings-tab label { font-size: 0.8rem; font-weight: 500; margin-bottom: 5px; }
-     .settings-tab input[type="text"] { padding: 8px; border-radius: 6px; font-size: 0.85rem; }
-     .settings-tab input[type="checkbox"] { transform: scale(1.1); margin-left: 8px;}
-     .settings-tab .control-btn { margin-top: 15px; font-size: 0.8rem; padding: 10px; }
-     .settings-tab .control-btn .bi { font-size: 1rem; }
-     /* Ajustes internos Histórico */
-     .history-tab ul { font-size: 0.75rem; line-height: 1.5; } /* ~12px */
-     .history-tab li { margin-bottom: 8px; padding-bottom: 8px; }
-     .history-tab .bi { margin-right: 6px; }
-
-
-    /* ---- ESTILOS DO TEXTO EXPLICATIVO ---- */
-    .explanation-container {
-        max-width: 480px; /* Largura ajustada */
-        padding: 20px 25px; /* Padding ajustado */
-        border-radius: 12px;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        animation: slideInFromRight 1s ease-out 0.2s forwards;
-        opacity: 0;
-        flex-shrink: 1; /* Permite encolher se necessário */
-        overflow-y: auto; /* Permite scroll no texto se ele for muito grande */
-        max-height: calc(100vh - 60px); /* Altura máxima limitada pela viewport */
-    }
-
-    .explanation-container h2 {
-        color: #ffffff;
-        margin-bottom: 15px;
-        font-size: 1.7rem; /* Tamanho ajustado */
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-        gap: 12px; /* Espaço ajustado */
-        line-height: 1.3;
-    }
-    .explanation-container h2 .bi { font-size: 1.5rem; color: var(--accent); } /* Tamanho ajustado */
-
-    .explanation-container p {
-        font-size: 0.95rem; /* Tamanho ajustado */
-        line-height: 1.7; /* Espaçamento mantido */
-        margin-bottom: 18px;
-        opacity: 0.85; /* Opacidade ajustada */
-    }
-     .explanation-container p strong { font-weight: 600; color: var(--accent); }
-
-     .explanation-container ul { list-style: none; padding-left: 0; }
-     .explanation-container li {
-        margin-bottom: 12px; /* Espaço ajustado */
-        display: flex;
-        align-items: flex-start;
-        gap: 12px; /* Espaço ajustado */
-        font-size: 0.9rem; /* Tamanho ajustado */
-        line-height: 1.55; /* Espaçamento ajustado */
-        opacity: 0.9;
-     }
-
-    .explanation-container .bi { /* Ícones da lista */
-        color: var(--primary);
-        font-size: 1.1rem; /* Tamanho ajustado */
-        flex-shrink: 0;
-        margin-top: 3px; /* Ajuste vertical */
-    }
-
-
-    /* Animação de Entrada para o Texto */
-    @keyframes slideInFromRight {
-        from { opacity: 0; transform: translateX(50px); }
-        to { opacity: 1; transform: translateX(0); }
-    }
-
-    /* Responsividade */
-    @media (max-width: 768px) { /* Ponto de quebra ajustado para tablets/mobile */
-         body {
-              overflow: auto; /* Permite scroll no mobile se necessário */
-              height: auto; /* Remove altura fixa */
-         }
-        .main-container {
-            flex-direction: column; /* Empilha */
-            gap: 30px; /* Espaço vertical */
-             padding: 15px; /* Menos padding */
-             flex-wrap: wrap; /* Permite quebra se necessário */
-             align-items: center; /* Centraliza itens empilhados */
-        }
-        .explanation-container {
-            max-width: 95%;
-            order: 2; /* Coloca texto depois do celular */
-            padding: 20px;
-             animation: slideInFromBottom 1s ease-out 0.2s forwards;
-             max-height: none; /* Remove limite de altura no mobile */
-             overflow-y: visible; /* Não precisa de scroll interno */
-        }
-        .phone-wrapper { order: 1; } /* Celular primeiro */
-
-        /* Usar tamanho menor no mobile */
-        .phone-frame {
-             width: 300px;
-             height: 600px;
-             border-radius: 25px;
-             padding: 12px;
-        }
-         /* Ajustar notch e home indicator para o tamanho mobile */
-         .notch { width: 120px; height: 20px; border-radius: 0 0 15px 15px;}
-         .home-indicator { width: 80px; height: 3px; bottom: 8px;}
-         .screen-content { padding: 15px; border-radius: 18px; }
-         .tab-bar { margin-left:-15px; margin-right:-15px; margin-bottom:-15px; border-radius: 0 0 15px 15px;}
-
-
-        /* Reduzir fontes no texto explicativo no mobile */
-          .explanation-container h2 { font-size: 1.5rem; }
-          .explanation-container p { font-size: 0.9rem; }
-          .explanation-container li { font-size: 0.85rem; }
-    }
-
-     @media (max-height: 650px) { /* Se a altura da tela for muito baixa */
-         body { overflow: auto; height: auto; } /* Permite scroll se necessário */
-          .main-container { align-items: flex-start; } /* Alinha no topo */
-          .explanation-container { max-height: calc(100vh - 40px); }
-          /* Pode precisar reduzir ainda mais o phone-frame aqui */
-     }
-
-
-</style>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <title>Document</title>
 </head>
+<style>
+    /* === INÍCIO DO CSS EMBUTIDO E ESCOPADO PARA AQUAPULSE === */
+
+    /* Opcional: Se a fonte Poppins não estiver carregada globalmente, você pode manter este import aqui,
+       mas idealmente, fontes devem ser carregadas uma vez na página principal. */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+    /* Container principal agora define o escopo e as variáveis */
+    aquapulse-super-container {
+        /* Define as variáveis CSS *apenas* para este componente e seus filhos */
+        /* Cores Principais */
+        --cor-fundo-comp: #080808; /* Renomeado para evitar conflito potencial com --cor-fundo global */
+        --cor-texto-comp: #cccccc;
+        --cor-titulo-comp: #ffffff;
+        --cor-subtitulo-comp: #aaaaaa;
+        --cor-container-fundo-comp: rgba(255, 255, 255, 0.03);
+        --cor-etapa-fundo-comp: #1a1a1a;
+        --cor-etapa-borda-comp: #383838;
+        --cor-tooltip-fundo-comp: #252525;
+        --cor-tooltip-texto-comp: #e0e0e0;
+
+        /* Cores dos Segmentos (mantidas, nomes são específicos) */
+        --cor-seg-1: #e74c3c; --cor-seg-2: #3498db; --cor-seg-3: #9b59b6;
+        --cor-seg-4: #f1c40f; --cor-seg-5: #e67e22; --cor-seg-6: #1abc9c;
+        --cor-seg-7: #2ecc71;
+
+        /* Cor de hover - usa uma variável de segmento */
+        --cor-etapa-hover-borda-comp: var(--cor-seg-2);
+
+        /* Tamanhos e Espaçamentos */
+        --tamanho-etapa: 125px;
+        --espaco-vertical: 85px;
+        --espessura-linha: 7px;
+        --espessura-conector: 4px;
+        --largura-maxima-container: 1300px; /* Largura máxima do próprio componente */
+        --border-radius-geral: 15px;
+        --border-radius-etapa: 10px;
+
+        /* Estilos que antes estavam no body, agora aplicados ao container */
+        display: block; /* Necessário para tags customizadas */
+        font-family: 'Poppins', sans-serif; /* Define a fonte para o componente */
+        color: var(--cor-texto-comp);      /* Cor de texto padrão DENTRO do componente */
+        background-color: var(--cor-container-fundo-comp); /* Fundo do container */
+        border-radius: var(--border-radius-geral);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        width: 95%; /* Ou ajuste conforme necessário para sua página */
+        max-width: var(--largura-maxima-container);
+        margin: 30px auto; /* Centraliza o container */
+        padding: 45px;     /* Espaçamento interno */
+        box-sizing: border-box;
+        overflow: hidden; /* Previne conteúdo interno de vazar inesperadamente */
+    }
+
+    /* Estilos para elementos DENTRO de aquapulse-super-container */
+    aquapulse-super-container titulo-secao {
+        display: block;
+        text-align: center;
+        font-size: 2.6em;
+        color: var(--cor-titulo-comp);
+        margin-bottom: 15px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        text-shadow: 0 1px 3px rgba(255,255,255,0.1);
+    }
+    aquapulse-super-container subtitulo-secao {
+        display: block;
+        text-align: center;
+        font-size: 1.1em;
+        color: var(--cor-subtitulo-comp);
+        margin-bottom: 70px;
+        font-weight: 300;
+    }
+
+    aquapulse-super-container aquapulse-linha-tempo {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: calc(var(--tamanho-etapa) * 2 + var(--espaco-vertical) * 2 + 20px);
+        margin-top: 50px;
+    }
+
+    aquapulse-super-container linha-central-wrapper {
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        width: 90%;
+        height: var(--espessura-linha);
+        transform: translateY(-50%);
+        overflow: hidden;
+        border-radius: calc(var(--espessura-linha) / 2);
+        background-color: var(--cor-etapa-borda-comp);
+    }
+
+    aquapulse-super-container linha-central-colorida {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(
+            to right,
+            var(--cor-seg-1) 0%, var(--cor-seg-1) 14%,
+            var(--cor-seg-2) 14%, var(--cor-seg-2) 28%,
+            var(--cor-seg-3) 28%, var(--cor-seg-3) 42%,
+            var(--cor-seg-4) 42%, var(--cor-seg-4) 56%,
+            var(--cor-seg-5) 56%, var(--cor-seg-5) 70%,
+            var(--cor-seg-6) 70%, var(--cor-seg-6) 84%,
+            var(--cor-seg-7) 84%, var(--cor-seg-7) 100%
+        );
+        border-radius: calc(var(--espessura-linha) / 2);
+        z-index: 1;
+        transform: scaleX(0);
+        transform-origin: left;
+    }
+
+    aquapulse-super-container etapa-aquapulse {
+        display: block;
+        position: absolute;
+        width: var(--tamanho-etapa);
+        height: var(--tamanho-etapa);
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+        z-index: 10;
+    }
+
+    aquapulse-super-container etapa-aquapulse conteudo-etapa {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        background-color: var(--cor-etapa-fundo-comp);
+        border-radius: var(--border-radius-etapa);
+        border: 2px solid var(--cor-etapa-borda-comp);
+        padding: 10px;
+        box-sizing: border-box;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        cursor: default;
+        position: relative;
+        transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, border-color 0.25s ease-out;
+    }
+
+    aquapulse-super-container etapa-aquapulse:hover conteudo-etapa {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        border-color: var(--cor-etapa-hover-borda-comp);
+    }
+
+    aquapulse-super-container imagem-etapa {
+        display: block;
+        width: 60%;
+        margin-bottom: 8px;
+        overflow: hidden;
+        border-radius: 6px;
+    }
+    aquapulse-super-container imagem-etapa img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 6px;
+    }
+
+    aquapulse-super-container descricao-etapa {
+        display: block;
+        font-size: 0.85em;
+        line-height: 1.2;
+        font-weight: 400;
+        color: var(--cor-texto-comp); /* Usa a cor de texto do componente */
+        max-width: 95%;
+    }
+
+    aquapulse-super-container etapa-aquapulse.posicao-superior {
+        bottom: calc(50% + var(--espaco-vertical) / 2);
+    }
+    aquapulse-super-container etapa-aquapulse.posicao-inferior {
+        top: calc(50% + var(--espaco-vertical) / 2);
+    }
+
+    aquapulse-super-container conector-vertical {
+        display: block;
+        position: absolute;
+        width: var(--espessura-conector);
+        height: calc(var(--espaco-vertical) / 2 + var(--espessura-linha) / 2);
+        left: 50%;
+        opacity: 0;
+        transform: translateX(-50%) scaleY(0);
+        z-index: 5;
+        border-radius: calc(var(--espessura-conector) / 2);
+    }
+    aquapulse-super-container etapa-aquapulse.posicao-superior conector-vertical {
+        bottom: calc(-1 * (var(--espaco-vertical) / 2 + var(--espessura-linha) / 2));
+        transform-origin: top;
+    }
+    aquapulse-super-container etapa-aquapulse.posicao-inferior conector-vertical {
+        top: calc(-1 * (var(--espaco-vertical) / 2 + var(--espessura-linha) / 2));
+        transform-origin: bottom;
+    }
+
+    aquapulse-super-container .tooltip-dinamico {
+        position: absolute;
+        bottom: 110%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        visibility: hidden;
+        background-color: var(--cor-tooltip-fundo-comp, #252525); /* Fallback adicionado */
+        color: var(--cor-tooltip-texto-comp, #e0e0e0); /* Fallback adicionado */
+        padding: 8px 15px;
+        border-radius: 6px;
+        font-size: 0.85em;
+        font-weight: 400;
+        line-height: 1.4;
+        white-space: nowrap;
+        z-index: 100; /* Alto z-index para ficar sobre outros elementos da página */
+        box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        pointer-events: none;
+    }
+
+    aquapulse-super-container etapa-aquapulse.posicao-inferior .tooltip-dinamico {
+        bottom: auto;
+        top: 110%;
+    }
+
+    /* === Responsividade DENTRO do componente === */
+    /* As regras dentro @media afetam apenas elementos dentro de aquapulse-super-container */
+    @media (max-width: 1200px) {
+        aquapulse-super-container { --tamanho-etapa: 110px; --espaco-vertical: 75px; }
+        aquapulse-super-container titulo-secao { font-size: 2.4em; }
+    }
+    @media (max-width: 992px) {
+        aquapulse-super-container { --tamanho-etapa: 95px; --espaco-vertical: 65px; }
+        aquapulse-super-container titulo-secao { font-size: 2.1em; }
+        aquapulse-super-container { padding: 35px; } /* Ajusta padding do container */
+    }
+    @media (max-width: 768px) {
+        aquapulse-super-container { --tamanho-etapa: 80px; --espaco-vertical: 50px; }
+        /* O padding geral da página (body) não é definido aqui */
+        aquapulse-super-container titulo-secao { font-size: 1.8em; }
+        aquapulse-super-container subtitulo-secao { font-size: 1em; margin-bottom: 50px; }
+        aquapulse-super-container descricao-etapa { font-size: 0.7em; }
+        aquapulse-super-container imagem-etapa { width: 55%; }
+        /* aquapulse-super-container .tooltip-dinamico { display: none; } */
+    }
+    @media (max-width: 576px) {
+        aquapulse-super-container { --tamanho-etapa: 70px; --espaco-vertical: 40px; --espessura-linha: 5px; }
+        aquapulse-super-container titulo-secao { font-size: 1.5em; }
+        aquapulse-super-container subtitulo-secao { font-size: 0.9em; }
+        aquapulse-super-container imagem-etapa { width: 50%; }
+        aquapulse-super-container aquapulse-linha-tempo { height: calc(var(--tamanho-etapa) * 2 + var(--espaco-vertical) * 2 + 40px); }
+    }
+
+    /* === FIM DO CSS EMBUTIDO E ESCOPADO === */
+</style>
 <body>
-    <div class="main-container">
 
-        <div class="phone-wrapper">
-             <div class="phone-frame">
-                <div class="notch"></div>
-                <div class="screen-content">
-                    <div class="status-bar">
-                        <span id="currentTime">--:--</span>
-                        <div>
-                            <i class="bi bi-wifi"></i>
-                            <i class="bi bi-battery-half" style="margin-left: 5px;"></i>
-                        </div>
-                    </div>
-                    <h1>AquaPulse Controle</h1>
-
-                    <div class="tab-content-container">
-
-                        <div class="tab-pane active main-content" id="mainTab">
-                            <div class="main-grid">
-                                <div class="metric-card">
-                                    <div class="moisture-header">
-                                        <i class="bi bi-droplet-fill" style="font-size: 1.2rem; color: var(--primary);"></i>
-                                        <h4>Umidade Alvo
-                                            <span class="target-indicator" id="moistureTarget">65%</span>
-                                        </h4>
-                                    </div>
-                                    <input type="range" class="control-slider" min="0" max="100" value="65"
-                                           id="moistureSlider" oninput="updateMoistureTarget(this.value)">
-                                    <div class="moisture-circle">
-                                        <svg viewBox="0 0 65 65">
-                                            <circle cx="32.5" cy="32.5" r="29.5" stroke="#eee" stroke-width="6"/>
-                                            <circle class="moisture-progress" id="moistureCircleProgress" cx="32.5" cy="32.5" r="29.5" stroke="var(--primary)" stroke-width="6"
-                                                    stroke-dasharray="185" stroke-dashoffset="65" stroke-linecap="round"/> {/* Offset = 185 * (1 - 0.65) = 64.75 */}
-                                        </svg>
-                                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-                                            <div class="value" id="currentMoistureValue">65%</div>
-                                            <div class="value-label">Atual</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                 <div class="metric-card">
-                                    <div class="flow-header">
-                                        <i class="bi bi-water" style="font-size: 1.2rem; color: var(--primary);"></i>
-                                        <h4>Vazão Máx.
-                                            <span class="target-indicator" id="flowTarget">8 L/min</span>
-                                        </h4>
-                                    </div>
-                                    <input type="range" class="control-slider" min="2" max="15" value="8" step="1"
-                                           id="flowSlider" oninput="updateFlowTarget(this.value)">
-                                    <div class="flow-gauge">
-                                        <div class="flow-fill" id="flowFillGauge" style="height: 52.5%"></div>
-                                    </div>
-                                    <div class="value" id="currentFlowValue">4.2 L/min</div>
-                                    <div class="value-label">Atual</div>
-                                </div>
-                            </div>
-
-                            <div class="controls-grid">
-                                <button class="control-btn" id="powerBtn" onclick="toggleSystem()">
-                                    <i class="bi bi-power"></i>
-                                    DESLIGAR
-                                </button>
-                                <button class="control-btn" id="pauseBtn" onclick="togglePause()" disabled>
-                                    <i class="bi bi-pause-circle"></i>
-                                    PAUSAR
-                                </button>
-                                 <button class="control-btn" onclick="showTab('settingsTab')">
-                                    <i class="bi bi-gear"></i>
-                                    CONFIG
-                                </button>
-                            </div>
-
-                            <div class="advanced-panel slide-in">
-                                <div class="weather-alert">
-                                    <i class="bi bi-cloud-sun" id="weatherIcon" onclick="refreshWeather()" style="cursor: pointer;"></i>
-                                    <div>
-                                        <div id="weatherTemp">Previsão: --°C</div>
-                                        <div id="weatherRain">Chuva: --%</div>
-                                    </div>
-                                </div>
-                                <div class="system-status">
-                                    <span id="connectionStatus"><i class="bi bi-plug"></i>Desconectado</span>
-                                    <span id="lastWatering"><i class="bi bi-clock-history"></i>Última rega: N/A</span>
-                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="tab-pane graph-tab" id="graphTab">
-                             <h4>Histórico de Consumo (24h)</h4>
-                             <div class="chart-container">
-                                  <canvas id="waterChart"></canvas>
-                             </div>
-                             <div class="controls-grid">
-                                  <button class="control-btn small-btn" onclick="changeChartType('line')" style="background: var(--secondary);">
-                                       <i class="bi bi-graph-up"></i> Linha
-                                  </button>
-                                  <button class="control-btn small-btn" onclick="changeChartType('bar')" style="background: var(--secondary);">
-                                       <i class="bi bi-bar-chart"></i> Barras
-                                  </button>
-                                   <button class="control-btn small-btn" onclick="updateChartData()" style="background: var(--accent); color: var(--secondary);">
-                                       <i class="bi bi-arrow-clockwise"></i> Atualizar
-                                  </button>
-                             </div>
-                        </div>
-
-                         <div class="tab-pane settings-tab" id="settingsTab">
-                             <h4>Configurações</h4>
-                             <div>
-                                 <label for="deviceName">Nome do Dispositivo:</label>
-                                 <input type="text" id="deviceName" value="Meu Jardim Principal">
-                             </div>
-                              <div>
-                                 <label for="notifyToggle">Notificações:</label>
-                                 <input type="checkbox" id="notifyToggle" checked>
-                             </div>
-                              <button class="control-btn" onclick="alert('Configurações salvas (simulação)!'); showTab('mainTab');">
-                                 <i class="bi bi-check-lg"></i> Salvar
-                              </button>
-                        </div>
-
-                         <div class="tab-pane history-tab" id="historyTab">
-                             <h4>Histórico de Regas</h4>
-                             <ul style="list-style: none; padding: 0;">
-                                 <li style="margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #eee;">
-                                     <i class="bi bi-calendar-check" style="color:var(--primary);"></i>
-                                     <strong>Hoje, 08:15</strong> - 15 min - Umid: 70%
-                                 </li>
-                                  <li style="margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #eee;">
-                                      <i class="bi bi-calendar-check" style="color:var(--primary);"></i>
-                                      <strong>Ontem, 19:30</strong> - 10 min - Umid: 68%
-                                 </li>
-                                 <li style="opacity: 0.7;">
-                                      <i class="bi bi-calendar-check" style="color:var(--primary);"></i>
-                                      <strong>Anteontem, 07:00</strong> - 20 min - Umid: 75%
-                                 </li>
-                                  <li style="opacity: 0.7; margin-top:10px"> (...) </li>
-
-                             </ul>
-                         </div>
-
-                    </div> <div class="tab-bar">
-                        <div class="tab-btn active" data-tab="mainTab" onclick="showTab('mainTab', this)">
-                            <i class="bi bi-house-door-fill"></i>
-                        </div>
-                        <div class="tab-btn" data-tab="graphTab" onclick="showTab('graphTab', this)">
-                           <i class="bi bi-graph-up"></i>
-                        </div>
-                        <div class="tab-btn" data-tab="historyTab" onclick="showTab('historyTab', this)">
-                            <i class="bi bi-clock-history"></i>
-                        </div>
-                        <div class="tab-btn" data-tab="settingsTab" onclick="showTab('settingsTab', this)">
-                           <i class="bi bi-gear"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="home-indicator"></div>
-            </div>
-        </div>
-
-        <div class="explanation-container">
-             <h2><i class="bi bi-phone-vibrate"></i> Explore o App AquaPulse</h2>
-            <p>
-                Este é um <strong>protótipo interativo</strong> do aplicativo AquaPulse. Use os controles no celular ao lado para simular como você pode gerenciar seu sistema de irrigação inteligente de forma simples e eficaz.
-            </p>
-            <ul>
-                <li><i class="bi bi-droplet-half"></i> <strong>Ajuste a Umidade:</strong> Defina o nível ideal de umidade do solo deslizando o controle.</li>
-                <li><i class="bi bi-speedometer2"></i> <strong>Controle a Vazão:</strong> Monitore a vazão atual e ajuste o limite máximo desejado.</li>
-                <li><i class="bi bi-power"></i> <strong>Gerencie o Sistema:</strong> Ligue, pause ou desligue a irrigação a qualquer momento com os botões.</li>
-                <li><i class="bi bi-cloud-sun"></i> <strong>Veja a Previsão:</strong> Consulte a previsão do tempo para planejar melhor as regas.</li>
-                <li><i class="bi bi-graph-up-arrow"></i> <strong>Analise Dados:</strong> Navegue até a aba de gráficos para visualizar o consumo de água.</li>
-                <li><i class="bi bi-clock-history"></i> <strong>Confira o Histórico:</strong> Acesse o histórico para ver os registros das últimas regas.</li>
-                 <li><i class="bi bi-gear-wide-connected"></i> <strong>Personalize:</strong> Acesse as configurações para simular ajustes no sistema.</li>
-            </ul>
-            <p style="margin-top: 25px; font-size: 0.9rem; opacity: 0.8;">
-                Clique nos botões, ajuste os sliders e explore as abas para experimentar todas as funcionalidades simuladas!
-            </p>
-        </div>
-
-    </div> 
-    <script>
-        // Variáveis Globais
-        let waterChart = null;
-        let currentChartType = 'line';
-        let systemActive = false;
-        let systemPaused = false;
-        let targetMoisture = 65;
-        let maxFlowRate = 8;
-        let currentMoisture = 45;
-        let currentFlow = 0;
-        let lastWateringTime = null;
-        let dataUpdateInterval = null;
-
-        // Constantes
-        const MOISTURE_CIRCUMFERENCE = 185; // AJUSTADO: 2 * PI * 29.5
-
-        // Elementos DOM (cache) - Removidos os não estritamente necessários ou os que mudam com abas
-        const DOMElements = {
-            moistureTarget: document.getElementById('moistureTarget'),
-            moistureCircleProgress: document.getElementById('moistureCircleProgress'),
-            currentMoistureValue: document.getElementById('currentMoistureValue'),
-            flowTarget: document.getElementById('flowTarget'),
-            flowFillGauge: document.getElementById('flowFillGauge'),
-            currentFlowValue: document.getElementById('currentFlowValue'),
-            powerBtn: document.getElementById('powerBtn'),
-            pauseBtn: document.getElementById('pauseBtn'),
-            weatherIcon: document.getElementById('weatherIcon'),
-            weatherTemp: document.getElementById('weatherTemp'),
-            weatherRain: document.getElementById('weatherRain'),
-            connectionStatus: document.getElementById('connectionStatus'),
-            lastWateringSpan: document.getElementById('lastWatering'),
-            currentTimeSpan: document.getElementById('currentTime'),
-            moistureIcon: document.querySelector('.moisture-header .bi-droplet-fill'),
-            batteryIcon: document.querySelector('.status-bar .bi-battery-half')
-        };
-
-        // ---- Funções de Interface ----
-
-        function showTab(tabId, clickedButton = null) {
-             // Encontra o botão correspondente se não for passado
-             if (!clickedButton) {
-                 clickedButton = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
-             }
-
-            // Esconde todas as abas
-            document.querySelectorAll('.tab-pane').forEach(pane => {
-                 pane.classList.remove('active');
-            });
-
-            // Mostra a aba clicada
-            const tabToShow = document.getElementById(tabId);
-            if (tabToShow) {
-                tabToShow.classList.add('active');
-            } else {
-                 // Fallback para mainTab
-                 document.getElementById('mainTab').classList.add('active');
-                 tabId = 'mainTab';
-                 clickedButton = document.querySelector(`.tab-btn[data-tab="mainTab"]`); // Botão fallback
-            }
-
-            // Atualiza botão ativo
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            if (clickedButton) clickedButton.classList.add('active');
-
-
-            // Inicializa/Redesenha gráfico
-            if (tabId === 'graphTab') {
-                // Adiciona um pequeno delay para garantir que a aba esteja visível antes de desenhar/redimensionar
-                setTimeout(() => {
-                    if (!waterChart) {
-                        initializeChart();
-                    } else {
-                         // Força redimensionamento se o gráfico já existe
-                         // Isso pode ajudar se o tamanho do canvas mudou devido à visibilidade da aba
-                        if (waterChart.resize) waterChart.resize();
-                    }
-                }, 50); // Delay de 50ms
-            }
-        }
-
-
-        function updateClock() {
-           const now = new Date();
-           const hours = String(now.getHours()).padStart(2, '0');
-           const minutes = String(now.getMinutes()).padStart(2, '0');
-           if (DOMElements.currentTimeSpan) DOMElements.currentTimeSpan.textContent = `${hours}:${minutes}`;
-
-           const batteryLevels = ['bi-battery', 'bi-battery-half', 'bi-battery-full'];
-           const currentLevelIndex = Math.floor(now.getMinutes() / 20);
-           if(DOMElements.batteryIcon) DOMElements.batteryIcon.className = `bi ${batteryLevels[currentLevelIndex]}`;
-        }
-
-        // ---- Funções de Controle e Atualização de Dados ----
-
-        function updateMoistureTarget(value) {
-            targetMoisture = parseInt(value);
-            if(DOMElements.moistureTarget) DOMElements.moistureTarget.textContent = `${value}%`;
-            checkMoistureAlert();
-        }
-
-        function updateFlowTarget(value) {
-            maxFlowRate = parseInt(value);
-             if(DOMElements.flowTarget) DOMElements.flowTarget.textContent = `${value} L/min`;
-            updateFlowGauge();
-        }
-
-        function toggleSystem() {
-            systemActive = !systemActive;
-            const btn = DOMElements.powerBtn;
-            const pauseButton = DOMElements.pauseBtn;
-
-            if (systemActive) {
-                btn.innerHTML = '<i class="bi bi-power"></i> LIGADO';
-                btn.classList.add('pulse-active');
-                btn.style.background = 'var(--alert)';
-                if (systemPaused) togglePause();
-                 if (pauseButton) pauseButton.disabled = false;
-                 if (DOMElements.connectionStatus) DOMElements.connectionStatus.innerHTML = '<i class="bi bi-plug-fill"></i>Conectado';
-
-                if (!dataUpdateInterval) { dataUpdateInterval = setInterval(updateData, 2000); }
-                 updateData();
-
-            } else {
-                btn.innerHTML = '<i class="bi bi-power"></i> DESLIGAR'; // Texto correto para desligado
-                btn.classList.remove('pulse-active');
-                btn.style.background = 'var(--secondary)';
-                if (systemPaused) togglePause();
-                if (pauseButton) {
-                    pauseButton.disabled = true;
-                    // Resetar botão Pause ao desligar
-                    pauseButton.innerHTML = '<i class="bi bi-pause-circle"></i> PAUSAR';
-                    pauseButton.style.background = 'var(--primary)'; // Cor padrão
-                    pauseButton.classList.remove('alert-blink');
-                }
-                 if (DOMElements.connectionStatus) DOMElements.connectionStatus.innerHTML = '<i class="bi bi-plug"></i>Desconectado';
-
-                 if (dataUpdateInterval) { clearInterval(dataUpdateInterval); dataUpdateInterval = null; }
-
-                 const wasWatering = currentFlow > 0; // Verifica se estava regando antes de desligar
-                 currentFlow = 0;
-                 updateFlowGauge();
-
-                 if (wasWatering) { // Só atualiza lastWatering se estava realmente regando
-                     lastWateringTime = new Date();
-                     updateLastWatering();
-                 }
-            }
-        }
-
-
-        function togglePause() {
-            if (!systemActive) return;
-            systemPaused = !systemPaused;
-             const btn = DOMElements.pauseBtn;
-
-             if(systemPaused) {
-                 btn.innerHTML = '<i class="bi bi-play-circle-fill"></i> RETOMAR';
-                 btn.style.background = 'var(--accent)';
-                 btn.classList.add('alert-blink');
-                 if (dataUpdateInterval) { clearInterval(dataUpdateInterval); dataUpdateInterval = null; }
-                 currentFlow = 0;
-                 updateFlowGauge();
-                 // Registra fim da rega ao pausar
-                 lastWateringTime = new Date();
-                 updateLastWatering();
-
-             } else {
-                 btn.innerHTML = '<i class="bi bi-pause-circle"></i> PAUSAR';
-                 btn.style.background = 'var(--primary)';
-                  btn.classList.remove('alert-blink');
-                  if (!dataUpdateInterval) { dataUpdateInterval = setInterval(updateData, 2000); }
-                  updateData();
-             }
-        }
-
-        function refreshWeather() {
-            if (DOMElements.weatherIcon) DOMElements.weatherIcon.classList.add('rotate-refresh');
-            setTimeout(() => {
-                 if (DOMElements.weatherIcon) DOMElements.weatherIcon.classList.remove('rotate-refresh');
-                updateWeatherData();
-            }, 700);
-        }
-
-        function updateWeatherData() {
-            const temps = [22, 24, 25, 27, 29, 30];
-            const rains = [0, 5, 10, 15, 20, 30, 50];
-            const icons = ['bi-sun-fill', 'bi-cloud-sun', 'bi-cloud', 'bi-cloud-drizzle', 'bi-cloud-rain'];
-            const randomTemp = temps[Math.floor(Math.random()*temps.length)];
-            const randomRain = rains[Math.floor(Math.random()*rains.length)];
-            let randomIcon = icons[0];
-             if (randomRain > 40) randomIcon = icons[4];
-             else if (randomRain > 15) randomIcon = icons[3];
-             else if (randomRain > 5) randomIcon = icons[2];
-             else if (randomTemp < 28) randomIcon = icons[1];
-
-             if(DOMElements.weatherTemp) DOMElements.weatherTemp.textContent = `Previsão: ${randomTemp}°C`;
-             if(DOMElements.weatherRain) DOMElements.weatherRain.textContent = `Chuva: ${randomRain}%`;
-             if(DOMElements.weatherIcon) DOMElements.weatherIcon.className = `bi ${randomIcon}`;
-             if(DOMElements.weatherIcon) DOMElements.weatherIcon.style.color = randomRain > 30 ? 'var(--primary)' : 'var(--accent)';
-        }
-
-        function checkMoistureAlert() {
-             const icon = DOMElements.moistureIcon;
-            if (!icon) return;
-            const isActive = currentMoisture < targetMoisture;
-            icon.style.color = isActive ? 'var(--alert)' : 'var(--primary)';
-            icon.classList.toggle('alert-blink', isActive); // Adiciona/remove classe
-        }
-
-        function updateFlowGauge() {
-             const fill = DOMElements.flowFillGauge;
-             const text = DOMElements.currentFlowValue;
-             if (!fill || !text) return;
-             const fillPercentage = maxFlowRate > 0 ? (currentFlow / maxFlowRate) * 100 : 0;
-             fill.style.height = `${Math.min(fillPercentage, 100)}%`;
-             text.textContent = `${currentFlow.toFixed(1)} L/min`;
-             fill.style.backgroundColor = currentFlow > 0.1 ? 'var(--primary)' : '#cccccc';
-        }
-
-         function updateMoistureCircle() {
-             const circle = DOMElements.moistureCircleProgress;
-             const text = DOMElements.currentMoistureValue;
-             if (!circle || !text) return;
-             // Garante que currentMoisture esteja entre 0 e 100
-             const clampedMoisture = Math.max(0, Math.min(currentMoisture, 100));
-             const offset = MOISTURE_CIRCUMFERENCE * (1 - (clampedMoisture / 100));
-             circle.style.strokeDashoffset = offset;
-             text.textContent = `${Math.round(clampedMoisture)}%`;
-             checkMoistureAlert();
-        }
-
-        function updateLastWatering() {
-            const span = DOMElements.lastWateringSpan;
-            if (!span) return;
-            if (!lastWateringTime) {
-                 span.innerHTML = '<i class="bi bi-clock-history"></i>Última rega: N/A';
-                return;
-            }
-             const now = new Date();
-             const diffMinutes = Math.round((now - lastWateringTime) / (1000 * 60));
-             let timeText;
-             if (diffMinutes < 1) timeText = 'Agora';
-             else if (diffMinutes < 60) timeText = `${diffMinutes} min`;
-             else { const diffHours = Math.floor(diffMinutes / 60); timeText = diffHours < 24 ? `${diffHours}h` : `${Math.floor(diffHours / 24)}d`; }
-             span.innerHTML = `<i class="bi bi-clock-history"></i>Última rega: ${timeText}`;
-        }
-
-        function updateData() {
-             if (systemActive && !systemPaused) {
-                const moistureIncrease = (targetMoisture - currentMoisture > 5) ? Math.random() * 1.5 : Math.random() * 0.5;
-                 currentMoisture += moistureIncrease;
-                 currentMoisture = Math.min(currentMoisture, 98);
-                 currentFlow = maxFlowRate * (0.85 + Math.random() * 0.15);
-
-                 if (currentMoisture >= targetMoisture) {
-                      console.log("Alvo de umidade atingido, desligando...");
-                      toggleSystem(); // Desliga (isso vai zerar flow e chamar updateLastWatering)
-                 }
-             } else if (!systemActive) {
-                  currentMoisture -= Math.random() * 0.1;
-                  currentMoisture = Math.max(currentMoisture, 10);
-                  currentFlow = 0;
-             } else { // Pausado
-                 currentFlow = 0;
-                 currentMoisture -= Math.random() * 0.05;
-                 currentMoisture = Math.max(currentMoisture, 10);
-             }
-            updateMoistureCircle();
-            updateFlowGauge();
-            updateLastWatering();
-        }
-
-        // ---- Inicialização e Gráfico ----
-        function initializeChart(type = currentChartType) {
-             const canvas = document.getElementById('waterChart');
-             if (!canvas) { console.error("Canvas do gráfico não encontrado"); return; }
-             // Verifica se o container está visível (solução para Chart.js e display:none)
-             if (canvas.offsetParent === null) {
-                 // console.log("Canvas não visível, adiando inicialização do gráfico.");
-                 return; // Não inicializa se não estiver visível
-             }
-             const ctx = canvas.getContext('2d');
-              if (!ctx) { console.error("Contexto 2D não obtido"); return; }
-
-            if(waterChart) waterChart.destroy();
-
-            const gradient = ctx.createLinearGradient(0, 0, 0, 150); // Altura ajustada
-            gradient.addColorStop(0, 'rgba(40, 167, 69, 0.6)');
-            gradient.addColorStop(1, 'rgba(42, 157, 143, 0.1)');
-
-            const baseData = Array.from({length: 12}, (_,i) => 4 + Math.sin(i/2)*2.5 + Math.random()*1.5);
-            const labels = Array.from({length: 12}, (_, i) => `${i*2}h`);
-
-            const data = {
-                labels: labels,
-                datasets: [{
-                    label: 'Consumo (L)',
-                    data: baseData.map(d => Math.max(0, d.toFixed(1))),
-                    borderColor: 'var(--primary)', backgroundColor: gradient, tension: 0.4,
-                    fill: type === 'line', borderWidth: 1.5, pointRadius: type === 'line' ? 2.5 : 0,
-                    pointBackgroundColor: 'var(--primary)', pointHoverRadius: 4,
-                    barThickness: type === 'bar' ? 6 : undefined, borderRadius: type === 'bar' ? 2 : undefined,
-                }]
-            };
-
-            const config = {
-                type: type, data: data,
-                options: {
-                    responsive: true, maintainAspectRatio: false, animation: { duration: 300, easing: 'easeOutQuad' },
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                           backgroundColor: 'rgba(0, 0, 0, 0.75)', titleFont: { size: 10, family:'Poppins' }, bodyFont: { size: 10, family:'Poppins' },
-                           padding: 6, cornerRadius: 3, displayColors: false, callbacks: { label: ctx => `Consumo: ${ctx.parsed.y} L` }
-                        }
-                    },
-                    scales: {
-                        y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.06)' }, ticks: { font: { size: 9, family:'Poppins' }, color: '#666' } },
-                        x: { grid: { display: false }, ticks: { font: { size: 9, family:'Poppins' }, color: '#666' } }
-                    }
-                }
-            };
-            try {
-               waterChart = new Chart(ctx, config);
-               currentChartType = type;
-            } catch (e) { console.error("Erro ao criar o gráfico:", e); }
-        }
-
-        function changeChartType(type) {
-             // Só inicializa se a aba de gráfico estiver ativa
-            const graphTab = document.getElementById('graphTab');
-             if(graphTab && graphTab.classList.contains('active')) {
-                 if(type !== currentChartType || !waterChart) {
-                    initializeChart(type);
-                 }
-             } else {
-                 currentChartType = type; // Armazena a escolha para quando a aba for ativada
-             }
-        }
-
-        function updateChartData() {
-            const graphTab = document.getElementById('graphTab');
-             if(graphTab && graphTab.classList.contains('active') && waterChart) {
-                 const newData = Array.from({length: 12}, (_,i) => 4 + Math.sin(i/1.5 + Math.random())*2.5 + Math.random()*2);
-                 waterChart.data.datasets[0].data = newData.map(d => Math.max(0, d.toFixed(1)));
-                 waterChart.update();
-            } else if (!waterChart) {
-                console.warn("Gráfico não inicializado para atualizar dados.");
-                // Não tenta inicializar aqui, espera a aba ficar ativa
-            }
-        }
-
-        // ---- Inicialização Geral ----
-        document.addEventListener('DOMContentLoaded', () => {
-            updateClock();
-            setInterval(updateClock, 15000);
-
-            updateMoistureCircle();
-            updateFlowGauge();
-            updateWeatherData();
-            checkMoistureAlert();
-            updateLastWatering();
-             if (DOMElements.pauseBtn) DOMElements.pauseBtn.disabled = true;
-             if (DOMElements.powerBtn) DOMElements.powerBtn.style.background = 'var(--secondary)';
-
-             // Mostra aba principal no início
-             showTab('mainTab', document.querySelector('.tab-btn[data-tab="mainTab"]'));
-
-            // Não inicia updateData automaticamente
-        });
-
-    </script>
-</body>
-</html>
+    
+    <aquapulse-super-container>
+        <titulo-secao>A Jornada Aquapulse</titulo-secao>
+        <subtitulo-secao>Transformando seu controle sobre a água, passo a passo.</subtitulo-secao>
+    
+        <aquapulse-linha-tempo id="minhaLinhaTempo">
+            <linha-central-wrapper>
+                 <linha-central-colorida></linha-central-colorida>
+            </linha-central-wrapper>
+    
+            <etapa-aquapulse class="posicao-superior etapa-item" style="left: 7%;" data-tooltip="Adquira o dispositivo Aquapulse.">
+                 <conector-vertical style="background-color: var(--cor-seg-1);"></conector-vertical>
+                 <conteudo-etapa>
+                     <imagem-etapa>
+                         <img src="https://via.placeholder.com/80/e74c3c/ffffff?text=Compra" alt="Adquirir Dispositivo">
+                     </imagem-etapa>
+                     <descricao-etapa>
+                         1. Adquira
+                     </descricao-etapa>
+                 </conteudo-etapa>
+                 <div class="tooltip-dinamico"></div>
+            </etapa-aquapulse>
+    
+            <etapa-aquapulse class="posicao-inferior etapa-item" style="left: 21%;" data-tooltip="Sem obras, sem complicações. Você mesmo instala!">
+                  <conector-vertical style="background-color: var(--cor-seg-2);"></conector-vertical>
+                  <conteudo-etapa>
+                       <imagem-etapa>
+                           <img src="https://via.placeholder.com/80/3498db/ffffff?text=Instalar" alt="Instalar Dispositivo">
+                       </imagem-etapa>
+                       <descricao-etapa>
+                           2. Instale
+                       </descricao-etapa>
+                  </conteudo-etapa>
+                  <div class="tooltip-dinamico"></div>
+            </etapa-aquapulse>
+    
+            <etapa-aquapulse class="posicao-superior etapa-item" style="left: 35%;" data-tooltip="Baixe o App e siga as instruções de pareamento.">
+                 <conector-vertical style="background-color: var(--cor-seg-3);"></conector-vertical>
+                 <conteudo-etapa>
+                       <imagem-etapa>
+                           <img src="https://via.placeholder.com/80/9b59b6/ffffff?text=App" alt="Conectar ao App">
+                       </imagem-etapa>
+                       <descricao-etapa>
+                           3. Conecte
+                       </descricao-etapa>
+                 </conteudo-etapa>
+                 <div class="tooltip-dinamico"></div>
+            </etapa-aquapulse>
+    
+            <etapa-aquapulse class="posicao-inferior etapa-item" style="left: 49%;" data-tooltip="Acompanhe gráficos e dados detalhados na palma da mão.">
+                  <conector-vertical style="background-color: var(--cor-seg-4);"></conector-vertical>
+                  <conteudo-etapa>
+                       <imagem-etapa>
+                           <img src="https://via.placeholder.com/80/f1c40f/000000?text=Monitorar" alt="Monitorar Consumo">
+                       </imagem-etapa>
+                       <descricao-etapa>
+                           4. Monitore
+                       </descricao-etapa>
+                  </conteudo-etapa>
+                  <div class="tooltip-dinamico"></div>
+            </etapa-aquapulse>
+    
+            <etapa-aquapulse class="posicao-superior etapa-item" style="left: 63%;" data-tooltip="Seja notificado sobre vazamentos ou consumo anormal.">
+                 <conector-vertical style="background-color: var(--cor-seg-5);"></conector-vertical>
+                  <conteudo-etapa>
+                       <imagem-etapa>
+                           <img src="https://via.placeholder.com/80/e67e22/ffffff?text=Alertas" alt="Receber Alertas">
+                       </imagem-etapa>
+                       <descricao-etapa>
+                           5. Alertas
+                       </descricao-etapa>
+                  </conteudo-etapa>
+                  <div class="tooltip-dinamico"></div>
+            </etapa-aquapulse>
+    
+            <etapa-aquapulse class="posicao-inferior etapa-item" style="left: 77%;" data-tooltip="Use as informações para reduzir o desperdício.">
+                  <conector-vertical style="background-color: var(--cor-seg-6);"></conector-vertical>
+                  <conteudo-etapa>
+                     <imagem-etapa>
+                         <img src="https://via.placeholder.com/80/1abc9c/ffffff?text=Otimizar" alt="Otimizar Uso">
+                     </imagem-etapa>
+                     <descricao-etapa>
+                         6. Otimize
+                     </descricao-etapa>
+                  </conteudo-etapa>
+                  <div class="tooltip-dinamico"></div>
+             </etapa-aquapulse>
+    
+            <etapa-aquapulse class="posicao-superior etapa-item etapa-final" style="left: 91%;" data-tooltip="Menos água gasta, mais dinheiro no bolso e um planeta mais feliz!">
+                 <conector-vertical style="background-color: var(--cor-seg-7);"></conector-vertical>
+                 <conteudo-etapa>
+                     <imagem-etapa>
+                         <img src="/public/img/logo.png" alt="Economia e Planeta">
+                     </imagem-etapa>
+                         <descricao-etapa>
+                         7. Economize!
+                     </descricao-etapa>
+                 </conteudo-etapa>
+                 <div class="tooltip-dinamico"></div>
+            </etapa-aquapulse>
+        </aquapulse-linha-tempo>
+    
+    </aquapulse-super-container>
+    
+   
