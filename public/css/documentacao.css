@@ -1,0 +1,289 @@
+
+        /* --- Variáveis Globais (Custom Properties) --- */
+        :root {
+            --bg-color: #080808;
+            --text-color: white;
+            --border-color: #333;
+            --accent-color: #00aaff; /* Cor de destaque para links ativos/hover */
+            --link-hover-bg: rgba(255, 255, 255, 0.1);
+            --link-active-bg: rgba(0, 170, 255, 0.2); /* Usando accent color */
+            --section-border-radius: 8px;
+            --sidebar-width: 300px;
+            --content-padding: 50px;
+            --mobile-content-padding: 30px;
+            --header-font-size: 1.8em;
+            --main-title-font-size: 2.5em; /* Ajustado para título longo */
+            --section-title-font-size: 2em;
+            --subsection-title-font-size: 1.5em;
+            --copy-button-bg: #2a2a2a;
+            --copy-button-hover-bg: #444;
+            --copy-button-color: #ccc;
+        }
+
+        /* --- Reset Básico e Estilos Globais --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            overflow-x: hidden;
+            padding: 50px 2rem 2rem;
+        }
+
+        /* --- Layout Principal --- */
+        .apdoc-page-container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* --- Sidebar de Navegação --- */
+        .apdoc-navigation-sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--bg-color);
+            border-right: 1px solid var(--border-color);
+            padding: 30px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            overflow-y: auto;
+            flex-shrink: 0;
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+        }
+
+        .apdoc-navigation-sidebar h2.sidebar-title { /* Classe específica para o título da sidebar */
+            color: var(--text-color);
+            margin-bottom: 30px;
+            font-size: var(--header-font-size);
+            border-bottom: 2px solid var(--text-color);
+            padding-bottom: 10px;
+        }
+
+        .apdoc-navigation-sidebar ul { list-style: none; }
+        .apdoc-navigation-sidebar ul ul { padding-left: 15px; margin-top: 5px; }
+        .apdoc-navigation-sidebar li { margin: 10px 0; }
+
+        .apdoc-sidebar-link {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+            display: block;
+            padding: 8px 15px;
+            border-radius: 4px;
+        }
+        .apdoc-sidebar-link:hover { background-color: var(--link-hover-bg); color: var(--text-color); }
+        .apdoc-sidebar-link.active { background-color: var(--link-active-bg); font-weight: bold; color: var(--accent-color); }
+
+        /* --- Área de Conteúdo Principal --- */
+        .apdoc-main-content-area {
+            margin-left: var(--sidebar-width);
+            padding: var(--content-padding);
+            flex: 1;
+            min-width: 0;
+            transition: margin-left 0.3s ease-in-out;
+        }
+
+        /* --- Seções de Conteúdo --- */
+        .apdoc-content-section {
+            margin-bottom: var(--content-padding);
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--section-border-radius);
+            min-height: 50px; /* Reduzido min-height */
+        }
+         .apdoc-content-section:last-child {
+            margin-bottom: 0; /* Remove margem inferior da última seção */
+         }
+
+        /* --- Títulos e Textos --- */
+        .apdoc-main-content-area h1.main-article-title { /* Classe para o título principal do artigo */
+            font-size: var(--main-title-font-size);
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--text-color);
+            padding-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .apdoc-main-content-area h2 { /* Títulos das seções principais */
+            font-size: var(--section-title-font-size);
+            margin-top: 40px;
+            margin-bottom: 25px;
+            color: var(--text-color);
+            scroll-margin-top: 80px;
+            border-bottom: 1px solid var(--border-color); /* Linha sutil abaixo dos H2 */
+            padding-bottom: 10px;
+        }
+
+        .apdoc-main-content-area h3 { /* Títulos das subseções */
+            font-size: var(--subsection-title-font-size);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: var(--accent-color); /* Cor de destaque para H3 */
+            scroll-margin-top: 80px;
+        }
+         /* H3 dentro de Abstract/Resumo */
+         #apdoc-section-abstract h3, #apdoc-section-resumo h3 {
+             color: var(--text-color); /* Cor normal para Keywords/Palavras-chave */
+             font-size: 1.1em; /* Tamanho menor */
+             margin-top: 20px;
+             margin-bottom: 5px;
+             border: none;
+         }
+
+
+        .apdoc-main-content-area p { margin: 15px 0; text-align: justify; }
+        .apdoc-main-content-area ul { margin: 15px 0; padding-left: 30px; }
+         .apdoc-main-content-area ul li { margin-bottom: 8px; } /* Espaçamento entre itens da lista */
+
+         .apdoc-main-content-area pre {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            padding-top: 45px;
+            border-radius: 4px;
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+            color: #f0f0f0;
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.5;
+            position: relative;
+         }
+
+        /* --- Botão Copiar Código --- */
+        .apdoc-copy-code-button {
+            position: absolute; top: 10px; right: 10px;
+            background-color: var(--copy-button-bg); color: var(--copy-button-color);
+            border: none; padding: 5px 10px; border-radius: 4px; font-size: 0.8em;
+            cursor: pointer; transition: background-color 0.2s; opacity: 0.7;
+        }
+        .apdoc-main-content-area pre:hover .apdoc-copy-code-button { opacity: 1; }
+        .apdoc-copy-code-button:hover { background-color: var(--copy-button-hover-bg); }
+        .apdoc-copy-code-button.copied { background-color: var(--accent-color); color: var(--bg-color); }
+
+        /* --- Seção de Autores --- */
+        .apdoc-authors-box {
+            background-color: rgba(255,255,255,0.05);
+            padding: 25px;
+            border-radius: var(--section-border-radius);
+            margin-top: 30px; /* Espaço após título H1 */
+            margin-bottom: 40px;
+            border: 1px solid var(--border-color);
+        }
+        .apdoc-authors-box p { margin: 5px 0; text-align: left; }
+        .apdoc-authors-box p strong { color: var(--accent-color); } /* Destaque para nomes */
+        .apdoc-authors-box .affiliation { font-size: 0.9em; color: #ccc; }
+        .apdoc-authors-box .emails { font-size: 0.9em; word-break: break-all; }
+
+        /* --- Grid de Imagens --- */
+        .apdoc-image-grid {
+            display: grid;
+            /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */ /* Ajuste para 2 colunas */
+             grid-template-columns: repeat(2, 1fr);
+            gap: 25px; /* Aumenta espaço */
+            margin: 25px 0;
+        }
+        /* Grid específico para as figuras 3-6 (4 colunas) */
+         .apdoc-image-grid-4col {
+             grid-template-columns: repeat(4, 1fr);
+             gap: 15px;
+         }
+          /* Grid específico para as figuras 7-10 (2 colunas) */
+         .apdoc-image-grid-2col {
+              grid-template-columns: repeat(2, 1fr);
+              gap: 20px;
+          }
+
+
+        .apdoc-image-grid figure, .apdoc-image-grid-4col figure, .apdoc-image-grid-2col figure {
+            border: 1px solid var(--border-color);
+            padding: 10px; /* Reduz padding */
+            border-radius: var(--section-border-radius);
+            text-align: center;
+            background-color: rgba(255,255,255,0.02);
+            display: flex; /* Flex para alinhar imagem e legenda */
+            flex-direction: column;
+            justify-content: space-between; /* Empurra legenda para baixo */
+        }
+         .apdoc-image-grid figure img, .apdoc-image-grid-4col figure img, .apdoc-image-grid-2col figure img {
+             max-width: 100%;
+             height: auto;
+             display: block;
+             margin: 0 auto 10px auto; /* Margem inferior para separar da legenda */
+         }
+        .apdoc-image-grid figcaption, .apdoc-image-grid-4col figcaption, .apdoc-image-grid-2col figcaption {
+            font-size: 0.85em; /* Legenda menor */
+            color: #ccc;
+            margin-top: auto; /* Empurra para baixo com flex */
+        }
+
+        /* --- Tabela (se houver) --- */
+        .apdoc-main-content-area table { width: 100%; border-collapse: collapse; margin: 25px 0; border: 1px solid var(--border-color); }
+        .apdoc-main-content-area th, .apdoc-main-content-area td { border: 1px solid var(--border-color); padding: 12px; text-align: left; }
+        .apdoc-main-content-area th { background-color: var(--link-hover-bg); }
+
+        /* --- Links Externos --- */
+        .apdoc-external-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Aumenta minmax */
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .apdoc-external-links-grid a {
+            color: var(--text-color); text-decoration: none; border: 1px solid var(--border-color);
+            padding: 15px; text-align: center; transition: background-color 0.3s, transform 0.2s;
+            border-radius: 4px; display: block; /* Garante que o link ocupe o espaço */
+            background-color: var(--copy-button-bg); /* Fundo para destaque */
+        }
+        .apdoc-external-links-grid a:hover { background-color: var(--copy-button-hover-bg); transform: translateY(-2px); }
+
+        /* --- Botão de Toggle e Overlay (Mobile) --- */
+        .apdoc-sidebar-toggle-button {
+            display: none; position: fixed; top: 15px; left: 15px; z-index: 1100;
+            background: var(--copy-button-bg); color: var(--text-color); border: 1px solid var(--border-color);
+            padding: 8px 12px; font-size: 1.5em; cursor: pointer; border-radius: 4px;
+        }
+        .apdoc-mobile-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); z-index: 999; opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .apdoc-mobile-overlay.active { display: block; opacity: 1; }
+
+        /* --- Referências --- */
+        #apdoc-section-referencias ul { padding-left: 0; list-style: none; }
+        #apdoc-section-referencias li { margin-bottom: 12px; padding-left: 1.5em; position: relative; text-align: left; }
+         #apdoc-section-referencias li::before { /* Adiciona um marcador simples */
+             content: "•";
+             position: absolute;
+             left: 0;
+             color: var(--accent-color);
+             font-weight: bold;
+         }
+
+
+        /* --- Media Query (Telas Pequenas) --- */
+        @media (max-width: 768px) {
+            .apdoc-sidebar-toggle-button { display: block; }
+            .apdoc-navigation-sidebar { transform: translateX(-100%); border-right: none; box-shadow: 2px 0 5px rgba(0,0,0,0.5); }
+            .apdoc-navigation-sidebar.apdoc-sidebar-mobile-open { transform: translateX(0); }
+            .apdoc-main-content-area { margin-left: 0; padding: var(--mobile-content-padding); padding-top: 70px; }
+            .apdoc-main-content-area h1.main-article-title { font-size: 1.8em; } /* Título menor no mobile */
+            .apdoc-main-content-area h2 { font-size: 1.6em; scroll-margin-top: 70px; }
+            .apdoc-main-content-area h3 { font-size: 1.3em; scroll-margin-top: 70px; }
+            /* Ajusta grids de imagens para 1 coluna no mobile */
+            .apdoc-image-grid, .apdoc-image-grid-4col, .apdoc-image-grid-2col { grid-template-columns: 1fr; gap: 20px;}
+        }
+
+    

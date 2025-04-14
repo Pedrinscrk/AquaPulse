@@ -22,7 +22,7 @@ router.get('/botanica', (req, res) => {
     });      
 
 router.get('/documentacao', (req, res) => {
-    res.render('documentacao', { title: 'AquaPulse Contato' });
+    res.render('documentacao', { title: 'AquaPulse Documentação' });
   });
 module.exports = router;
 

@@ -31,12 +31,12 @@ AquaPulseOFC
 ├─ routes
 ├─ services
 ├─ public
-│  ├─ css
-│  ├─ img
-│  └─ js
+│ ├─ css
+│ ├─ img
+│ └─ js
 ├─ views
-│  ├─ layouts
-│  └─ partials
+│ ├─ layouts
+│ └─ partials
 ├─ .env
 ├─ .gitignore
 ├─ package.json

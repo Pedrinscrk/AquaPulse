@@ -1,342 +1,221 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaPulse - Documentação</title>
+    <link rel="stylesheet" href="/css/documentacao.css">
+    <script src="/js/documentacao.js" defer></script>
     {{> header}}
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Arial, sans-serif;
-        }
+    
 
-        body {
-            background-color: #080808;
-            color: white;
-            line-height: 1.8;
-        }
+    <button class="apdoc-sidebar-toggle-button" id="sidebar-toggle" aria-label="Abrir menu lateral" aria-expanded="false">
+        ☰
+    </button>
 
-        .container {
-            display: flex;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+    <div class="apdoc-mobile-overlay" id="mobile-overlay"></div>
 
-        /* Sidebar */
-        .sidebar {
-            width: 300px;
-            background-color: #080808;
-            border-right: 1px solid #333;
-            padding: 30px 20px;
-            position: fixed;
-            height: 100vh;
-            overflow-y: auto;
-        }
-
-        .sidebar h2 {
-            color: white;
-            margin-bottom: 30px;
-            font-size: 1.8em;
-            border-bottom: 2px solid white;
-            padding-bottom: 10px;
-        }
-
-        .sidebar ul {
-            list-style: none;
-        }
-
-        .sidebar li {
-            margin: 15px 0;
-        }
-
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s;
-            display: block;
-            padding: 8px 15px;
-            border-radius: 4px;
-        }
-
-        .sidebar a:hover {
-            background-color: rgba(255,255,255,0.1);
-        }
-
-        /* Conteúdo principal */
-        .main-content {
-            margin-left: 320px;
-            padding: 50px;
-            flex: 1;
-        }
-
-        section {
-            margin-bottom: 50px;
-            padding: 30px;
-            border: 1px solid #333;
-            border-radius: 8px;
-        }
-
-        h1 {
-            font-size: 2.8em;
-            margin-bottom: 40px;
-            border-bottom: 2px solid white;
-            padding-bottom: 15px;
-        }
-
-        h2 {
-            font-size: 2em;
-            margin: 40px 0 25px;
-            color: white;
-        }
-
-        h3 {
-            font-size: 1.5em;
-            margin: 30px 0 15px;
-        }
-
-        p {
-            margin: 15px 0;
-            text-align: justify;
-        }
-
-        ul {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-
-        .authors {
-            background-color: rgba(255,255,255,0.05);
-            padding: 25px;
-            border-radius: 8px;
-            margin-bottom: 40px;
-        }
-
-        .figure-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin: 25px 0;
-        }
-
-        figure {
-            border: 1px solid #333;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        figcaption {
-            margin-top: 10px;
-            font-size: 0.9em;
-            color: #ccc;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-            border: 1px solid #333;
-        }
-
-        th, td {
-            border: 1px solid #333;
-            padding: 12px;
-            text-align: left;
-        }
-
-        th {
-            background-color: rgba(255,255,255,0.1);
-        }
-
-        .links {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .links a {
-            color: white;
-            text-decoration: none;
-            border: 1px solid #333;
-            padding: 20px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .links a:hover {
-            background-color: rgba(255,255,255,0.05);
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-            }
-
-            .sidebar {
-                position: relative;
-                width: 100%;
-                height: auto;
-                border-right: none;
-            }
-
-            .main-content {
-                margin-left: 0;
-                padding: 30px;
-            }
-
-            .figure-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .links {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <nav class="sidebar">
-            <h2>AquaPulse</h2>
-            <ul>
-                <li><a href="#autores">Autores</a></li>
-                <li><a href="#abstract">Abstract</a></li>
-                <li><a href="#resumo">Resumo</a></li>
-                <li><a href="#introducao">1. Introdução</a></li>
-                <li><a href="#metodologia">2. Metodologia</a>
+    <div class="apdoc-page-container">
+        <nav class="apdoc-navigation-sidebar" id="apdoc-sidebar">
+            <h2 class="sidebar-title">Navegação</h2> <ul>
+                <li><a href="#apdoc-section-autores" class="apdoc-sidebar-link" data-target-id="apdoc-section-autores">Autores</a></li>
+                <li><a href="#apdoc-section-abstract" class="apdoc-sidebar-link" data-target-id="apdoc-section-abstract">Abstract</a></li>
+                <li><a href="#apdoc-section-resumo" class="apdoc-sidebar-link" data-target-id="apdoc-section-resumo">Resumo</a></li>
+                <li><a href="#apdoc-section-introducao" class="apdoc-sidebar-link" data-target-id="apdoc-section-introducao">1. Introdução</a></li>
+                <li>
+                    <a href="#apdoc-section-metodologia" class="apdoc-sidebar-link" data-target-id="apdoc-section-metodologia">2. Metodologia</a>
                     <ul>
-                        <li><a href="#requisitos">2.1 Requisitos</a></li>
-                        <li><a href="#design">2.2 Design</a></li>
-                        <li><a href="#implementacao">2.3 Implementação</a></li>
-                        <li><a href="#testes">2.4 Testes</a></li>
+                        <li><a href="#apdoc-subsection-requisitos" class="apdoc-sidebar-link" data-target-id="apdoc-subsection-requisitos">2.1 Requisitos</a></li>
+                        <li><a href="#apdoc-subsection-design" class="apdoc-sidebar-link" data-target-id="apdoc-subsection-design">2.2 Design</a></li>
+                        <li><a href="#apdoc-subsection-implementacao" class="apdoc-sidebar-link" data-target-id="apdoc-subsection-implementacao">2.3 Implementação</a></li>
+                        <li><a href="#apdoc-subsection-testes" class="apdoc-sidebar-link" data-target-id="apdoc-subsection-testes">2.4 Testes</a></li>
                     </ul>
                 </li>
-                <li><a href="#resultados">3. Resultados</a></li>
-                <li><a href="#conclusao">4. Conclusão</a></li>
-                <li><a href="#links">Links</a></li>
-                <li><a href="#referencias">Referências</a></li>
+                <li><a href="#apdoc-section-resultados" class="apdoc-sidebar-link" data-target-id="apdoc-section-resultados">3. Resultados</a></li>
+                <li><a href="#apdoc-section-conclusao" class="apdoc-sidebar-link" data-target-id="apdoc-section-conclusao">4. Conclusão</a></li>
+                <li><a href="#apdoc-section-links" class="apdoc-sidebar-link" data-target-id="apdoc-section-links">Links</a></li>
+                <li><a href="#apdoc-section-referencias" class="apdoc-sidebar-link" data-target-id="apdoc-section-referencias">Referências</a></li>
             </ul>
         </nav>
 
-        <main class="main-content">
-            <h1>AquaPulse - Documentação Técnica</h1>
-            
-            <section id="autores" class="authors">
-                <h2>Autores</h2>
-                <p>Iago Gabriel Bortoluzzi¹, Iago Henrico P. Fouletto², Osmar A. de Souza do Amaral³, Pedro A. Oliveira⁴</p>
-                <p>¹Instituto Federal de Educação, Ciência e Tecnologia de Mato Grosso (IFMT)<br>
-                Rua Ananias Martins de Souza, 861 - 78721-520 - Rondonópolis – MT - Brasil<br>
-                
+        <main class="apdoc-main-content-area">
+            <h1 class="main-article-title">AquaPulse: Um sistema automático para apoiar no uso consciente e sustentável da água</h1>
+
+            <section id="apdoc-section-autores" class="apdoc-authors-box">
+                <p><strong>Iago Gabriel Bortoluzzi¹</strong>, <strong>Iago Henrico P. Fouletto²</strong>, <strong>Osmar A. de Souza do Amaral³</strong>, <strong>Pedro A. Oliveira⁴</strong></p>
+                <p class="affiliation">¹Instituto Federal de Educação, Ciência e Tecnologia de Mato Grosso (IFMT)</p>
+                <p class="affiliation">Rua Ananias Martins de Souza, 861 - 78721-520 - Rondonópolis – MT - Brasil</p>
+                <p class="emails">{bortoluzzi.i, i.paiva, osmar.s, o.pedro}@estudante.ifmt.edu.br</p>
             </section>
 
-            <section id="abstract">
+            <section id="apdoc-section-abstract" class="apdoc-content-section">
                 <h2>Abstract</h2>
-                <p>This project aims to design and develop an automatic system to support the conscious and sustainable use of water [...]</p>
+                <p>This project aims to design and develop an automatic system to support the conscious and sustainable use of water, as an alternative to traditional methods, which are generally inefficient. It is hoped to provide an efficient and sustainable irrigation alternative for small, medium and large-scale producers, as well as for irrigating gardens and greenhouses. This project includes the development of software to control the use of water with sensors and valves, in which the user can monitor and receive warnings about the humidity of the soil, the air and the temperature of the environment, as well as having manual adjustments, helping to improve the crop, land or garden.</p>
                 <h3>Keywords</h3>
                 <p>Irrigation; Conscientious use of water; Sustainability.</p>
             </section>
 
-            <section id="resumo">
+            <section id="apdoc-section-resumo" class="apdoc-content-section">
                 <h2>Resumo</h2>
-                <p>Este projeto tem o objetivo de conceber e desenvolver um sistema automático para apoiar no uso consciente [...]</p>
+                <p>Este projeto tem o objetivo de conceber e desenvolver um sistema automático para apoiar no uso consciente e sustentável da água como alternativa aos métodos tradicionais, que geralmente são ineficientes. Espera-se fornecer uma alternativa eficiente, sustentável e de baixo custo para apoiar na irrigação, voltada para pequenos, médios e grandes produtores, bem como para a irrigação de jardins e estufas. Este projeto inclui o desenvolvimento de um website para a divulgação do sistema e um aplicativo mobile para controlar o uso da água com sensores e válvulas, em que o usuário poderá monitorar e receber avisos sobre umidade do solo, do ar e da temperatura do ambiente, além de contar com ajustes manuais, auxiliando no melhoramento da cultura, terreno ou jardim.</p>
                 <h3>Palavras-chave</h3>
                 <p>Aplicativo de Irrigação; Uso consciente da água; Sustentabilidade.</p>
             </section>
 
-            <section id="introducao">
+            <section id="apdoc-section-introducao" class="apdoc-content-section">
                 <h2>1. Introdução</h2>
-                <p>Este artigo se debruça sobre a questão da escassez dos recursos hídricos [...]</p>
-                <div class="figure-grid">
-                    <figure>
-                        <img src="grafico-eficiencia.jpg" alt="Gráfico de eficiência hídrica" style="width:100%">
-                        <figcaption>Figura 1: Comparativo de eficiência</figcaption>
-                    </figure>
-                </div>
+                <p>Este artigo se debruça sobre a questão da escassez dos recursos hídricos em áreas urbanas e adjacentes. Pois, considerando que, conforme evidenciado por (Postel et al, 2019), cerca de 60 % da água usada para a irrigação é desperdiçada no processo, devido a métodos tradicionais ineficientes. Diante desse cenário, surge a necessidade de soluções tecnológicas que tornem a irrigação urbana mais eficiente, reduzindo desperdícios e otimizando o uso da água. Uma vez que estudos indicam que sistemas de irrigação automatizados, baseados em sensores, podem aumentar a eficiência no uso da água em até 50%, reduzindo os gastos com esse recurso (Fereres & Soriano, 2021). Ademais, esses sistemas potencializam a produtividade agrícola ao garantir que as culturas recebam a quantidade exata de água no momento adequado, resultando em maior rendimento (Howell, 2020).</p>
+                <p>Nesse contexto, é proposto o AquaPulse, um sistema de irrigação automatizada e inteligente, projetado para sanar tanto o problema da falta de tempo para cuidados regulares quanto o desperdício de água nos processos de irrigação. Desenvolvido especialmente para atender jardins, quintais, estufas e a agricultura urbana, o AquaPulse pode oferecer uma solução prática e sustentável, já que o sistema é controlado por um aplicativo que utiliza inteligência artificial (IA) para identificar plantas através de fotos ou nomes fornecidos pelos usuários. Com base nessa identificação, a IA sugere níveis ideais de umidade do solo, garantindo um cuidado mais eficiente e personalizado.</p>
+                <p>A partir do uso dessa tecnologia, o artigo visa fornecer uma solução tecnológica que objetiva não apenas otimizar o uso da água e reduzir desperdícios, bem como aumentar a qualidade de vida dos usuários. O desenvolvimento do sistema AquaPulse pode fornecer tais benefícios para a sociedade por um preço acessível para a população, revelando, dessa forma, seu caráter social. Assim, pode-se promover uma relação mais próxima e harmoniosa entre homem e a natureza, e consequentemente, contribuir para a sustentabilidade nos ambientes urbanos e periurbanos.</p>
             </section>
 
-            <section id="metodologia">
+            <section id="apdoc-section-metodologia" class="apdoc-content-section">
                 <h2>2. Metodologia</h2>
-                <p>O desenvolvimento do AquaPulse seguiu quatro fases principais [...]</p>
-                
-                <h3 id="requisitos">2.1 Levantamento de Requisitos</h3>
+                <p>O desenvolvimento do AquaPulse seguiu quatro fases principais: Levantamento de Requisitos, Design e Desenvolvimento do Sistema, Implementação e Testes de Validação. Além disso, foram analisados projetos semelhantes já existentes para identificar lacunas e funcionalidades para que o nosso projeto pode-se oferecer um diferencial competitivo, também foram realizadas pesquisas sobre os melhores equipamentos que garantem eficiência e acessibilidade para grande parte da população.</p>
+
+                <h3 id="apdoc-subsection-requisitos">2.1. Levantamento de Requisitos</h3>
+                <p>A primeira etapa foi conduzida para análise de referências técnicas e acadêmicas sobre irrigação automatizada, desperdício de água e soluções existentes. Assim, foi possível confirmar a necessidade de uma solução tecnológica eficiente e de custo benefício. A partir desses dados, foram definidos os requisitos funcionais e não funcionais, regras de negócios, escopo e não escopo, com foco em quatros conceitos principais:</p>
                 <ul>
-                    <li>Monitoramento de dados ambientais</li>
-                    <li>Automação da irrigação</li>
-                    <li>Interface intuitiva</li>
+                    <li>Monitoramento de dados ambientais: sensores para umidade do solo, umidade relativa do ar e temperatura.</li>
+                    <li>Automação da irrigação: válvulas controladas automaticamente para otimizar o consumo de água.</li>
+                    <li>Interface intuitiva: aplicativo para controle remoto e monitoramento dos dados em tempo real.</li>
+                    <li>Uso de hardware eficiente e acessível: seleção criteriosa de microcontroladores e sensores para otimizar o desempenho e o custo do sistema.</li>
                 </ul>
 
-                <h3 id="design">2.2 Design e Desenvolvimento</h3>
-                <div class="figure-grid">
-                    <figure>
-                        <img src="fluxograma.jpg" alt="Fluxograma do sistema" style="width:100%">
-                        <figcaption>Figura 2: Fluxograma do sistema</figcaption>
-                    </figure>
-                </div>
+                <h3 id="apdoc-subsection-design">2.2. Design e Desenvolvimento do Sistema</h3>
+                <p>Esta fase foi dividida em duas partes, na primeira, será projetado o design do site de vendas, hardware e software, já na segunda, começaremos com o desenvolvimento dos mesmos.</p>
+                <p>Na primeira parte, seguimos os princípios do design de Interação Humano-Computador (IHC) para o desenvolvimento da interface do projeto. Pensando nisso, decidimos adotar dois métodos principais de IHC: Heurísticas de Usabilidade de Nielsen e o Design Sprint. A primeira é um conjunto de diretrizes para aprimorar a experiência do usuário, sendo a principal razão para essa escolha a economia de tempo e a versatilidade do método, pois não precisamos realizar testes iniciais com usuários nas primeiras versões. Em vez disso, optamos por realizar avaliações com especialistas em design, que têm um olhar crítico e criterioso. Já o Design Sprint é uma metodologia ágil desenvolvida pelo Google Ventures que oferece um processo estruturado para prototipagem e teste de produtos em apenas cinco dias, esse sendo ideal para acelerar a entrega do design orientado pela experiência do usuário.</p>
+                <p>Com a aplicação das heurísticas, conseguimos estabelecer uma base sólida para o design, onde princípios como Visibilidade do Status do Sistema, Correspondência entre o Sistema e o Mundo Real, Consistência e Padrões, Prevenção de Erros, Reconhecimento em vez de Recordação, Flexibilidade e Eficiência de Uso, Design Estético e Minimalista foram adotados. Esses princípios asseguram que o sistema comunique suas funções de forma clara e coesa, ajudando o usuário a compreender facilmente as ações disponíveis.</p>
+                <p>O segundo método por sua vez proporciona uma abordagem eficiente e centrada no usuário, ideal para criar protótipos, validar conceitos rapidamente e ajustar o projeto. Abaixo, detalharemos as fases do Design Sprint:</p>
+                <ul>
+                    <li><strong>Mapear e Entender o Problema (Dia 1):</strong> No primeiro dia, nós iremos entender o problema com o qual estamos lidando, identificar as principais características dos stakeholders e fazer um mapeamento sobre o design do projeto e os recursos nele empregado.</li>
+                    <li><strong>Esboçar e Explorar Soluções (Dia 2):</strong> No segundo dia, cada membro da equipe apresentará soluções, explorando diferentes abordagens para resolver os problemas identificados. Será o momento de analisar como será a interface do aplicativo. Esse processo permitirá o uso de uma técnica chamada brainstorm e daí tiramos a criação de esboços iniciais para o layout e a usabilidade do aplicativo.</li>
+                    <li><strong>Decidir e Selecionar as Melhores Soluções (Dia 3):</strong> Com várias ideias na mesa, esse será o momento crucial para a seleção do design e funcionalidades. Nessa etapa, é de suma importância aplicar critérios como viabilidade e impacto para o usuário.</li>
+                    <li><strong>Construir um Protótipo Realista (Dia 4):</strong> O quarto dia é dedicado exclusivamente à construção de um protótipo funcional e interativo do projeto, que simula o uso e os recursos principais do sistema.</li>
+                    <li><strong>Testar com Usuários e Coletar Feedbacks (Dia 5):</strong> No último dia, é realizado testes com usuários-alvo para validar o protótipo. Esses forneceram feedbacks valiosos sobre a experiência de uso e as áreas que precisavam de ajustes.</li>
+                </ul>
+                <p>Na parte de Desenvolvimento do Sistema, iniciaremos com a construção do site, que por sua vez, terá sua estrutura em HTML, CSS e JavaScript. As devidas escolhas foram feitas pela sua ampla utilização no mercado atual e pela eficiência que oferecem na criação de interfaces web interativas e responsivas. Essas tecnologias permitem a construção de uma base sólida para o front-end, garantindo compatibilidade e desempenho em diversos dispositivos.</p>
+                <p>Posteriormente, avançaremos para a fase de desenvolvimento do equipamento, que será responsável pela integração dos recursos físicos com o sistema. Para o criação do mesmo, optamos pelo uso de C++, uma linguagem reconhecida por seu alto desempenho e flexibilidade, características essenciais para o controle preciso e eficiente de hardware. Para coleta de dados serão utilizados sensores de umidade e sensores de temperatura, conectados a um microcontrolador Arduino. O sistema foi programado para coletar dados em intervalos regulares e transmiti-los a um servidor, essas informações podem ser utilizadas tanto para a definição precisa dos parâmetros de irrigação quanto para consultas futuras e análises históricas.</p>
+                <p>Por fim, passaremos a construção do aplicativo para dispositivos móveis, que atuará como uma interface prática e acessível para os usuários interagirem diretamente com o sistema, ele por sua vez será desenvolvido em Flutter, um framework multiplataforma criado pela Google. Por meio dele, o usuário poderá controlar cronogramas, funções e visualizar os dados captados de umidade e temperatura em tempo real, o aplicativo também enviará alertas quando algum estado crítico for detectado.</p>
 
-                <h3 id="implementacao">2.3 Implementação</h3>
-                <pre>
-Algoritmo de Controle:
-1. Coletar dados dos sensores
-2. Analisar valores críticos
-3. Acionar válvulas conforme necessidade
-                </pre>
+                <h3 id="apdoc-subsection-implementacao">2.3. Implementação do Sistema</h3>
+                <p>Com base nas informações dos sensores, o sistema de controle automatizado será implementado para ajustar a irrigação de forma eficiente. O algoritmo de controle será projetado para acionar as válvulas de irrigação apenas quando os níveis de umidade do solo atingirem um valor crítico, previamente configurado pelo usuário, garantindo o uso racional da água. O software foi configurado para permitir que o usuário personalize esses parâmetros conforme as condições específicas do seu cultivo e suas vontades.</p>
+
+                <h3 id="apdoc-subsection-testes">2.4. Testes de Validação</h3>
+                <p>Após o desenvolvimento, o sistema será submetido a uma série de testes para verificar sua eficácia em condições reais. Os testes serão realizados por um curto período de tempo. Os dados analisadas incluíram:</p>
+                <ul>
+                    <li>Eficiência no uso da água: comparando o consumo de água do sistema automatizado com métodos tradicionais de irrigação.</li>
+                    <li>Desempenho dos sensores: verificando a precisão das medições de umidade e temperatura e a resposta do sistema.</li>
+                    <li>Satisfação do usuário: coleta de feedback dos agricultores sobre a facilidade de uso do aplicativo e a confiabilidade do sistema.</li>
+                </ul>
+                 <p>Após esse período de teste, os resultados obtidos serão analisados para possíveis melhorias, garantindo um sistema robusto e eficaz para os usuários finais.</p>
             </section>
 
-            <section id="resultados">
+             <section id="apdoc-section-resultados" class="apdoc-content-section">
                 <h2>3. Resultados e Discussões</h2>
-                <div class="figure-grid">
+                <p>Nesta seção, apresentamos os principais resultados obtidos com o AquaPulse, incluindo o desenvolvimento de protótipos, testes de usabilidade, participações em feiras de tecnologia e entre outros resultados.</p>
+                <p>O AquaPulse contou com o desenvolvimento do protótipo do sistema, feito com os materiais oferecidos pelos professores do campus. Tais equipamentos ajudaram fortemente o grupo na apresentação do projeto em uma feira de tecnologia, dentre os equipamentos utilizados estão o arduino, protoboard, jumpers, sensor de umidade, módulo relé, led(para mostrar quando a bomba é ligada) e bomba de água. A seguir, são apresentadas imagens do processo de montagem do circuito com Arduino.</p>
+                <div class="apdoc-image-grid">
                     <figure>
-                        <img src="prototipo.jpg" alt="Protótipo físico" style="width:100%">
-                        <figcaption>Figura 3: Protótipo físico</figcaption>
+                        <img src="img/img1.png" alt="Circuito inicial do sistema AquaPulse montado em protoboard com Arduino e sensores.">
+                        <figcaption>Figura 1. Circuito inicial do sistema</figcaption>
                     </figure>
                     <figure>
-                        <img src="interface.jpg" alt="Interface do aplicativo" style="width:100%">
-                        <figcaption>Figura 4: Interface mobile</figcaption>
+                        <img src="img/img2.png" alt="Tela de computador exibindo código em C++ para o Arduino.">
+                        <figcaption>Figura 2. Criação dos códigos em C++</figcaption>
                     </figure>
                 </div>
 
-                <table>
-                    <tr>
-                        <th>Métrica</th>
-                        <th>Resultado</th>
-                    </tr>
-                    <tr>
-                        <td>Redução do consumo</td>
-                        <td>50%</td>
-                    </tr>
-                    <tr>
-                        <td>Precisão dos sensores</td>
-                        <td>95%</td>
-                    </tr>
-                </table>
+                <p>Um protótipo do projeto foi desenvolvido na plataforma Figma, com objetivo nos principais recursos e áreas relacionadas ao AquaPulse. A (Figura 3) tela de login. para logar seus dados de e-mail e senha; (Figura 4) tela principal, onde é possível ligar e desligar o sistema, visualizar dados em tempo real da irrigação, alternar entre ambientes e acessar mais opções. (Figura 5) saiba mais, seção dedicada a informações botânicas e (Figura 6) tela de rendimento, que exibe gráficos sobre consumo de água e o tempo de uso ao longo de determinados períodos.</p>
+                 <div class="apdoc-image-grid-4col">
+                     <figure>
+                         <img src="img/img3.png" alt="Tela de login do aplicativo AquaPulse no Figma.">
+                         <figcaption>(Figura 3)</figcaption>
+                     </figure>
+                     <figure>
+                         <img src="img/img4.png" alt="Tela principal do aplicativo AquaPulse no Figma.">
+                         <figcaption>(Figura 4)</figcaption>
+                     </figure>
+                     <figure>
+                         <img src="img/img5.png" alt="Tela 'Saiba Mais' do aplicativo AquaPulse no Figma.">
+                         <figcaption>(Figura 5)</figcaption>
+                     </figure>
+                     <figure>
+                         <img src="img/img6.png" alt="Tela de rendimento do aplicativo AquaPulse no Figma.">
+                         <figcaption>(Figura 6)</figcaption>
+                     </figure>
+                 </div>
+
+                <p>O questionário online¹, disponibilizado por meio do Google Forms, foi aplicado com o objetivo de validar o protótipo do aplicativo. Ao todo, 14 usuários participaram da pesquisa, fornecendo respostas essenciais para a análise da usabilidade e do design do sistema. A estrutura do questionário foi dividida em três seções: perfil do usuário, contendo duas perguntas sobre idade e gênero; avaliação do protótipo, com dez perguntas específicas voltadas à usabilidade, funcionalidade e eficiência do sistema; design e experiência geral, que incluía uma questão final para avaliar a interface e o impacto visual do aplicativo. Os resultados obtidos a partir dessa pesquisa foram fundamentais para identificar pontos fortes e oportunidades de melhorias no projeto.</p>
+                 <div class="apdoc-image-grid-2col">
+                     <figure>
+                         <img src="img/img7.png" alt="Gráfico ou resultado da avaliação do protótipo - parte 1.">
+                         <figcaption>Figura 7. Avaliação do protótipo</figcaption>
+                     </figure>
+                     <figure>
+                         <img src="img/img8.png" alt="Gráfico ou resultado da avaliação do protótipo - parte 2.">
+                         <figcaption>Figura 8. Avaliação do protótipo</figcaption>
+                     </figure>
+                     <figure>
+                         <img src="img/img9.png" alt="Gráfico ou resultado da avaliação do protótipo - parte 3.">
+                         <figcaption>Figura 9. Avaliação do protótipo</figcaption>
+                     </figure>
+                     <figure>
+                         <img src="img/img10.png" alt="Gráfico ou resultado da avaliação do design e experiência geral.">
+                         <figcaption>Figura 10. Design e experiência geral</figcaption>
+                     </figure>
+                 </div>
+
+                <p>Também foi desenvolvido um modelo de site de marketing para o AquaPulse, ideal para a apresentação e venda do produto. O site inclui uma introdução detalhada ao sistema, explicação sobre suas versões, além de feedbacks de usuários, servindo para compartilhar informações, atualizações e recursos relacionados ao projeto.</p>
+                 <div class="apdoc-image-grid">
+                     <figure>
+                         <img src="img/img11.png" alt="Captura de tela da primeira parte do website de marketing do AquaPulse.">
+                         <figcaption>Figura 11. Web site - Parte 1</figcaption>
+                     </figure>
+                     <figure>
+                         <img src="img/img12.png" alt="Captura de tela da segunda parte do website de marketing do AquaPulse.">
+                         <figcaption>Figura 12. Web site - Parte 2</figcaption>
+                     </figure>
+                 </div>
+
+                 <p>Foi iniciado também o desenvolvimento do modelo de banco de dados do AquaPulse, idealizado para a armazenagem de dados de usuários, de plantas, de sensores e entre outros.</p>
+                  <div class="apdoc-image-grid" style="grid-template-columns: 1fr;"> <figure>
+                         <img src="img/img13.png" alt="Diagrama da versão inicial do banco de dados do AquaPulse.">
+                         <figcaption>Figura 13. Versão inicial do banco de dados do site</figcaption>
+                     </figure>
+                 </div>
+
+                 <p>O projeto AquaPulse também teve destaque em eventos e feiras de tecnologia, onde foi apresentado ao público e avaliado por representantes de tecnologia, entre os destaques estão o ERI-MT 2024 e FECITI 2024. Esta onde conquistamos o 2º lugar, demonstrando o potencial para o mercado da área. Tal reconhecimento reforça a qualidade do projeto e sua aplicabilidade prática, onde tivemos a participação do prefeito da cidade.</p>
+                 <div class="apdoc-image-grid">
+                     <figure>
+                         <img src="img/img14.png" alt="Foto da apresentação do AquaPulse no evento ERI-MT 2024.">
+                         <figcaption>Figura 14. ERI-MT 2024</figcaption>
+                     </figure>
+                     <figure>
+                         <img src="img/img15.png" alt="Foto da apresentação ou premiação do AquaPulse na FECITI 2024.">
+                         <figcaption>Figura 15. FECITI 2024</figcaption>
+                     </figure>
+                 </div>
             </section>
 
-            <section id="conclusao">
-                <h2>4. Considerações Finais</h2>
-                <p>No decorrer deste artigo, apresentamos uma solução viável [...]</p>
+            <section id="apdoc-section-conclusao" class="apdoc-content-section">
+                <h2>4. Considerações finais</h2>
+                <p>No decorrer deste artigo, apresentamos uma solução viável para os métodos tradicionais e ineficientes de irrigação, oferecendo alternativas mais precisas e práticas. Por meio de uma abordagem crítica, demonstramos como a tecnologia pode atuar em harmonia com a natureza, promovendo uma relação mais sustentável entre o ser humano e o meio ambiente. Espera-se também otimizar a irrigação ao reduzir erros humanos e promover o uso eficiente da água, garantindo que apenas a quantidade necessária seja utilizada. O sistema, composto por sensores, válvulas automatizadas e um aplicativo intuitivo, busca automatizar o processo de irrigação, diminuindo a necessidade de intervenção humana e aumentando a produtividade agrícola. Apesar das limitações iniciais enfrentadas no desenvolvimento, os resultados já demonstram o potencial para tornar a irrigação mais eficiente e acessível.</p>
             </section>
 
-            <section id="links">
-                <h2>Links Relacionados</h2>
-                <div class="links">
-                    <a href="https://encurtador.com.br/zZaMc" target="_blank">Protótipo</a>
-                    <a href="https://youtu.be/4CHOYyyLLGs" target="_blank">Vídeo Demo</a>
-                    <a href="https://encurtador.com.br/niOj9" target="_blank">Artefatos</a>
+            <section id="apdoc-section-links" class="apdoc-content-section">
+                <h2>Links</h2>
+                <div class="apdoc-external-links-grid">
+                    <a href="https://encurtador.com.br/zZaMc" target="_blank" rel="noopener noreferrer">Link para o protótipo</a>
+                    <a href="https://youtu.be/4CHOYyyLLGs" target="_blank" rel="noopener noreferrer">Link para o vídeo-demo</a>
+                    <a href="https://encurtador.com.br/niOj9" target="_blank" rel="noopener noreferrer">Link para os artefatos do projeto</a>
                 </div>
             </section>
 
-            <section id="referencias">
+            <section id="apdoc-section-referencias" class="apdoc-content-section">
                 <h2>Referências</h2>
                 <ul>
-                    <li>POSTEL, S. L. et al. Drip irrigation for small farmers [...] 2019.</li>
-                    <li>FERERES, E.; SORIANO, M. A. Deficit irrigation [...] 2021.</li>
+                    <li>POSTEL, S. L.; POLAK, P.; GONZALES, F.; KELLER, J. Drip irrigation for small farmers: A new initiative to alleviate hunger and poverty. Water International, v. 26, n. 1, p. 3-13, 2019.</li>
+                    <li>FERERES, E.; SORIANO, M. A. Deficit irrigation for reducing agricultural water use. Journal of Experimental Botany, v. 72, n. 2, p. 403-416, 2021.</li>
+                    <li>HOWELL, T. A. Enhancing water use efficiency in irrigated agriculture. Agricultural Water Management, v. 30, n. 3, p. 13-24, 2020.</li>
+                    <li>ZHANG, Y. et al. IoT-based smart irrigation systems: A review on hardware, software, and communication technologies. *IEEE Access*, 8, 59393-59410, 2020.</li>
                 </ul>
             </section>
         </main>
     </div>
-</body>
-</html>
+
+    
