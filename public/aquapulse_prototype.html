@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
@@ -34,7 +35,7 @@
     /* Estilos do Corpo INTERNO do Iframe (Simplificado) */
     body {
         font-family: 'Poppins', sans-serif;
-        /* background: var(--dark-bg); */ /* Removido - o fundo é transparente ou definido pelo screen-content */
+        /* background: var(--dark-bg);
         margin: 0; /* Garante sem margens */
         font-size: 16px; /* Base para REMs */
         /* Removidos: height, min-height, overflow, display, align, justify, padding */
@@ -310,7 +311,9 @@
                         <h4>Configurações</h4>
                         <div><label for="deviceName">Nome do Dispositivo:</label><input type="text" id="deviceName" value="Meu Jardim Principal"></div>
                          <div><label for="notifyToggle">Notificações:</label><input type="checkbox" id="notifyToggle" checked></div>
-                         <button class="control-btn" onclick="alert('Configurações salvas (simulação)!'); showTab('mainTab');"><i class="bi bi-check-lg"></i> Salvar</button>
+                         <button class="control-btn" onclick="showSaveToastAndTab('Configurações salvas!', 'mainTab')">
+                            <i class="bi bi-check-lg"></i> Salvar
+                        </button>
                 </div>
                  <div class="tab-pane history-tab" id="historyTab">
                         <h4>Histórico de Regas</h4>
@@ -332,7 +335,7 @@
         </div>
         <div class="home-indicator"></div>
     </div>
-
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script>
         // Variáveis Globais
         let waterChart = null;
@@ -346,6 +349,36 @@
         let lastWateringTime = null;
         let dataUpdateInterval = null;
 
+        function showSaveToastAndTab(message, tabId) {
+    // Exibe a notificação Toastify
+    // Certifique-se de que este código está dentro da sua função, como:
+// function showSaveToastAndTab(message, tabId) {
+
+Toastify({
+        text: message,
+        duration: 2000,
+        close: true,
+        gravity: "bottom",
+        position: "center",
+        stopOnFocus: true,
+        style: { // <<< CORREÇÃO: A propriedade 'style' que engloba os estilos CSS
+            background: "linear-gradient(to right, #28a745, #96c93d)", // Seu gradiente DENTRO de 'style'
+            borderRadius: "8px" // Seu border-radius DENTRO de 'style'
+            // Você pode adicionar outras propriedades CSS aqui, como color, padding, etc.
+            // Ex: color: "white", padding: "15px"
+        } // <<< CORREÇÃO: Fecha o objeto 'style'
+    }).showToast();
+
+    // Chamar showTab fora da configuração do Toastify está correto
+    showTab(tabId);
+
+} 
+
+// Certifique-se que a função showTab está definida em algum lugar
+function showTab(tabId) {
+    console.log("Mostrando a aba:", tabId);
+    // Coloque aqui a lógica real para mostrar a aba 'mainTab'
+}
         // Constantes
         const MOISTURE_CIRCUMFERENCE = 185;
 
