@@ -18,7 +18,7 @@ body {
     color: white;
     overflow-x: hidden;
     scroll-behavior: smooth;
-    padding: 50px 2rem 2rem;
+    /* padding: 50px 2rem 2rem; */
 }
 
 .section {

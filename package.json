@@ -10,7 +10,7 @@
         "start": "node server.js"
     },
     "dependencies": {
-        "chalk": "^5.4.1",
+        "chalk": "^5.6.2",
         "dotenv": "^16.5.0",
         "express": "^4.21.2",
         "express-handlebars": "^7.0.2",

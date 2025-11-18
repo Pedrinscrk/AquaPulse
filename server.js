@@ -3,29 +3,21 @@ const express = require('express');
 const { engine } = require('express-handlebars');
 const routes = require('./routes/index');
 const localtunnel = require('localtunnel');
-const chalk = require('chalk').default;
+
+// Removendo: const chalk = require('chalk').default;
+// Mova a inicialização para uma função assíncrona principal
 
 const app = express();
 const port = process.env.PORT || 1000;
 
-
-const theme = {
-  header: chalk.hex('#00CED1').bold,
-  success: chalk.hex('#7CFC00').bold,
-  url: chalk.hex('#20B2AA').underline,
-  local: chalk.hex('#FF69B4'),
-  error: chalk.hex('#FF4500').bold,
-  warning: chalk.hex('#FFD700'),
-  divider: chalk.hex('#9370DB')
-};
-
+let theme; // Declara 'theme' fora, para que seja acessível após a importação
 
 const sanitizeSubdomain = (name) => {
-  return name
-    .toLowerCase()
-    .normalize('NFD').replace(/[\u0300-\u036f]/g, '') 
-    .replace(/[^a-z0-9-]/g, '') // 
-    .substring(0, 20);
+    return name
+        .toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9-]/g, '')
+        .substring(0, 20);
 };
 
 app.engine('hbs', engine({ extname: '.hbs' }));
@@ -34,52 +26,71 @@ app.use(express.static('public'));
 app.use('/', routes);
 
 async function createTunnel(attempt = 1) {
-  const maxAttempts = 3;
-  const baseName = 'AquapulseIrrigações'; 
-  const sanitizedName = sanitizeSubdomain(baseName);
-  
-  try {
-    const tunnel = await localtunnel({
-      port: port,
-      subdomain: sanitizedName,
-      local_host: 'localhost',
-      allow_invalid_cert: true
-    });
+    const maxAttempts = 3;
+    const baseName = 'AquapulseIrrigações';
+    const sanitizedName = sanitizeSubdomain(baseName);
 
-    console.log(`
+    try {
+        const tunnel = await localtunnel({
+            port: port,
+            subdomain: sanitizedName,
+            local_host: 'localhost',
+            allow_invalid_cert: true
+        });
+
+        console.log(`
 ${theme.divider('══════════════════════════════════════════════')}
 ${theme.header('     AQUAPULSE IRRIGAÇÕES - TÚNEL ATIVO  ')}
 ${theme.divider('══════════════════════════════════════════════')}
 ${theme.success(' Túnel Principal:')} ${theme.url(tunnel.url)}
-${theme.local(' Acesso Local:    ')} ${theme.url(`http://localhost:${port}`)}
+${theme.local(' Acesso Local:      ')} ${theme.url(`http://localhost:${port}`)}
 ${theme.divider('══════════════════════════════════════════════')}
-    `);
+        `);
 
-    tunnel.on('close', () => {
-      console.log(theme.warning('\n     Conexão encerrada pelo servidor remoto'));
-    });
+        tunnel.on('close', () => {
+            console.log(theme.warning('\n     Conexão encerrada pelo servidor remoto'));
+        });
 
-    return tunnel;
+        return tunnel;
 
-  } catch (error) {
-    if (attempt <= maxAttempts) {
-      console.log(theme.warning(`\n   🔄  Tentativa ${attempt}/${maxAttempts}: Ajustando subdomínio...`));
-      return createTunnel(attempt + 1);
-    } else {
-      console.log(theme.error('\n     Não foi possível estabelecer o túnel principal'));
-      const fallbackTunnel = await localtunnel({ port });
-      console.log(theme.warning('     URL Alternativa:'), theme.url(fallbackTunnel.url));
-      return fallbackTunnel;
+    } catch (error) {
+        if (attempt <= maxAttempts) {
+            console.log(theme.warning(`\n    🔄   Tentativa ${attempt}/${maxAttempts}: Ajustando subdomínio...`));
+            return createTunnel(attempt + 1);
+        } else {
+            console.log(theme.error('\n     Não foi possível estabelecer o túnel principal'));
+            const fallbackTunnel = await localtunnel({ port });
+            console.log(theme.warning('     URL Alternativa:'), theme.url(fallbackTunnel.url));
+            return fallbackTunnel;
+        }
     }
-  }
 }
 
-app.listen(port, '0.0.0.0', async () => {
-  console.log(`
+// Nova função principal para lidar com a importação assíncrona
+async function main() {
+    // Importação Dinâmica do Chalk
+    const { default: chalk } = await import('chalk');
+
+    // Agora podemos definir 'theme' usando o 'chalk' importado
+    theme = {
+        header: chalk.hex('#00CED1').bold,
+        success: chalk.hex('#7CFC00').bold,
+        url: chalk.hex('#20B2AA').underline,
+        local: chalk.hex('#FF69B4'),
+        error: chalk.hex('#FF4500').bold,
+        warning: chalk.hex('#FFD700'),
+        divider: chalk.hex('#9370DB')
+    };
+
+    app.listen(port, '0.0.0.0', async () => {
+        console.log(`
 ${theme.divider('══════════════════════════════════════════════')}
 ${theme.header('   INICIANDO SISTEMA DE IRRIGAÇÃO AQUAPULSE  ')}
 ${theme.divider('══════════════════════════════════════════════')}
-  `);
-  
-  await createTunnel();
-});
+        `);
+
+        await createTunnel();
+    });
+}
+
+main().catch(console.error); // Executa a função principal
