@@ -3,13 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600&display=swap"rel="stylesheet"/>
-  <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
-  
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
   <title>AquaPulse</title>
- 
+
   <style>
-   
     * {
       margin: 0;
       padding: 0;
@@ -28,29 +26,27 @@
       right: 0;
       z-index: 1000;
       background: transparent;
-      transition: 
-        background 0.6s linear;
+      transition: background 0.6s linear, height 0.3s ease;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
     }
 
-  
-    #logo-container {
-      display: flex;
-      align-items: center;
-      height: 100%;
-      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    }
+  #logo-container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 6px; /* controla a distância entre logo e texto */
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
 
-  
-    #logo {
-      width: 60px;
-      height: 50px;
-      object-fit: cover;
-      margin-right: 10px;
-      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-      transform: translateZ(0);
-    }
+   #logo {
+  width: 60px;
+  height: 50px;
+  object-fit: cover;
+  margin-right: 0; /* remove o espaço extra */
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transform: translateZ(0);
+}
 
     #titulo-principal {
       font-family: "Bebas Neue", sans-serif;
@@ -65,7 +61,6 @@
       max-width: 300px;
     }
 
-    
     #menu-links {
       display: flex;
       gap: 20px;
@@ -105,7 +100,6 @@
       width: 100%;
     }
 
-   
     #weather-container {
       display: flex;
       align-items: center;
@@ -144,97 +138,62 @@
       transform: translateZ(0);
     }
 
-  
-    .weather-hot {
-      animation: pulse 1.2s infinite;
-    }
-    .weather-extreme {
-      animation: crack 0.9s infinite;
-    }
-    .weather-rain {
-      animation: rainDrop 1.1s infinite;
-    }
-    .weather-cold {
-      animation: shiver 0.6s infinite;
-    }
+    /* animações do clima */
+    .weather-hot { animation: pulse 1.2s infinite; }
+    .weather-extreme { animation: crack 0.9s infinite; }
+    .weather-rain { animation: rainDrop 1.1s infinite; }
+    .weather-cold { animation: shiver 0.6s infinite; }
 
     @keyframes pulse {
-      0%,
-      100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.05);
-      }
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
-
     @keyframes crack {
-      0%,
-      100% {
-        transform: rotate(0);
-      }
-      25% {
-        transform: rotate(5deg);
-      }
-      75% {
-        transform: rotate(-5deg);
-      }
+      0%, 100% { transform: rotate(0); }
+      25% { transform: rotate(5deg); }
+      75% { transform: rotate(-5deg); }
     }
-
     @keyframes rainDrop {
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(3px);
-      }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(3px); }
     }
-
     @keyframes shiver {
-      0%,
-      100% {
-        transform: translateX(0);
-      }
-      25% {
-        transform: translateX(1px);
-      }
-      75% {
-        transform: translateX(-1px);
-      }
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(1px); }
+      75% { transform: translateX(-1px); }
     }
 
-  
+    /* ESTADO SCROLLED (desktop e mobile) */
     header.scrolled {
       background: rgba(0, 0, 0, 0.96) !important;
-      height: 70px; 
+      height: 70px;
       box-shadow: 0 2px 15px rgba(0, 0, 0, 0.25);
     }
 
-    header.scrolled #logo-container {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      flex-direction: row;
-      gap: 10px;
-      width: auto;
-      max-width: 90%;
-    }
-
+header.scrolled #logo-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  flex-direction: row;
+  gap: 4px;          /* diminui a distância entre logo e texto */
+  width: auto;
+  max-width: 90%;
+}
     header.scrolled #logo {
       width: 60px !important;
       height: 50px !important;
       margin: 0 !important;
     }
 
-    header.scrolled #titulo-principal {
-      font-size: 30px !important;
-      max-width: 100%;
-      overflow: visible;
-      text-overflow: clip;
-      transform: translateY(0);
-    }
+ header.scrolled #titulo-principal {
+  font-size: 30px !important;
+  max-width: 100%;
+  overflow: visible;
+  text-overflow: clip;
+  transform: translateY(0);
+  margin-left: -10px;  /* puxa o texto ~10px pra esquerda */
+}
 
     header.scrolled #menu-links,
     header.scrolled #weather-container {
@@ -242,7 +201,7 @@
       pointer-events: none;
     }
 
-   
+    /* Mobile */
     #menu-toggle {
       display: none;
       font-size: 30px;
@@ -252,6 +211,7 @@
       right: 20px;
       top: 50%;
       transform: translateY(-50%);
+      z-index: 1100; /* fica acima do logo centralizado */
     }
 
     #mobile-menu {
@@ -279,25 +239,26 @@
       background: rgba(40, 167, 69, 0.3);
     }
 
-    /* Adicionar estas regras ao media query mobile */
-@media (max-width: 768px) {
-  #mobile-menu {
-    display: none;
-    position: fixed; /* Alterado de absolute para fixed */
-    top: 60px;
-    right: 20px;
-    z-index: 2000;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  }
+    /* Regras extras para mobile menu */
+    @media (max-width: 768px) {
+      #mobile-menu {
+        display: none;
+        position: fixed;
+        top: 60px;
+        right: 20px;
+        z-index: 2000;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      }
 
-  #mobile-menu.active {
-    display: flex;
-  }
+      #mobile-menu.active {
+        display: flex;
+      }
 
-  #menu-toggle {
-    z-index: 1001;
-  }
-}
+      #menu-toggle {
+        z-index: 1100;
+      }
+    }
+
     @media (max-width: 768px) {
       header {
         height: 60px;
@@ -329,69 +290,56 @@
         gap: 6px;
       }
 
-      #weather-temp {
-        font-size: 14px;
-      }
+      #weather-temp { font-size: 14px; }
+      #weather-city { font-size: 10px; }
+      #weather-icon { font-size: 1.5rem; }
 
-      #weather-city {
-        font-size: 10px;
-      }
-
-      #weather-icon {
-        font-size: 1.5rem;
-      }
-
-     
+      /* >>> Ajuste: NO MOBILE, manter o comportamento “pretinho e centralizado” quando scrolled */
       header.scrolled {
-        background: transparent !important;
-        box-shadow: none !important;
+        background: rgba(0, 0, 0, 0.96) !important;
+        box-shadow: 0 2px 15px rgba(0,0,0,0.25) !important;
         height: 60px !important;
       }
 
       header.scrolled #logo-container {
-        position: static !important;
-        transform: none !important;
+        position: absolute !important;
+        left: 50% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
         flex-direction: row !important;
-        max-width: none;
+        max-width: 80% !important;
       }
 
       header.scrolled #logo {
         width: 50px !important;
         height: 40px !important;
-        margin-right: 10px !important;
+        margin-right: 8px !important;
       }
 
       header.scrolled #titulo-principal {
-        font-size: 28px !important;
-        white-space: normal;
+        font-size: 26px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
       }
     }
 
-    
+    /* Entrada (se quiser animar a aparição do header) */
     @keyframes headerEntrance {
-      0% {
-        transform: translateY(-100%);
-        opacity: 0;
-      }
-      100% {
-        transform: translateY(0);
-        opacity: 1;
+      0% { transform: translateY(-100%); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Estas regras já estavam no código original */
+    @media (max-width: 768px) {
+      /* :contains não é suportado em CSS puro, mas manterei o hide geral do container se desejar ocultar no mobile */
+      #weather-container {
+        display: none !important;
       }
     }
-    @media (max-width: 768px) {
-  /* Adicionar estas regras */
-  #weather-temp:contains("Carregando...") {
-    display: none !important;
-  }
-  
-  #weather-container {
-    display: none !important;
-  }
-}
   </style>
 </head>
 <body>
- 
   <header>
     <div id="logo-container">
       <a href="/">
@@ -426,7 +374,7 @@
     <a href="/products">Produto</a>
     <a href="/suporte">Suporte</a>
     <a href="/aplicativo">Aplicativo</a>
-     <a href="/Botanica">Botanica</a>
+    <a href="/Botanica">Botanica</a>
   </nav>
 
   <script>
@@ -438,12 +386,11 @@
           const header = document.querySelector("header");
           const triggerPos = window.innerHeight / 2;
 
-          // Removido o translateY que empurrava o header para cima.
-          // Dessa forma, o header fica sempre visível no topo.
+          // Mantém o header sempre visível no topo
           header.style.transform = "translateY(0)";
 
-          // Verifica se deve aplicar a classe "scrolled"
-          if (window.scrollY > triggerPos && window.innerWidth > 768) {
+          // >>> Removido o filtro por largura. Agora vale para desktop e mobile.
+          if (window.scrollY > triggerPos) {
             header.classList.add("scrolled");
           } else {
             header.classList.remove("scrolled");
@@ -456,28 +403,43 @@
     };
 
     window.addEventListener("scroll", smoothScrollHandler, { passive: true });
+    window.addEventListener("load", smoothScrollHandler, { passive: true });
+    window.addEventListener("resize", smoothScrollHandler, { passive: true });
 
-// Substituir o evento de clique existente por este:
-document.getElementById("menu-toggle").addEventListener("click", function() {
-  const mobileMenu = document.getElementById("mobile-menu");
-  mobileMenu.classList.toggle("active");
-  
-  // Animaçao do ícone
-  this.querySelector("i").classList.toggle("bi-list");
-  this.querySelector("i").classList.toggle("bi-x");
-});
+    // Toggle do menu mobile
+    document.getElementById("menu-toggle").addEventListener("click", function () {
+      const mobileMenu = document.getElementById("mobile-menu");
+      mobileMenu.classList.toggle("active");
 
-// Adicionar fechar ao clicar fora
-document.addEventListener("click", function(e) {
-  const mobileMenu = document.getElementById("mobile-menu");
-  const menuToggle = document.getElementById("menu-toggle");
-  
-  if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
-    mobileMenu.classList.remove("active");
-    menuToggle.querySelector("i").classList.add("bi-list");
-    menuToggle.querySelector("i").classList.remove("bi-x");
-  }
-});
+      // Animação do ícone
+      this.querySelector("i").classList.toggle("bi-list");
+      this.querySelector("i").classList.toggle("bi-x");
+    });
+
+    // Fechar ao clicar fora
+    document.addEventListener("click", function (e) {
+      const mobileMenu = document.getElementById("mobile-menu");
+      const menuToggle = document.getElementById("menu-toggle");
+
+      if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+        mobileMenu.classList.remove("active");
+        menuToggle.querySelector("i").classList.add("bi-list");
+        menuToggle.querySelector("i").classList.remove("bi-x");
+      }
+    });
+
+    // (Opcional) Fechar o menu ao rolar
+    window.addEventListener("scroll", () => {
+      const mobileMenu = document.getElementById("mobile-menu");
+      const menuToggle = document.getElementById("menu-toggle");
+      if (mobileMenu.classList.contains("active")) {
+        mobileMenu.classList.remove("active");
+        menuToggle.querySelector("i").classList.add("bi-list");
+        menuToggle.querySelector("i").classList.remove("bi-x");
+      }
+    }, { passive: true });
+
+    // Clima
     const API_KEY = "88735358d2f64a039011bc12d68250b2";
 
     function updateWeatherIcon(temp, condition) {

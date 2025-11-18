@@ -1,11 +1,52 @@
-﻿{{> header}}
+﻿{{> header}} 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Fontes / libs já presentes -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+<!-- Bootstrap Icons (se já estiver no header, pode remover esta linha) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
+<style>
+  /* ====== Troca de imagens por ícones SOMENTE NO CELULAR (Jornada Aquapulse) ====== */
+  /* Desktop: ícones ocultos, imagens visíveis */
+  aquapulse-linha-tempo imagem-etapa .icon-etapa {
+    display: none;
+  }
+
+  /* Mobile: esconder imagens e mostrar ícones (AGORA MENORES) */
+  @media (max-width: 768px) {
+    aquapulse-linha-tempo imagem-etapa {
+      display: grid;
+      place-items: center;
+      min-width: 40px;   /* antes 56px */
+      min-height: 40px;  /* antes 56px */
+    }
+    aquapulse-linha-tempo imagem-etapa img {
+      display: none !important;
+    }
+    aquapulse-linha-tempo imagem-etapa .icon-etapa {
+      display: inline-block !important;
+      font-size: 28px;   /* antes 44px */
+      line-height: 1;
+      color: #28a745;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    }
+
+    /* Aproxima um pouco a legenda do ícone no mobile */
+    aquapulse-linha-tempo descricao-etapa {
+      margin-top: 4px;
+      display: block;
+      text-align: center;
+    }
+  }
+</style>
 
 <div id="video-container">
   <video id="meu-video" autoplay muted loop playsinline>
@@ -58,8 +99,6 @@
   </div>
 </div>
 
-
-
 <div id="modal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="fecharModal()">&times;</span>
@@ -68,8 +107,6 @@
     <p id="modal-text"></p>
   </div>
 </div>
-
-
 
 <div class="chamada-container">
   <div class="chamada-imagem">
@@ -116,121 +153,127 @@
   </div>
 </div>
 
-  <aquapulse-super-container>
-        <titulo-secao>A Jornada Aquapulse</titulo-secao>
-        <subtitulo-secao>Transformando seu controle sobre a água, passo a passo.</subtitulo-secao>
-    
-        <aquapulse-linha-tempo id="minhaLinhaTempo">
-            <linha-central-wrapper>
-                 <linha-central-colorida></linha-central-colorida>
-            </linha-central-wrapper>
-    
-            <etapa-aquapulse class="posicao-superior etapa-item" style="left: 7%;" data-tooltip="Adquira o dispositivo Aquapulse.">
-                 <conector-vertical style="background-color: var(--cor-seg-1);"></conector-vertical>
-                 <conteudo-etapa>
-                     <imagem-etapa>
-                         <img src="img/logo.png" alt="Adquirir Dispositivo">
-                     </imagem-etapa>
-                     <descricao-etapa>
-                         1. Adquira
-                     </descricao-etapa>
-                 </conteudo-etapa>
-                 <div class="tooltip-dinamico"></div>
-            </etapa-aquapulse>
-    
-            <etapa-aquapulse class="posicao-inferior etapa-item" style="left: 21%;" data-tooltip="Sem obras, sem complicações. Você mesmo instala!">
-                  <conector-vertical style="background-color: var(--cor-seg-2);"></conector-vertical>
-                  <conteudo-etapa>
-                       <imagem-etapa>
-                           <img src="img/Play_Store.jpg" alt="Instalar Dispositivo">
-                       </imagem-etapa>
-                       <descricao-etapa>
-                           2. Instale
-                       </descricao-etapa>
-                  </conteudo-etapa>
-                  <div class="tooltip-dinamico"></div>
-            </etapa-aquapulse>
-    
-            <etapa-aquapulse class="posicao-superior etapa-item" style="left: 35%;" data-tooltip="Baixe o App e siga as instruções de pareamento.">
-                 <conector-vertical style="background-color: var(--cor-seg-3);"></conector-vertical>
-                 <conteudo-etapa>
-                       <imagem-etapa>
-                           <img src="img/conectando.png" alt="Conectar ao App">
-                       </imagem-etapa>
-                       <descricao-etapa>
-                           3. Conecte
-                       </descricao-etapa>
-                 </conteudo-etapa>
-                 <div class="tooltip-dinamico"></div>
-            </etapa-aquapulse>
-    
-            <etapa-aquapulse class="posicao-inferior etapa-item" style="left: 49%;" data-tooltip="Acompanhe gráficos e dados detalhados na palma da mão.">
-                  <conector-vertical style="background-color: var(--cor-seg-4);"></conector-vertical>
-                  <conteudo-etapa>
-                       <imagem-etapa>
-                           <img src="img/monitore.png" alt="Monitorar Consumo">
-                       </imagem-etapa>
-                       <descricao-etapa>
-                           4. Monitore
-                       </descricao-etapa>
-                  </conteudo-etapa>
-                  <div class="tooltip-dinamico"></div>
-            </etapa-aquapulse>
-    
-            <etapa-aquapulse class="posicao-superior etapa-item" style="left: 63%;" data-tooltip="Seja notificado sobre vazamentos ou consumo anormal.">
-                 <conector-vertical style="background-color: var(--cor-seg-5);"></conector-vertical>
-                  <conteudo-etapa>
-                       <imagem-etapa>
-                           <img src="img/alerta.png" alt="Receber Alertas">
-                       </imagem-etapa>
-                       <descricao-etapa>
-                           5. Alertas
-                       </descricao-etapa>
-                  </conteudo-etapa>
-                  <div class="tooltip-dinamico"></div>
-            </etapa-aquapulse>
-    
-            <etapa-aquapulse class="posicao-inferior etapa-item" style="left: 77%;" data-tooltip="Use as informações para reduzir o desperdício.">
-                  <conector-vertical style="background-color: var(--cor-seg-6);"></conector-vertical>
-                  <conteudo-etapa>
-                     <imagem-etapa>
-                         <img src="img/otimize.png" alt="Otimizar Uso">
-                     </imagem-etapa>
-                     <descricao-etapa>
-                         6. Otimize
-                     </descricao-etapa>
-                  </conteudo-etapa>
-                  <div class="tooltip-dinamico"></div>
-             </etapa-aquapulse>
-    
-            <etapa-aquapulse class="posicao-superior etapa-item etapa-final" style="left: 91%;" data-tooltip="Menos água gasta, mais dinheiro no bolso e um planeta mais feliz!">
-                 <conector-vertical style="background-color: var(--cor-seg-7);"></conector-vertical>
-                 <conteudo-etapa>
-                     <imagem-etapa>
-                         <img src="img/grafico.png" alt="Economia e Planeta">
-                     </imagem-etapa>
-                         <descricao-etapa>
-                         7. Economize!
-                     </descricao-etapa>
-                 </conteudo-etapa>
-                 <div class="tooltip-dinamico"></div>
-            </etapa-aquapulse>
-        </aquapulse-linha-tempo>
-    
-    </aquapulse-super-container>
+<aquapulse-super-container>
+  <titulo-secao>A Jornada Aquapulse</titulo-secao>
+  <subtitulo-secao>Transformando seu controle sobre a água, passo a passo.</subtitulo-secao>
 
+  <aquapulse-linha-tempo id="minhaLinhaTempo">
+    <linha-central-wrapper>
+      <linha-central-colorida></linha-central-colorida>
+    </linha-central-wrapper>
+
+    <!-- 1. Adquira -->
+    <etapa-aquapulse class="posicao-superior etapa-item" style="left: 7%;" data-tooltip="Adquira o dispositivo Aquapulse.">
+      <conector-vertical style="background-color: var(--cor-seg-1);"></conector-vertical>
+      <conteudo-etapa>
+        <imagem-etapa>
+          <img src="img/logo.png" alt="Adquirir Dispositivo">
+          <!-- Ícone para mobile -->
+          <i class="bi bi-bag-check icon-etapa" aria-hidden="true"></i>
+        </imagem-etapa>
+        <descricao-etapa>1. Adquira</descricao-etapa>
+      </conteudo-etapa>
+      <div class="tooltip-dinamico"></div>
+    </etapa-aquapulse>
+
+    <!-- 2. Instale -->
+    <etapa-aquapulse class="posicao-inferior etapa-item" style="left: 21%;" data-tooltip="Sem obras, sem complicações. Você mesmo instala!">
+      <conector-vertical style="background-color: var(--cor-seg-2);"></conector-vertical>
+      <conteudo-etapa>
+        <imagem-etapa>
+          <img src="img/Play_Store.jpg" alt="Instalar Dispositivo">
+          <!-- Ícone para mobile -->
+          <i class="bi bi-tools icon-etapa" aria-hidden="true"></i>
+        </imagem-etapa>
+        <descricao-etapa>2. Instale</descricao-etapa>
+      </conteudo-etapa>
+      <div class="tooltip-dinamico"></div>
+    </etapa-aquapulse>
+
+    <!-- 3. Conecte -->
+    <etapa-aquapulse class="posicao-superior etapa-item" style="left: 35%;" data-tooltip="Baixe o App e siga as instruções de pareamento.">
+      <conector-vertical style="background-color: var(--cor-seg-3);"></conector-vertical>
+      <conteudo-etapa>
+        <imagem-etapa>
+          <img src="img/conectando.png" alt="Conectar ao App">
+          <!-- Ícone para mobile -->
+          <i class="bi bi-bluetooth icon-etapa" aria-hidden="true"></i>
+        </imagem-etapa>
+        <descricao-etapa>3. Conecte</descricao-etapa>
+      </conteudo-etapa>
+      <div class="tooltip-dinamico"></div>
+    </etapa-aquapulse>
+
+    <!-- 4. Monitore -->
+    <etapa-aquapulse class="posicao-inferior etapa-item" style="left: 49%;" data-tooltip="Acompanhe gráficos e dados detalhados na palma da mão.">
+      <conector-vertical style="background-color: var(--cor-seg-4);"></conector-vertical>
+      <conteudo-etapa>
+        <imagem-etapa>
+          <img src="img/monitore.png" alt="Monitorar Consumo">
+          <!-- Ícone para mobile -->
+          <i class="bi bi-graph-up icon-etapa" aria-hidden="true"></i>
+        </imagem-etapa>
+        <descricao-etapa>4. Monitore</descricao-etapa>
+      </conteudo-etapa>
+      <div class="tooltip-dinamico"></div>
+    </etapa-aquapulse>
+
+    <!-- 5. Alertas -->
+    <etapa-aquapulse class="posicao-superior etapa-item" style="left: 63%;" data-tooltip="Seja notificado sobre vazamentos ou consumo anormal.">
+      <conector-vertical style="background-color: var(--cor-seg-5);"></conector-vertical>
+      <conteudo-etapa>
+        <imagem-etapa>
+          <img src="img/alerta.png" alt="Receber Alertas">
+          <!-- Ícone para mobile -->
+          <i class="bi bi-bell icon-etapa" aria-hidden="true"></i>
+        </imagem-etapa>
+        <descricao-etapa>5. Alertas</descricao-etapa>
+      </conteudo-etapa>
+      <div class="tooltip-dinamico"></div>
+    </etapa-aquapulse>
+
+    <!-- 6. Otimize -->
+    <etapa-aquapulse class="posicao-inferior etapa-item" style="left: 77%;" data-tooltip="Use as informações para reduzir o desperdício.">
+      <conector-vertical style="background-color: var(--cor-seg-6);"></conector-vertical>
+      <conteudo-etapa>
+        <imagem-etapa>
+          <img src="img/otimize.png" alt="Otimizar Uso">
+          <!-- Ícone para mobile -->
+          <i class="bi bi-sliders2 icon-etapa" aria-hidden="true"></i>
+        </imagem-etapa>
+        <descricao-etapa>6. Otimize</descricao-etapa>
+      </conteudo-etapa>
+      <div class="tooltip-dinamico"></div>
+    </etapa-aquapulse>
+
+    <!-- 7. Economize -->
+    <etapa-aquapulse class="posicao-superior etapa-item etapa-final" style="left: 91%;" data-tooltip="Menos água gasta, mais dinheiro no bolso e um planeta mais feliz!">
+      <conector-vertical style="background-color: var(--cor-seg-7);"></conector-vertical>
+      <conteudo-etapa>
+        <imagem-etapa>
+          <img src="img/grafico.png" alt="Economia e Planeta">
+          <!-- Ícone para mobile -->
+          <i class="bi bi-piggy-bank icon-etapa" aria-hidden="true"></i>
+        </imagem-etapa>
+        <descricao-etapa>7. Economize</descricao-etapa>
+      </conteudo-etapa>
+      <div class="tooltip-dinamico"></div>
+    </etapa-aquapulse>
+  </aquapulse-linha-tempo>
+</aquapulse-super-container>
 
 <h1 class="exibir-celular" style="
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.5rem;
-    color: aliceblue;
-    text-align: center;
-    margin: 30px 0;
-    letter-spacing: 1px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  ">
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5rem;
+  color: aliceblue;
+  text-align: center;
+  margin: 30px 0;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+">
   PROTÓTIPO INTERATIVO DO APP
 </h1>
+
 <section class="secao-prototipo-app" style="background-color: #080808; padding: 80px 20px;">
   <div class="container-prototipo-app"
     style="display: flex; max-width: 1100px; margin: 0 auto; align-items: center; justify-content: center; gap: 45px; flex-wrap: wrap;">
@@ -294,13 +337,9 @@
         funcionalidades simuladas!
       </p>
     </div>
-
   </div>
-
-
-
-
 </section>
+
 <h1 style="
   font-family: 'Poppins', sans-serif;
   font-size: 1.5rem;
@@ -312,6 +351,7 @@
 ">
   NOSSA HISTORIA
 </h1>
+
 <div class="scroller-container">
   <div class="scroller-content">
     <img src="img/1.png" alt="Imagem 1">
@@ -320,4 +360,5 @@
     <img src="img/2.png" alt="Imagem 2">
   </div>
 </div>
+
 {{> footer }}
