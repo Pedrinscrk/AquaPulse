@@ -1,4 +1,3 @@
-
 /* Reset & Base Styles */
 * {
     margin: 0;
@@ -6,6 +5,7 @@
     box-sizing: border-box;
 }
 
+/* Cuidado: esse body afeta só a página do aplicativo (pois o CSS é carregado nela) */
 body {
     background: #0a0a0a;
     color: #fff;
@@ -13,10 +13,10 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     min-height: 100vh;
-    padding: 50px 2rem 2rem;
+
+    /* tirando aquele "empurrão" lateral que dava sensação de tudo ir pra direita */
+    padding: 70px 0 2rem;
 }
-
-
 
 /* Efeitos Globais */
 .cyber-glow {
@@ -30,98 +30,119 @@ body {
 
 /* Container Principal */
 .dev-container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;       /* centraliza no meio da tela */
+    padding: 2rem 1.5rem; /* padding mais equilibrado */
     text-align: center;
 }
 
-/* Seção Hero Ajustada */
+/* Seção Hero com animação mais suave */
 .dev-hero {
-    padding: 4rem 0;
+    padding: 3.5rem 1rem;
     position: relative;
     overflow: hidden;
-    margin-bottom: 4rem;
+    margin-bottom: 3.5rem;
 }
 
+/* Tira aquele conic-gradient girando que ficava estranho
+   e coloca um brilho suave fixo atrás do conteúdo */
 .dev-hero::before {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: 
-        conic-gradient(from 180deg at 50% 50%, 
-            #28a745 0deg, 
-            transparent 180deg, 
-            #28a745 360deg),
-        linear-gradient(45deg, 
-            rgba(40, 167, 69, 0.05) 0%, 
-            rgba(0,0,0,0) 100%);
-    animation: rotate 20s linear infinite;
-    opacity: 0.15;
+    inset: 0;
+    margin: auto;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center,
+        rgba(40, 167, 69, 0.25) 0%,
+        rgba(40, 167, 69, 0.05) 40%,
+        transparent 70%
+    );
+    filter: blur(5px);
+    opacity: 0.8;
+    z-index: -2;
 }
 
+/* Linhas sutis horizontais, bem de leve */
 .dev-hero::after {
     content: '';
     position: absolute;
     inset: 0;
     background: repeating-linear-gradient(
         0deg,
-        rgba(40, 167, 69, 0.03) 0px,
-        rgba(40, 167, 69, 0.03) 1px,
+        rgba(40, 167, 69, 0.05) 0px,
+        rgba(40, 167, 69, 0.05) 1px,
         transparent 1px,
-        transparent 20px
+        transparent 18px
     );
+    opacity: 0.4;
+    z-index: -3;
 }
 
-/* Ícone Flutuante */
+/* Ícone Flutuante – mantive, mas mais suave */
 .floating-icon {
     animation: float 3s ease-in-out infinite;
 }
 
 @keyframes float {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+    50% { transform: translateY(-10px); }
 }
 
-/* Progresso Aprimorado */
-.progress-grid {
+/* Progress + Features – animação de entrada ajustada */
+.progress-grid,
+.feature-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2.5rem;
-    margin: 4rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
 }
 
-.progress-card {
+/* Cards começam levemente “abaixo” e invisíveis, para o JS animar */
+.progress-card,
+.feature-card {
     background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(20px);
-    padding: 2.5rem 2rem;
+    backdrop-filter: blur(18px);
+    padding: 2.2rem 1.8rem;
     border-radius: 20px;
     position: relative;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background 0.3s ease, opacity 0.4s ease, box-shadow 0.4s ease;
+    
+    opacity: 0;
+    transform: translateY(20px);
 }
 
-.progress-card:hover {
-    transform: translateY(-5px);
+/* Cards de feature usam fundo um pouco diferente pra diferenciar */
+.feature-card {
+    background: rgba(40, 167, 69, 0.05);
 }
 
+.progress-card:hover,
+.feature-card:hover {
+    transform: translateY(-4px);
+    background: rgba(40, 167, 69, 0.08);
+}
+
+/* Borda neon suave nas cards de progresso */
 .progress-card::before {
     content: '';
     position: absolute;
     inset: 0;
     border-radius: 20px;
-    padding: 2px;
-    background: linear-gradient(45deg, 
-        rgba(40, 167, 69, 0.4) 0%, 
+    padding: 1px;
+    background: linear-gradient(45deg,
+        rgba(40, 167, 69, 0.4) 0%,
         rgba(40, 167, 69, 0.1) 100%);
-    -webkit-mask: 
-        linear-gradient(#fff 0 0) content-box, 
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
     mask-composite: exclude;
+    pointer-events: none;
 }
 
+/* Barra de progresso */
 .progress-bar {
     height: 10px;
     background: rgba(255,255,255,0.08);
@@ -133,11 +154,11 @@ body {
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, 
-        #28a745 0%, 
-        rgba(40, 167, 69, 0.6) 100%);
-    width: 0;
-    transition: width 1s ease 0.3s;
+    background: linear-gradient(90deg,
+        #28a745 0%,
+        rgba(40, 167, 69, 0.7) 100%);
+    width: 0; /* vai ser animado via JS */
+    transition: width 1s ease 0.2s;
     position: relative;
 }
 
@@ -151,54 +172,111 @@ body {
     background: rgba(255,255,255,0.3);
 }
 
-/* Novidades */
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin: 3rem 0;
-}
-
-.feature-card {
-    padding: 2rem;
-    background: rgba(40, 167, 69, 0.05);
-    border-radius: 15px;
-    transition: all 0.3s ease;
-}
-
-.feature-card:hover {
-    background: rgba(40, 167, 69, 0.08);
-}
-
 /* Contato */
 .contact-section {
-    margin-top: 5rem;
-    padding: 3rem 0;
+    margin-top: 4rem;
+    padding: 3rem 1.5rem;
     background: rgba(255,255,255,0.02);
     border-radius: 20px;
 }
 
-/* Animações */
-@keyframes rotate {
-    100% { transform: rotate(360deg); }
+/* linha responsiva do input + botão */
+.contact-form-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
+.contact-input {
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    flex: 1;
+    min-width: 0;
+}
+
+.contact-input::placeholder {
+    color: rgba(255,255,255,0.4);
+}
+
+.contact-button {
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    border: none;
+    background: #28a745;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+/* Animações extras */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(25px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
-    .dev-container {
-        padding: 4rem 1rem 1rem; /* Ajuste fino para mobile */
+    body {
+        padding-top: 80px;
     }
 
-    .progress-grid {
-        gap: 1.5rem;
+    .dev-container {
+        padding: 2.5rem 1rem 1.5rem;
     }
 
     .dev-hero {
-        padding: 3rem 0;
+        padding: 2.5rem 0 2rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .dev-hero h1 {
+        font-size: 1.9rem !important;
+        margin: 2rem 0 1rem !important;
+    }
+
+    .dev-hero p {
+        font-size: 0.95rem !important;
+        padding: 0 0.5rem;
+    }
+
+    .progress-grid,
+    .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin: 2.5rem 0;
+    }
+
+    .progress-card,
+    .feature-card {
+        padding: 1.7rem 1.4rem;
+    }
+
+    .contact-section {
+        margin-top: 3rem;
+        padding: 2.2rem 1rem;
+    }
+
+    /* input e botão um embaixo do outro no celular */
+    .contact-form-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .contact-button {
+        width: 100%;
+    }
+}
+
+/* Ajuste extra para telas bem pequenas */
+@media (max-width: 420px) {
+    .dev-hero::before {
+        width: 320px;
+        height: 320px;
     }
 }

@@ -48,12 +48,24 @@
   }
 </style>
 
-<div id="video-container">
+<!-- VÍDEO DESKTOP -->
+<div id="video-container" class="video-desktop">
   <video id="meu-video" autoplay muted loop playsinline>
-    <source src="video/Video.mp4" type="video/mp4">
+    <source src="Video/Video3.mp4" type="video/mp4">
     Seu navegador não suporta vídeos.
   </video>
 </div>
+
+<!-- VÍDEO MOBILE -->
+<div id="video-container-mobile" class="video-mobile">
+  <video id="meu-video-mobile" autoplay muted loop playsinline>
+    <!-- vídeo específico de celular -->
+    <source src="/video/Hoje o AquaPulse esteve na Chácara Rosa de Saron, integrante da Comunidade que Sustenta a Agricu.mp4" type="video/mp4">
+    Seu navegador não suporta vídeos.
+  </video>
+</div>
+
+
 
 <h1 style="
   font-family: 'Poppins', sans-serif;
@@ -69,33 +81,37 @@
 
 <div class="container">
   <div class="box-container">
+  
     <div class="box">
-      <img src="img/instagramAQ.png" alt="Imagem 1">
+      <img src="img\Daniel.jpg" alt="Imagem 1">
       <div class="info">
         <div class="text">
-          Marketing: Agora o Aquapulse está presente nas redes sociais...
+          Novo Premio: AquaPulse conquista prêmio de inovação tecnológica...
         </div>
         <button class="saiba-mais" onclick="abrirModal(0)">Saiba Mais</button>
       </div>
     </div>
+
     <div class="box">
-      <img src="img/novoMembro.jpeg" alt="Imagem 2">
+      <img src="img\MECTI 2025 Conquistamos o 2º lugar na categoria Projeto e Inovação, além de prêmios em Sustentab (1).jpg" alt="Imagem 2">
       <div class="info">
         <div class="text">
-          Informe: Novo membro do time Aquapulse...
+      Participação: Aquapulse esteve presente na feira de tecnologia em Cuiabá...
         </div>
         <button class="saiba-mais" onclick="abrirModal(1)">Saiba Mais</button>
       </div>
     </div>
+
     <div class="box">
-      <img src="img/Banca.jpeg" alt="Imagem 3">
+      <img src="img\Hoje o AquaPulse esteve na Chácara Rosa de Saron, integrante da Comunidade que Sustenta a Agric (2).webp" alt="Imagem 3">
       <div class="info">
         <div class="text">
-          IFMT: AquaPulse é destaque na banca de 2024...
+          Visita: Hoje o AquaPulse esteve na Chácara Rosa de Saron...
         </div>
         <button class="saiba-mais" onclick="abrirModal(2)">Saiba Mais</button>
       </div>
     </div>
+
   </div>
 </div>
 
@@ -141,7 +157,7 @@
       </div>
       <div class="descricao-texto">
         Com o <strong>AquaPulse</strong>, você tem controle total da irrigação.
-        Pelo app, ajuste a quantidade de água liberada com base na umidade real do solo.
+        Pelo app, ajuste o ligamento e desligamento com base na umidade real do solo.
         Veja em tempo real a vazão ideal para o crescimento saudável das suas plantas.
       </div>
     </div>

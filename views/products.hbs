@@ -1,84 +1,90 @@
- {{> header}}
-    <link rel="stylesheet" href="css/products.css">
-    <script src="js/products.js" defer></script>
-   
+{{> header}}
+<link rel="stylesheet" href="css/products.css">
+<script src="js/products.js" defer></script>
 
- 
-    {{!-- Pequenas areas --}}
-    <div class="section">
-        <div class="section-content">
-            <div class="content">
-                <h1>Irrigador Aquapulse B45 - Pequenas Áreas</h1>
-                <p>Ideal para irrigar pequenas áreas com eficiência e economia.</p>
-                <ul class="info-list">
-                    <li><i class="bi bi-water"></i> Vazão: 0 L/min</li>
-                    <li><i class="bi bi-lightning"></i> Método: Aspersor </li>
-                    <li style="color: green;"><i class="bi bi-coin"></i> R$00,00</li>
-                </ul>
-                
-                <div class="buttons">
-                    <a href="#" class="saiba-mais" onclick="event.preventDefault(); openModal('pivotCentral');">
-                       Saiba Mais
-                    </a>
-                    <a href="https://wa.me/+5566992524707" target="_blank" class="comprar">
-                       Comprar Agora
-                    </a>
-                </div>
+{{!-- Pequenas áreas --}}
+<div class="section">
+    <div class="section-content">
+        <div class="content">
+            <h1>Irrigador AQS - HOME</h1>
+            <p>Ideal para irrigar pequenas áreas com eficiência e economia.</p>
+            <ul class="info-list">
+                <li><i class="bi bi-water"></i> Indicado: Entusiasta de plantas</li>
+                <li><i class="bi bi-lightning"></i> Método: Plug & Play</li>
+                <li style="color: green;"><i class="bi bi-coin"></i> R$190,00</li>
+            </ul>
+
+            <div class="buttons">
+                <a href="#" class="saiba-mais" onclick="event.preventDefault(); openModal('pivotCentral');">
+                    Saiba Mais
+                </a>
+                <a href="https://wa.me/+5566992524707" target="_blank" class="comprar">
+                    Comprar Agora
+                </a>
             </div>
-           <div class="image-container">
-  <img 
-    src="img/novo1.png" 
-    alt="Imagem do Irrigador Pivot Central" 
-    style="width: 650px; height: auto;" 
-    >
+        </div>
+
+        <div class="image-container" data-product="pivotCentral">
+            <img
+                class="product-main-image"
+                src="img/novo1.png"
+                alt="Imagem do Irrigador Aquapulse B45 - Pequenas Áreas"
+            >
+            <div class="thumb-strip"></div>
+        </div>
+    </div>
 </div>
+
+{{!-- Médias / Grandes Áreas --}}
+<div class="section">
+    <div class="section-content">
+        <div class="image-container" data-product="linear">
+            <img
+                class="product-main-image"
+                src="img/produto2.png"
+                alt="Imagem do Irrigador Aquapulse G100 - Grandes Áreas"
+            >
+            <div class="thumb-strip"></div>
         </div>
-    </div>
 
-    {{!-- Medias Areas --}}
-    <div class="section">
-        <div class="section-content">
-            <div class="image-container">
-                <img src="img/produto2.png" alt="Imagem do Irrigador Linear">
-            </div>
-            <div class="content">
-                <h1>Irrigador Aquapulse G100 - Grandes Áreas </h1>
-                <p>Perfeito para áreas retangulares com distribuição uniforme de água.</p>
-                <ul class="info-list">
-                    <li><i class="bi bi-water"></i> Vazão: 0 L/min</li>
-                    <li><i class="bi bi-lightning"></i> Método: Aspersor</li>
-                     <li style="color: green;"><i class="bi bi-coin"></i> R$00,00</li>
-                </ul>
-                <div class="buttons">
-                    <a href="#" class="saiba-mais" onclick="event.preventDefault(); openModal('linear');">
-                       Saiba Mais
-                    </a>
-                    <a href="https://wa.me/+5566992524707" target="_blank" class="comprar">
-                       Comprar Agora
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+        <div class="content">
+            <h1>Irrigador Aquapulse G100 - Grandes Áreas</h1>
+            <p>Perfeito para áreas retangulares com distribuição uniforme de água.</p>
+            <ul class="info-list">
+                <li><i class="bi bi-water"></i> Vazão: 0 L/min</li>
+                <li><i class="bi bi-lightning"></i> Método: Aspersor</li>
+                <li style="color: green;"><i class="bi bi-coin"></i> R$00,00</li>
+            </ul>
 
-    <!-- MODAL OVERLAY -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal-content" id="modalContent">
-           
-            <button class="modal-close" onclick="closeModal()">×</button>
-
-            <div class="modal-header">
-                <h2 id="modalTitle"></h2>
-            </div>
-    
-            <div class="modal-tabs" id="modalTabs">
-             
-            </div>
-        
-            <div id="modalTabContents">
-            
+            <div class="buttons">
+                <a href="#" class="saiba-mais" onclick="event.preventDefault(); openModal('linear');">
+                    Saiba Mais
+                </a>
+                <a href="https://wa.me/+5566992524707" target="_blank" class="comprar">
+                    Comprar Agora
+                </a>
             </div>
         </div>
     </div>
+</div>
 
- {{>footer}}
+<!-- MODAL OVERLAY -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content" id="modalContent">
+        <button class="modal-close" onclick="closeModal()">×</button>
+
+        <div class="modal-header">
+            <h2 id="modalTitle"></h2>
+        </div>
+
+        <div class="modal-tabs" id="modalTabs">
+            {{!-- Tabs injetadas via JS --}}
+        </div>
+
+        <div id="modalTabContents">
+            {{!-- Conteúdos das tabs injetados via JS --}}
+        </div>
+    </div>
+</div>
+
+{{> footer}}

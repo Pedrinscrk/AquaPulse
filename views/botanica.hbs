@@ -1,71 +1,97 @@
- {{> header}}
-    <link rel="stylesheet" href="css/botanica.css">
-    <script src="js/botanica.js" defer></script>
+{{> header}}
+<link rel="stylesheet" href="css/botanica.css">
+<script src="js/botanica.js" defer></script>
 
+<main class="botanica-page">
 
-    <h1 style="
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.5rem;
-  color: aliceblue;
-  text-align: center;
-  margin: 30px 0;
-  letter-spacing: 1px;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-">
-        BOTANICA ENCICLOPEDIA
-    </h1>
+  <section class="botanica-hero">
+    <div class="hero-content">
+      <p class="hero-badge">Beta • Aquapulse Botanic</p>
+      <h1 class="hero-title">Botanica Encyclopedia</h1>
+      <p class="hero-subtitle">
+        Descubra como cuidar de plantas do mundo todo com recomendações inteligentes,
+        em um só lugar.
+      </p>
+    </div>
+  </section>
 
+  <section class="botanica-search-section container">
     <div class="busca-rapida">
-        <div class="planta-rapida" data-planta="rose">
-            <i class="bi bi-rose"></i>
-            Rosa
-        </div>
-        <div class="planta-rapida" data-planta="sunflower">
-            <i class="bi bi-sun"></i>
-            Girassol
-        </div>
-        <div class="planta-rapida" data-planta="cactus">
-            <i class="bi bi-dot"></i>
-            Cacto
-        </div>
-        <div class="planta-rapida" data-planta="orchid">
-            <i class="bi bi-flower1"></i>
-            Orquídea
-        </div>
+      <button class="planta-rapida" data-planta="rose">
+        <i class="bi bi-emoji-heart-eyes"></i>
+        <span>Rosa</span>
+      </button>
+      <button class="planta-rapida" data-planta="Abelia">
+        <i class="bi bi-sun-fill"></i>
+        <span>Abelia</span>
+      </button>
+      <button class="planta-rapida" data-planta="cactus">
+        <i class="bi bi-droplet-half"></i>
+        <span>Cacto</span>
+      </button>
+      <button class="planta-rapida" data-planta="orchid">
+        <i class="bi bi-flower1"></i>
+        <span>Orquídea</span>
+      </button>
     </div>
 
     <div class="busca-container">
-        <input type="text" class="busca-input" placeholder="Digite o nome em inglês..." id="inputBusca">
-        <button class="botao-busca" id="botaoBusca">
-            <i class="bi bi-search"></i>
-            Buscar
-        </button>
+      <div class="busca-input-wrapper">
+        <i class="bi bi-search busca-input-icon"></i>
+        <input
+          type="text"
+          class="busca-input"
+          placeholder="Digite o nome da planta em inglês (ex: rose, cactus, aloe)..."
+          id="inputBusca">
+      </div>
+
+      <button class="botao-busca" id="botaoBusca">
+        <span class="botao-busca-label">
+          <i class="bi bi-search"></i> Buscar
+        </span>
+        <span class="botao-busca-loading">
+          <i class="bi bi-arrow-repeat"></i> Buscando...
+        </span>
+      </button>
     </div>
 
-    <div id="resultados"></div>
+    <div id="resultados" class="resultados"></div>
+  </section>
 
+  <section class="container">
+    <div class="explicacao">
+      <h2><i class="bi bi-info-circle"></i> Como funciona?</h2>
+      <p>Esta enciclopédia botânica utiliza inteligência artificial para:</p>
+      <ul>
+        <li>Identificar plantas através de nomes científicos ou populares</li>
+        <li>Fornecer recomendações detalhadas de cuidados</li>
+        <li>Exibir imagens de alta qualidade</li>
+        <li>Oferecer dados atualizados da comunidade científica</li>
+      </ul>
+      <p><strong>Instruções:</strong> Digite o nome da planta em inglês e clique em buscar.</p>
     </div>
 
-    <div class="container">
-        <div class="explicacao">
-            <h2><i class="bi bi-info-circle"></i> Como funciona?</h2>
-            <br>
-            <p>Esta enciclopédia botânica utiliza inteligência artificial para:</p>
-            <br>
-            <ul>
-                <li>Identificar plantas através de nomes científicos ou populares</li>
-                <li>Fornecer recomendações detalhadas de cuidados</li>
-                <li>Exibir imagens de alta qualidade</li>
-                <li>Oferecer dados atualizados da comunidade científica</li>
-            </ul>
-            <p><strong>Instruções:</strong> Digite o nome em inglês e clique em buscar</p>
-        </div>
-        <div id="resultados"></div>
-        <div class="aviso">
-            <i class="bi bi-exclamation-triangle"></i>
-            <div>
-                <strong>Atenção:</strong> Para melhores resultados, digite o nome da planta em inglês.
-                Dados podem conter imprecisões - sempre consulte fontes especializadas.
-            </div>
-        </div>
+    <div class="aviso">
+      <i class="bi bi-exclamation-triangle-fill"></i>
+      <div>
+        <strong>Atenção:</strong> Para melhores resultados, digite o nome da planta em inglês.
+        Dados podem conter imprecisões – sempre consulte fontes especializadas.
+      </div>
+    </div>
 
+    <!-- Referência discreta à OpenPlantbook -->
+    <div class="openplantbook-note">
+      <small>
+        Faixas de temperatura, luz e umidade são baseadas em dados colaborativos da API
+        <a href="https://open.plantbook.io" target="_blank" rel="noopener noreferrer">OpenPlantbook</a>.
+        Essas informações são indicadas para jardinagem doméstica, hortas pequenas, vasos e projetos
+        de automação residencial como o Aquapulse. Não devem ser usadas como única referência em
+        agricultura profissional, pesquisa científica, cultivo em larga escala ou espécies de alto
+        valor comercial. Em situações críticas, sempre consulte literatura técnica e profissionais
+        especializados.
+      </small>
+    </div>
+  </section>
+
+
+</main>

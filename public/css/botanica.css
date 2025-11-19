@@ -1,170 +1,522 @@
-
 :root {
-    --bg: #080808;
-    --verde: #28a745;
-    --texto: #ffffff;
-    --alerta: #ffecb3;
-    --destaque: #28a74533;
+  --bg: #080808;
+  --bg-elevado: #121212;
+  --bg-elevado-soft: #161616;
+  --verde: #28a745;
+  --verde-soft: #28a74533;
+  --texto: #ffffff;
+  --texto-suave: #b3b3b3;
+  --alerta: #ffecb3;
+  --borda-soft: #2a2a2a;
+  --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.7);
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-full: 999px;
 }
+
+/* PAGE BASE */
 
 body {
-    background: var(--bg);
-    color: var(--texto);
-    font-family: 'Arial', sans-serif;
-    padding: 50px 2rem 2rem;
+  background: radial-gradient(circle at top, #101010 0%, #050505 60%, #000 100%);
+  color: var(--texto);
+  font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0 1rem 2rem;
 }
+
+.botanica-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 80px;
+}
+
+/* CONTAINERS */
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.explicacao {
-    background: #121212;
-    border: 1px solid var(--verde);
-    border-radius: 15px;
-    padding: 2rem;
-    margin-bottom: 2rem;
+/* HERO */
+
+.botanica-hero {
+  border-radius: calc(var(--radius-lg) + 6px);
+  padding: 2.5rem 1.8rem;
+  background: radial-gradient(circle at top left, rgba(40, 167, 69, 0.3), transparent 50%),
+              linear-gradient(to bottom right, #101010, #050505);
+  border: 1px solid rgba(40, 167, 69, 0.2);
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
 }
 
-.explicacao h2 {
-    color: var(--verde);
-    margin-top: 0;
+.botanica-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 120% -20%, rgba(40, 167, 69, 0.3), transparent 50%);
+  opacity: 0.6;
+  pointer-events: none;
 }
 
-.explicacao ul {
-    padding-left: 1.5rem;
+.hero-content {
+  position: relative;
+  z-index: 1;
 }
 
-.explicacao li {
-    margin-bottom: 0.5rem;
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .25rem .8rem;
+  border-radius: var(--radius-full);
+  background: rgba(0,0,0,.6);
+  color: var(--texto-suave);
+  font-size: .75rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: .75rem;
 }
 
-.aviso {
-    background: var(--alerta);
-    color: #000;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    display: flex;
-    gap: 1rem;
-    align-items: center;
+.hero-badge::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--verde);
+  box-shadow: 0 0 10px rgba(40, 167, 69, 0.8);
 }
+
+.hero-title {
+  font-size: 2rem;
+  margin: 0 0 .3rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #f5f5f5;
+}
+
+.hero-subtitle {
+  margin: 0;
+  color: var(--texto-suave);
+  max-width: 520px;
+  line-height: 1.5;
+  font-size: .95rem;
+}
+
+/* SEARCH SECTION */
+
+.botanica-search-section {
+  margin-top: 2rem;
+}
+
+/* BUSCA RÁPIDA */
 
 .busca-rapida {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 1rem;
-    margin-bottom: 2rem;
+  display: flex;
+  gap: .8rem;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: .4rem;
+}
+
+.busca-rapida::-webkit-scrollbar {
+  height: 6px;
+}
+
+.busca-rapida::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.busca-rapida::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 999px;
 }
 
 .planta-rapida {
-    background: #1a1a1a;
-    border: 1px solid var(--verde);
-    border-radius: 8px;
-    padding: 1rem;
-    cursor: pointer;
-    transition: all 0.3s;
-    text-align: center;
+  background: var(--bg-elevado);
+  border-radius: var(--radius-full);
+  padding: .6rem 1.1rem;
+  border: 1px solid var(--borda-soft);
+  color: var(--texto-suave);
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  cursor: pointer;
+  font-size: .9rem;
+  transition: all .2s ease;
+  white-space: nowrap;
+}
+
+.planta-rapida i {
+  font-size: 1.1rem;
 }
 
 .planta-rapida:hover {
-    transform: translateY(-3px);
-    background: #252525;
+  border-color: var(--verde);
+  color: #fff;
+  background: #171717;
+  transform: translateY(-1px);
 }
 
+/* BUSCA PRINCIPAL */
+
 .busca-container {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: stretch;
+  margin-bottom: 1.8rem;
+  flex-wrap: wrap;
+}
+
+.busca-input-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.busca-input-icon {
+  position: absolute;
+  left: 1.1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--texto-suave);
+  font-size: 1.1rem;
+  pointer-events: none;
 }
 
 .busca-input {
-    flex: 1;
-    padding: 1rem;
-    border: 2px solid var(--verde);
-    border-radius: 25px;
-    background: #121212;
-    color: var(--texto);
+  width: 100%;
+  padding: .9rem 1.1rem .9rem 2.8rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--borda-soft);
+  background: var(--bg-elevado-soft);
+  color: var(--texto);
+  outline: none;
+  font-size: .95rem;
+  transition: all .2s ease;
 }
 
+.busca-input::placeholder {
+  color: #666;
+}
+
+.busca-input:focus {
+  border-color: var(--verde);
+  box-shadow: 0 0 0 1px rgba(40, 167, 69, .3);
+}
+
+/* BOTÃO BUSCAR */
+
 .botao-busca {
-    background: var(--verde);
-    color: var(--bg);
-    padding: 0 2rem;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: opacity 0.3s;
+  background: var(--verde);
+  color: var(--bg);
+  padding: 0 1.8rem;
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  font-weight: 600;
+  font-size: .95rem;
+  transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+  box-shadow: 0 12px 30px rgba(40, 167, 69, 0.35);
+  position: relative;
+  min-height: 44px;
+}
+
+.botao-busca i {
+  font-size: 1rem;
 }
 
 .botao-busca:hover {
-    opacity: 0.9;
+  transform: translateY(-1px);
+  opacity: .95;
 }
 
+.botao-busca:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 18px rgba(40, 167, 69, 0.3);
+}
+
+.botao-busca[disabled] {
+  opacity: .7;
+  cursor: wait;
+  box-shadow: none;
+}
+
+.botao-busca-loading {
+  display: none;
+}
+
+.botao-busca.is-loading .botao-busca-label {
+  display: none;
+}
+
+.botao-busca.is-loading .botao-busca-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+/* RESULTADOS */
+
 .resultados {
-    display: grid;
-    gap: 2rem;
+  display: grid;
+  gap: 1.8rem;
 }
 
 .planta-card {
-    background: #121212;
-    border-radius: 15px;
-    padding: 2rem;
-    display: grid;
-    gap: 2rem;
+  background: var(--bg-elevado);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
+  gap: 1.5rem;
+  border: 1px solid var(--borda-soft);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .75);
+}
+
+.planta-imagem-wrapper {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
 
 .planta-imagem {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  max-height: 360px;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.02);
+  transition: transform .5s ease;
+}
+
+.planta-card:hover .planta-imagem {
+  transform: scale(1.05);
+}
+
+.planta-imagem-badge {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  padding: .25rem .7rem;
+  border-radius: var(--radius-full);
+  background: rgba(0,0,0,.6);
+  color: #f1f1f1;
+  font-size: .7rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
 }
 
 .planta-detalhes {
-    display: grid;
-    gap: 1.5rem;
+  display: grid;
+  gap: 1rem;
 }
 
 .planta-titulo {
-    color: var(--verde);
-    margin: 0;
-    font-size: 2rem;
+  color: #f5f5f5;
+  margin: 0;
+  font-size: 1.6rem;
 }
 
+.nome-cientifico {
+  margin: 0;
+  font-size: .9rem;
+  color: var(--texto-suave);
+}
+
+.nome-cientifico i {
+  margin-right: .4rem;
+}
+
+/* TAGS DE META INFO */
+
+.meta-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
+
+.meta-tag {
+  font-size: .75rem;
+  padding: .2rem .6rem;
+  border-radius: var(--radius-full);
+  background: #181818;
+  border: 1px solid #2c2c2c;
+  color: var(--texto-suave);
+}
+
+/* RECOMENDAÇÕES */
+
 .recomendacoes {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: .5rem;
 }
 
 .recomendacao {
-    background: var(--destaque);
-    padding: 1.5rem;
-    border-radius: 10px;
-    display: flex;
-    gap: 1rem;
-    align-items: center;
+  background: var(--verde-soft);
+  padding: 1rem 1.1rem;
+  border-radius: var(--radius-md);
+  display: flex;
+  gap: .75rem;
+  align-items: flex-start;
 }
 
 .recomendacao i {
-    font-size: 1.5rem;
-    flex-shrink: 0;
+  font-size: 1.3rem;
+  flex-shrink: 0;
 }
 
+.recomendacao strong {
+  font-size: .9rem;
+}
+
+.recomendacao div {
+  font-size: .85rem;
+}
+
+/* ESTADOS */
+
 .carregando {
-    text-align: center;
-    font-size: 1.5rem;
-    padding: 2rem;
+  text-align: center;
+  font-size: 1rem;
+  padding: 2rem 1rem;
+  color: var(--texto-suave);
+}
+
+.carregando i {
+  display: inline-block;
+  margin-right: .5rem;
+  animation: girar 1s linear infinite;
 }
 
 .erro {
-    color: #ff4444;
-    padding: 1rem;
-    text-align: center;
+  color: #ff6b6b;
+  background: #2a1111;
+  border-radius: var(--radius-md);
+  padding: 1rem 1.2rem;
+  text-align: center;
+  font-size: .9rem;
+  border: 1px solid rgba(255, 107, 107, .3);
+}
+
+/* EXPLICAÇÃO & AVISO */
+
+.explicacao {
+  background: var(--bg-elevado);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.6rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--borda-soft);
+}
+
+.explicacao h2 {
+  color: var(--verde);
+  margin-top: 0;
+  font-size: 1.1rem;
+}
+
+.explicacao p {
+  color: var(--texto-suave);
+  font-size: .9rem;
+}
+
+.explicacao ul {
+  padding-left: 1.2rem;
+  margin: .6rem 0 1rem;
+}
+
+.explicacao li {
+  margin-bottom: .35rem;
+  font-size: .9rem;
+}
+
+.aviso {
+  background: var(--alerta);
+  color: #000;
+  padding: .9rem 1rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 2rem;
+  display: flex;
+  gap: .7rem;
+  align-items: flex-start;
+  font-size: .85rem;
+}
+
+.aviso i {
+  font-size: 1.2rem;
+  margin-top: .1rem;
+}
+
+/* ANIMAÇÕES */
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 768px) {
+  .botanica-page {
+    padding-top: 70px;
+  }
+
+  .botanica-hero {
+    padding: 1.8rem 1.4rem;
+  }
+
+  .hero-title {
+    font-size: 1.5rem;
+  }
+
+  .busca-container {
+    flex-direction: column;
+  }
+
+  .botao-busca {
+    width: 100%;
+  }
+
+  .planta-card {
+    grid-template-columns: 1fr;
+    padding: 1.2rem;
+  }
+
+  .planta-imagem {
+    min-height: 220px;
+    max-height: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-subtitle {
+    font-size: .85rem;
+  }
+
+  .planta-titulo {
+    font-size: 1.3rem;
+  }
+}
+.openplantbook-note {
+  margin-top: 0.3rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.7rem;
+  color: var(--texto-suave);
+  opacity: 0.45;          /* deixa bem discreto */
+  line-height: 1.4;
+}
+
+.openplantbook-note a {
+  color: inherit;
+  text-decoration: underline dotted;
+  text-underline-offset: 2px;
 }

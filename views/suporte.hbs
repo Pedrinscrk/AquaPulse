@@ -1,6 +1,6 @@
 {{> header}}
-<link rel="stylesheet" href="css/suporte.css">
-<script src="js/suporte.js" defer></script>
+<link rel="stylesheet" href="/css/suporte.css">
+<script src="/js/suporte.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
 
 <div class="support-container">
@@ -17,7 +17,9 @@
     </div>
   </section>
 
+  <!-- GRID PRINCIPAL DE CARDS -->
   <div class="support-grid">
+    <!-- CARD CHAT AO VIVO -->
     <div class="support-card">
       <h3><i class="bi bi-chat-dots"></i> Chat ao Vivo</h3>
       <p>Converse agora com nosso CHAT-BOT</p>
@@ -25,72 +27,73 @@
         <i class="bi bi-chat-dots-fill"></i> Iniciar Conversa
       </button>
     </div>
-  </div>
 
-  <div id="chatbot-overlay" class="chatbot-overlay"></div>
+    <!-- CARD TICKET -->
+    <div class="support-card">
+      <h3><i class="bi bi-envelope"></i> Ticket de Suporte</h3>
+      <p>Acompanhe ou abra um novo ticket</p>
+      <div style="margin-top: 1rem; display: grid; gap: 0.5rem;">
+        <input type="text" class="form-input" placeholder="Número do Ticket">
+        <button id="ticket-button" class="custom-btn-alt">
+          Acompanhar
+        </button>
+      </div>
+    </div>
+
+    <!-- CARD DOCUMENTAÇÃO -->
+    <div class="support-card">
+      <h3><i class="bi bi-file-earmark-text"></i> Documentação</h3>
+      <p>Manuais técnicos e guias de uso</p>
+      <div style="margin-top: 1rem; display: grid; gap: 0.5rem;">
+        <a href="pdf/Manual.pdf" download class="custom-btn-link">
+          <button
+            style="background-color: #28a745; color: white; border: none; padding: 10px 20px; font-size: 16px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease; display: flex; align-items: center; gap: 8px; width: 100%; justify-content: center;">
+            <i class="bi bi-download" style="font-size: 20px;"></i> Manual do Usuário
+          </button>
+        </a>
+
+        <a href="pdf/Manual.pdf" download class="custom-btn-link">
+          <button
+            style="background-color: #28a745; color: white; border: none; padding: 10px 20px; font-size: 16px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease; display: flex; align-items: center; gap: 8px; width: 100%; justify-content: center;">
+            <i class="bi bi-download" style="font-size: 20px;"></i> Guia de Instalação
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OVERLAY E CHATBOT (FORA DO GRID, MAS CENTRALIZADOS COM MAX-WIDTH) -->
+<div id="chatbot-overlay" class="chatbot-overlay"></div>
 
 <div id="chatbot-container" class="chatbot-container">
   <div class="chatbot-header">
     <span>Chat AquaPulse</span>
-    <button id="close-chat-button">&times;</button>
+    <button id="close-chat-button" type="button">&times;</button>
   </div>
   <div class="chatbot-body" id="chatBody">
     <div class="search-container">
       <input type="text" id="searchQuestions" placeholder="Buscar perguntas...">
-      <button onclick="filterQuestions()">Buscar</button>
+      <button type="button" onclick="filterQuestions()">Buscar</button>
     </div>
     <div class="chatbot-message bot">Olá! Como posso ajudar?</div>
-    <div class="chatbot-faq-categories" id="faqCategories">
-      </div>
-    <div class="chatbot-faq-buttons" id="faqButtons">
-      </div>
+    <div class="chatbot-faq-categories" id="faqCategories"></div>
+    <div class="chatbot-faq-buttons" id="faqButtons"></div>
     <div class="chatbot-back-button-container" id="backButtonContainer">
-      <button onclick="showCategories()">Voltar às Categorias</button>
+      <button type="button" onclick="showCategories()">Voltar às Categorias</button>
     </div>
     <div id="typing-indicator" class="chatbot-message bot typing-indicator">Digitando...</div>
   </div>
   <div class="chatbot-input">
     <input type="text" id="messageInput" placeholder="Ou digite sua pergunta..." autofocus>
-    <button id="sendButton">Enviar</button>
-  </div>
-</div>
-
-  <div class="support-card">
-    <h3><i class="bi bi-envelope"></i> Ticket de Suporte</h3>
-    <p>Acompanhe ou abra um novo ticket</p>
-    <div style="margin-top: 1rem; display: grid; gap: 0.5rem;">
-      <input type="text" class="form-input" placeholder="Número do Ticket">
-      <button id="ticket-button" class="custom-btn-alt">
-        Acompanhar
-      </button>
-    </div>
-  </div>
-
-  <div class="support-card">
-    <h3><i class="bi bi-file-earmark-text"></i> Documentação</h3>
-    <p>Manuais técnicos e guias de uso</p>
-    <div style="margin-top: 1rem; display: grid; gap: 0.5rem;">
-      <a href="pdf/Manual.pdf" download class="custom-btn-link">
-        <button id="guide-btn"
-          style="background-color: #28a745; color: white; border: none; padding: 10px 20px; font-size: 16px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease; display: flex; align-items: center; gap: 8px;">
-          <i class="bi bi-download" style="font-size: 20px;"></i> Manual Do Usuário 
-        </button>
-      </a>
-
-      <a href="pdf/Manual.pdf" download class="custom-btn-link">
-        <button id="guide-btn"
-          style="background-color: #28a745; color: white; border: none; padding: 10px 20px; font-size: 16px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease; display: flex; align-items: center; gap: 8px;">
-          <i class="bi bi-download" style="font-size: 20px;"></i> Guia de Instalação
-        </button>
-      </a>
-
-    </div>
+    <button id="sendButton" type="button">Enviar</button>
   </div>
 </div>
 
 <!-- FAQ -->
 <div class="faq-container">
   <h2 class="cyber-glow">Perguntas Frequentes</h2>
+
   <div class="faq-item">
     <div class="faq-question">
       <span>Como reiniciar o sistema?</span>
@@ -166,5 +169,5 @@
     Enviar Mensagem
   </button>
 </div>
-</div>
-{{>footer}}
+
+{{> footer}}

@@ -11,26 +11,56 @@
   }
 
 
-  /* aqui é a parte do video que aparece no começo da pagina */
+/* aqui é a parte do video que aparece no começo da pagina */
 #video-container {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    overflow: hidden;
-    z-index: 0;
-  }
-  
-  #meu-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
-    pointer-events: none;
-  }
-    
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  z-index: 0;
+}
 
+#meu-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;  /* VOLTOU ao fill, igual estava antes */
+  pointer-events: none;
+}
+/* ===== VÍDEO MOBILE ===== */
+
+/* some no desktop */
+#video-container-mobile {
+  display: none;
+  position: relative;
+  width: 100%;
+  min-height: 70vh;  /* ou 100vh se quiser tela cheia */
+  overflow: hidden;
+  z-index: 0;
+}
+
+#meu-video-mobile {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* aqui pode usar cover só pro celular */
+  pointer-events: none;
+}
+
+/* MOBILE: esconde desktop e mostra o de celular */
+@media (max-width: 768px) {
+  #video-container {
+    display: none;
+  }
+
+  #video-container-mobile {
+    display: block;
+  }
+}
   /* aqui é a parte nas notificias prinicpais */
 
       /* CONTAINER PRINCIPAL CENTRALIZADO */
