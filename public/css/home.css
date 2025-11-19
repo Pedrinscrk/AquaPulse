@@ -3,13 +3,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
+}
   
-  body {
+body {
     background: #080808;
-
-  }
-
+}
 
 /* aqui é a parte do video que aparece no começo da pagina */
 #video-container {
@@ -29,6 +27,7 @@
   object-fit: fill;  /* VOLTOU ao fill, igual estava antes */
   pointer-events: none;
 }
+
 /* ===== VÍDEO MOBILE ===== */
 
 /* some no desktop */
@@ -61,90 +60,88 @@
     display: block;
   }
 }
-  /* aqui é a parte nas notificias prinicpais */
 
-      /* CONTAINER PRINCIPAL CENTRALIZADO */
-      .container {
-        max-width: 1200px;
-        margin: 50px auto;
-        padding: 20px;
-      }
-      /* CONTAINER DAS CAIXINHAS */
-      .box-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 19px;
-      }
-      /* ESTILO DAS CAIXINHAS */
-      .box {
-        position: relative;
-        width: 300px;
-        height: 300px;
-        overflow: hidden;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        cursor: pointer;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-      .box img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-      }
-      /* INFO: Texto sempre visível (alinhado à esquerda) */
-      .info {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        padding: 15px;
-        background: rgba(0, 0, 0, 0.5);
-        transition: background 0.3s ease;
-      }
-      .info .text {
-        color: #fff;
-        font-size: 18px;
-        text-align: left;
-        transition: opacity 0.3s ease;
-      }
-      /* BOTÃO "SAIBA MAIS": inicialmente escondido, posicionado na parte inferior */
-      .info .saiba-mais {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        bottom: -50px;
-        opacity: 0;
-        padding: 10px 20px;
-        border: none;
-        background: #28a745;
-        color: #fff;
-        border-radius: 5px;
-        font-size: 16px;
-        text-transform: uppercase;
-        cursor: pointer;
-        transition: opacity 0.3s ease, bottom 0.3s ease;
-      }
-      /* Efeitos de hover: elevação da caixinha; o texto some e o botão "Saiba Mais" aparece reposicionado */
-      .box:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      }
-      .box:hover .info .text {
-        opacity: 0;
-      }
-      .box:hover .info .saiba-mais {
-        opacity: 1;
-        bottom: 15px;
-      }
-      .info .saiba-mais:hover {
-        background: #218838;
-      }
-  
+/* aqui é a parte nas notificias prinicpais */
 
+/* CONTAINER PRINCIPAL CENTRALIZADO */
+.container {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 20px;
+}
+/* CONTAINER DAS CAIXINHAS */
+.box-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 19px;
+}
+/* ESTILO DAS CAIXINHAS */
+.box {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* INFO: Texto sempre visível (alinhado à esquerda) */
+.info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.5);
+  transition: background 0.3s ease;
+}
+.info .text {
+  color: #fff;
+  font-size: 18px;
+  text-align: left;
+  transition: opacity 0.3s ease;
+}
+/* BOTÃO "SAIBA MAIS": inicialmente escondido, posicionado na parte inferior */
+.info .saiba-mais {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -50px;
+  opacity: 0;
+  padding: 10px 20px;
+  border: none;
+  background: #28a745;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 16px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.3s ease, bottom 0.3s ease;
+}
+/* Efeitos de hover: elevação da caixinha; o texto some e o botão "Saiba Mais" aparece reposicionado */
+.box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+.box:hover .info .text {
+  opacity: 0;
+}
+.box:hover .info .saiba-mais {
+  opacity: 1;
+  bottom: 15px;
+}
+.info .saiba-mais:hover {
+  background: #218838;
+}
 
-      
 /* === BANNER CONFIG === */
 :root {
   --banner-height: 400px; /* Altere este valor para ajustar a altura */
@@ -172,7 +169,6 @@
   height: 100%;
   object-fit: var(--banner-image-fit);
   object-position: center;
-
 }
 
 /* Opcional: Responsividade */
@@ -181,11 +177,6 @@
     --banner-height: 80px; /* Altura menor para mobile */
   }
 }
-    
-
-
-
-
 
 /* IMPORTANDO FONTE POPPINS */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
@@ -509,7 +500,6 @@ body {
     padding-top: 20px;
   }
 }
- /* Desabilita seleção de texto */
 
 /* Desabilita arrastar imagens */
 img {
@@ -631,9 +621,6 @@ img {
   }
 }
 
-
-
-
 .animated-list {
   display: grid; /* Transforma a lista em um grid */
   grid-template-columns: auto 1fr; /* Define duas colunas: uma automática para o ícone/título e uma que ocupa o restante para a descrição */
@@ -705,271 +692,281 @@ img {
 .animated-list li strong {
   white-space: nowrap; /* Evita que o título quebre para a próxima linha */
 }
+
 @media screen and (min-width: 769px) {
   .exibir-celular {
     display: none;
   }
 }
 
+/* === INÍCIO DO CSS EMBUTIDO E ESCOPADO PARA AQUAPULSE === */
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-    /* === INÍCIO DO CSS EMBUTIDO E ESCOPADO PARA AQUAPULSE === */
+/* Container principal agora define o escopo e as variáveis */
+aquapulse-super-container {
+    /* Cores Principais */
+    --cor-fundo-comp: #080808;
+    --cor-texto-comp: #cccccc;
+    --cor-titulo-comp: #ffffff;
+    --cor-subtitulo-comp: #aaaaaa;
+   
+    --cor-etapa-fundo-comp: #1a1a1a;
+    --cor-etapa-borda-comp: #383838;
+    --cor-tooltip-fundo-comp: #252525;
+    --cor-tooltip-texto-comp: #e0e0e0;
 
-    /* Opcional: Se a fonte Poppins não estiver carregada globalmente, você pode manter este import aqui,
-       mas idealmente, fontes devem ser carregadas uma vez na página principal. */
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+    /* Cores dos Segmentos */
+    --cor-seg-1: #e74c3c; --cor-seg-2: #3498db; --cor-seg-3: #9b59b6;
+    --cor-seg-4: #f1c40f; --cor-seg-5: #e67e22; --cor-seg-6: #1abc9c;
+    --cor-seg-7: #2ecc71;
 
-    /* Container principal agora define o escopo e as variáveis */
-    aquapulse-super-container {
-        /* Define as variáveis CSS *apenas* para este componente e seus filhos */
-        /* Cores Principais */
-        --cor-fundo-comp: #080808; /* Renomeado para evitar conflito potencial com --cor-fundo global */
-        --cor-texto-comp: #cccccc;
-        --cor-titulo-comp: #ffffff;
-        --cor-subtitulo-comp: #aaaaaa;
-       
-        --cor-etapa-fundo-comp: #1a1a1a;
-        --cor-etapa-borda-comp: #383838;
-        --cor-tooltip-fundo-comp: #252525;
-        --cor-tooltip-texto-comp: #e0e0e0;
+    /* Cor de hover - usa uma variável de segmento */
+    --cor-etapa-hover-borda-comp: var(--cor-seg-2);
 
-        /* Cores dos Segmentos (mantidas, nomes são específicos) */
-        --cor-seg-1: #e74c3c; --cor-seg-2: #3498db; --cor-seg-3: #9b59b6;
-        --cor-seg-4: #f1c40f; --cor-seg-5: #e67e22; --cor-seg-6: #1abc9c;
-        --cor-seg-7: #2ecc71;
+    /* Tamanhos e Espaçamentos */
+    --tamanho-etapa: 125px;
+    --espaco-vertical: 85px;
+    --espessura-linha: 7px;
+    --espessura-conector: 4px;
+    --largura-maxima-container: 1600px;
+    --border-radius-geral: 15px;
+    --border-radius-etapa: 10px;
 
-        /* Cor de hover - usa uma variável de segmento */
-        --cor-etapa-hover-borda-comp: var(--cor-seg-2);
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    color: var(--cor-texto-comp);
+    background-color: var(--cor-container-fundo-comp);
+    border-radius: var(--border-radius-geral);
 
-        /* Tamanhos e Espaçamentos */
-        --tamanho-etapa: 125px;
-        --espaco-vertical: 85px;
-        --espessura-linha: 7px;
-        --espessura-conector: 4px;
-        --largura-maxima-container: 1600px; /* Largura máxima do próprio componente */
-        --border-radius-geral: 15px;
-        --border-radius-etapa: 10px;
+    width: 95%;
+    max-width: var(--largura-maxima-container);
+    margin: 30px auto;
+    padding: 45px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
 
-        /* Estilos que antes estavam no body, agora aplicados ao container */
-        display: block; /* Necessário para tags customizadas */
-        font-family: 'Poppins', sans-serif; /* Define a fonte para o componente */
-        color: var(--cor-texto-comp);      /* Cor de texto padrão DENTRO do componente */
-        background-color: var(--cor-container-fundo-comp); /* Fundo do container */
-        border-radius: var(--border-radius-geral);
-       
+aquapulse-super-container titulo-secao {
+    display: block;
+    text-align: center;
+    font-size: 2.6em;
+    color: var(--cor-titulo-comp);
+    margin-bottom: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-shadow: 0 1px 3px rgba(255,255,255,0.1);
+}
+aquapulse-super-container subtitulo-secao {
+    display: block;
+    text-align: center;
+    font-size: 1.1em;
+    color: var(--cor-subtitulo-comp);
+    margin-bottom: 70px;
+    font-weight: 300;
+}
 
-        width: 95%; /* Ou ajuste conforme necessário para sua página */
-        max-width: var(--largura-maxima-container);
-        margin: 30px auto; /* Centraliza o container */
-        padding: 45px;     /* Espaçamento interno */
-        box-sizing: border-box;
-        overflow: hidden; /* Previne conteúdo interno de vazar inesperadamente */
-    }
+aquapulse-super-container aquapulse-linha-tempo {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: calc(var(--tamanho-etapa) * 2 + var(--espaco-vertical) * 2 + 20px);
+    margin-top: 50px;
+}
 
-    /* Estilos para elementos DENTRO de aquapulse-super-container */
-    aquapulse-super-container titulo-secao {
-        display: block;
-        text-align: center;
-        font-size: 2.6em;
-        color: var(--cor-titulo-comp);
-        margin-bottom: 15px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        text-shadow: 0 1px 3px rgba(255,255,255,0.1);
-    }
-    aquapulse-super-container subtitulo-secao {
-        display: block;
-        text-align: center;
-        font-size: 1.1em;
-        color: var(--cor-subtitulo-comp);
-        margin-bottom: 70px;
-        font-weight: 300;
-    }
+aquapulse-super-container linha-central-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    width: 90%;
+    height: var(--espessura-linha);
+    transform: translateY(-50%);
+    overflow: hidden;
+    border-radius: calc(var(--espessura-linha) / 2);
+    background-color: var(--cor-etapa-borda-comp);
+}
 
-    aquapulse-super-container aquapulse-linha-tempo {
-        display: block;
-        position: relative;
-        width: 100%;
-        height: calc(var(--tamanho-etapa) * 2 + var(--espaco-vertical) * 2 + 20px);
-        margin-top: 50px;
-    }
+aquapulse-super-container linha-central-colorida {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(
+        to right,
+        var(--cor-seg-1) 0%, var(--cor-seg-1) 14%,
+        var(--cor-seg-2) 14%, var(--cor-seg-2) 28%,
+        var(--cor-seg-3) 28%, var(--cor-seg-3) 42%,
+        var(--cor-seg-4) 42%, var(--cor-seg-4) 56%,
+        var(--cor-seg-5) 56%, var(--cor-seg-5) 70%,
+        var(--cor-seg-6) 70%, var(--cor-seg-6) 84%,
+        var(--cor-seg-7) 84%, var(--cor-seg-7) 100%
+    );
+    border-radius: calc(var(--espessura-linha) / 2);
+    z-index: 1;
+    transform: scaleX(0);
+    transform-origin: left;
+}
 
-    aquapulse-super-container linha-central-wrapper {
-        position: absolute;
-        top: 50%;
-        left: 5%;
-        width: 90%;
-        height: var(--espessura-linha);
-        transform: translateY(-50%);
-        overflow: hidden;
-        border-radius: calc(var(--espessura-linha) / 2);
-        background-color: var(--cor-etapa-borda-comp);
-    }
+aquapulse-super-container etapa-aquapulse {
+    display: block;
+    position: absolute;
+    width: var(--tamanho-etapa);
+    height: var(--tamanho-etapa);
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+    z-index: 10;
+}
 
-    aquapulse-super-container linha-central-colorida {
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: linear-gradient(
-            to right,
-            var(--cor-seg-1) 0%, var(--cor-seg-1) 14%,
-            var(--cor-seg-2) 14%, var(--cor-seg-2) 28%,
-            var(--cor-seg-3) 28%, var(--cor-seg-3) 42%,
-            var(--cor-seg-4) 42%, var(--cor-seg-4) 56%,
-            var(--cor-seg-5) 56%, var(--cor-seg-5) 70%,
-            var(--cor-seg-6) 70%, var(--cor-seg-6) 84%,
-            var(--cor-seg-7) 84%, var(--cor-seg-7) 100%
-        );
-        border-radius: calc(var(--espessura-linha) / 2);
-        z-index: 1;
-        transform: scaleX(0);
-        transform-origin: left;
-    }
+aquapulse-super-container etapa-aquapulse conteudo-etapa {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: var(--cor-etapa-fundo-comp);
+    border-radius: var(--border-radius-etapa);
+    border: 2px solid var(--cor-etapa-borda-comp);
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    cursor: default;
+    position: relative;
+    transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, border-color 0.25s ease-out;
+}
 
-    aquapulse-super-container etapa-aquapulse {
-        display: block;
-        position: absolute;
-        width: var(--tamanho-etapa);
-        height: var(--tamanho-etapa);
-        opacity: 0;
-        transform: translateX(-50%) translateY(20px);
-        z-index: 10;
-    }
+aquapulse-super-container etapa-aquapulse:hover conteudo-etapa {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    border-color: var(--cor-etapa-hover-borda-comp);
+}
 
-    aquapulse-super-container etapa-aquapulse conteudo-etapa {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-        background-color: var(--cor-etapa-fundo-comp);
-        border-radius: var(--border-radius-etapa);
-        border: 2px solid var(--cor-etapa-borda-comp);
-        padding: 10px;
-        box-sizing: border-box;
-        text-align: center;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-        cursor: default;
-        position: relative;
-        transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, border-color 0.25s ease-out;
-    }
-
-    aquapulse-super-container etapa-aquapulse:hover conteudo-etapa {
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-        border-color: var(--cor-etapa-hover-borda-comp);
-    }
-
-  aquapulse-super-container imagem-etapa {
+aquapulse-super-container imagem-etapa {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 70%;              /* um pouquinho maior, pode ajustar */
-    height: 70%;             /* define uma “área” fixa pra imagem */
+    width: 70%;
+    height: 70%;
     margin-bottom: 8px;
     border-radius: 6px;
-    overflow: hidden;        /* mantém, mas agora a imagem vai caber certinho */
+    overflow: hidden;
 }
 
 aquapulse-super-container imagem-etapa img {
     max-width: 100%;
     max-height: 100%;
-    object-fit: contain;     /* mostra a imagem inteira, sem cortar */
+    object-fit: contain;
     border-radius: 6px;
 }
 
-    aquapulse-super-container descricao-etapa {
-        display: block;
-        font-size: 0.85em;
-        line-height: 1.2;
-        font-weight: 400;
-        color: var(--cor-texto-comp); /* Usa a cor de texto do componente */
-        max-width: 95%;
-    }
+aquapulse-super-container descricao-etapa {
+    display: block;
+    font-size: 0.85em;
+    line-height: 1.2;
+    font-weight: 400;
+    color: var(--cor-texto-comp);
+    max-width: 95%;
+}
 
-    aquapulse-super-container etapa-aquapulse.posicao-superior {
-        bottom: calc(50% + var(--espaco-vertical) / 2);
-    }
-    aquapulse-super-container etapa-aquapulse.posicao-inferior {
-        top: calc(50% + var(--espaco-vertical) / 2);
-    }
+aquapulse-super-container etapa-aquapulse.posicao-superior {
+    bottom: calc(50% + var(--espaco-vertical) / 2);
+}
+aquapulse-super-container etapa-aquapulse.posicao-inferior {
+    top: calc(50% + var(--espaco-vertical) / 2);
+}
 
-    aquapulse-super-container conector-vertical {
-        display: block;
-        position: absolute;
-        width: var(--espessura-conector);
-        height: calc(var(--espaco-vertical) / 2 + var(--espessura-linha) / 2);
-        left: 50%;
-        opacity: 0;
-        transform: translateX(-50%) scaleY(0);
-        z-index: 5;
-        border-radius: calc(var(--espessura-conector) / 2);
-    }
-    aquapulse-super-container etapa-aquapulse.posicao-superior conector-vertical {
-        bottom: calc(-1 * (var(--espaco-vertical) / 2 + var(--espessura-linha) / 2));
-        transform-origin: top;
-    }
-    aquapulse-super-container etapa-aquapulse.posicao-inferior conector-vertical {
-        top: calc(-1 * (var(--espaco-vertical) / 2 + var(--espessura-linha) / 2));
-        transform-origin: bottom;
-    }
+aquapulse-super-container conector-vertical {
+    display: block;
+    position: absolute;
+    width: var(--espessura-conector);
+    height: calc(var(--espaco-vertical) / 2 + var(--espessura-linha) / 2);
+    left: 50%;
+    opacity: 0;
+    transform: translateX(-50%) scaleY(0);
+    z-index: 5;
+    border-radius: calc(var(--espessura-conector) / 2);
+}
+aquapulse-super-container etapa-aquapulse.posicao-superior conector-vertical {
+    bottom: calc(-1 * (var(--espaco-vertical) / 2 + var(--espessura-linha) / 2));
+    transform-origin: top;
+}
+aquapulse-super-container etapa-aquapulse.posicao-inferior conector-vertical {
+    top: calc(-1 * (var(--espaco-vertical) / 2 + var(--espessura-linha) / 2));
+    transform-origin: bottom;
+}
 
-    aquapulse-super-container .tooltip-dinamico {
-        position: absolute;
-        bottom: 110%;
-        left: 50%;
-        transform: translateX(-50%);
-        opacity: 0;
-        visibility: hidden;
-        background-color: var(--cor-tooltip-fundo-comp, #252525); /* Fallback adicionado */
-        color: var(--cor-tooltip-texto-comp, #e0e0e0); /* Fallback adicionado */
-        padding: 8px 15px;
-        border-radius: 6px;
-        font-size: 0.85em;
-        font-weight: 400;
-        line-height: 1.4;
-        white-space: nowrap;
-        z-index: 100; /* Alto z-index para ficar sobre outros elementos da página */
-        box-shadow: 0 3px 10px rgba(0,0,0,0.3);
-        pointer-events: none;
-    }
+aquapulse-super-container .tooltip-dinamico {
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    visibility: hidden;
+    background-color: var(--cor-tooltip-fundo-comp, #252525);
+    color: var(--cor-tooltip-texto-comp, #e0e0e0);
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-size: 0.85em;
+    font-weight: 400;
+    line-height: 1.4;
+    white-space: nowrap;
+    z-index: 100;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    pointer-events: none;
+}
 
-    aquapulse-super-container etapa-aquapulse.posicao-inferior .tooltip-dinamico {
-        bottom: auto;
-        top: 110%;
-    }
+aquapulse-super-container etapa-aquapulse.posicao-inferior .tooltip-dinamico {
+    bottom: auto;
+    top: 110%;
+}
 
-    /* === Responsividade DENTRO do componente === */
-    /* As regras dentro @media afetam apenas elementos dentro de aquapulse-super-container */
-    @media (max-width: 1200px) {
-        aquapulse-super-container { --tamanho-etapa: 110px; --espaco-vertical: 75px; }
-        aquapulse-super-container titulo-secao { font-size: 2.4em; }
+/* === Responsividade DENTRO do componente === */
+@media (max-width: 1200px) {
+    aquapulse-super-container { 
+      --tamanho-etapa: 110px; 
+      --espaco-vertical: 75px; 
     }
-    @media (max-width: 992px) {
-        aquapulse-super-container { --tamanho-etapa: 95px; --espaco-vertical: 65px; }
-        aquapulse-super-container titulo-secao { font-size: 2.1em; }
-        aquapulse-super-container { padding: 35px; } /* Ajusta padding do container */
+    aquapulse-super-container titulo-secao { font-size: 2.4em; }
+}
+@media (max-width: 992px) {
+    aquapulse-super-container { 
+      --tamanho-etapa: 95px; 
+      --espaco-vertical: 65px; 
     }
-    @media (max-width: 768px) {
-        aquapulse-super-container { --tamanho-etapa: 80px; --espaco-vertical: 50px; }
-        /* O padding geral da página (body) não é definido aqui */
-        aquapulse-super-container titulo-secao { font-size: 1.8em; }
-        aquapulse-super-container subtitulo-secao { font-size: 1em; margin-bottom: 50px; }
-        aquapulse-super-container descricao-etapa { font-size: 0.7em; }
-        aquapulse-super-container imagem-etapa { width: 55%; }
-        /* aquapulse-super-container .tooltip-dinamico { display: none; } */
+    aquapulse-super-container titulo-secao { font-size: 2.1em; }
+    aquapulse-super-container { padding: 35px; }
+}
+
+/* AQUI A GENTE AUMENTA O ESPAÇO VERTICAL NO MOBILE */
+@media (max-width: 768px) {
+    aquapulse-super-container { 
+      --tamanho-etapa: 80px; 
+      --espaco-vertical: 80px;   /* antes 50px */
     }
-    @media (max-width: 576px) {
-        aquapulse-super-container { --tamanho-etapa: 70px; --espaco-vertical: 40px; --espessura-linha: 5px; }
-        aquapulse-super-container titulo-secao { font-size: 1.5em; }
-        aquapulse-super-container subtitulo-secao { font-size: 0.9em; }
-        aquapulse-super-container imagem-etapa { width: 50%; }
-        aquapulse-super-container aquapulse-linha-tempo { height: calc(var(--tamanho-etapa) * 2 + var(--espaco-vertical) * 2 + 40px); }
+    aquapulse-super-container titulo-secao { font-size: 1.8em; }
+    aquapulse-super-container subtitulo-secao { font-size: 1em; margin-bottom: 50px; }
+    aquapulse-super-container descricao-etapa { font-size: 0.8em; }
+    aquapulse-super-container imagem-etapa { width: 55%; }
+}
+
+/* MOBILE BEM PEQUENO */
+@media (max-width: 576px) {
+    aquapulse-super-container { 
+      --tamanho-etapa: 70px; 
+      --espaco-vertical: 70px;   /* antes 40px */
+      --espessura-linha: 5px; 
     }
+    aquapulse-super-container titulo-secao { font-size: 1.5em; }
+    aquapulse-super-container subtitulo-secao { font-size: 0.9em; }
+    aquapulse-super-container imagem-etapa { width: 50%; }
+    aquapulse-super-container aquapulse-linha-tempo { 
+      height: calc(var(--tamanho-etapa) * 2 + var(--espaco-vertical) * 2 + 40px); 
+    }
+}
+
 /* Trava scroll lateral da página toda */
 html, body {
   max-width: 100%;
@@ -984,7 +981,46 @@ aquapulse-super-container {
 /* Ajuste extra para a última etapa no mobile */
 @media (max-width: 768px) {
   aquapulse-super-container etapa-aquapulse.etapa-final {
-    left: 88% !important; /* um pouco menos agressivo que 91% */
+    left: 88% !important;
   }
 }
-    /* === FIM DO CSS EMBUTIDO E ESCOPADO === */
+
+/* ====== Troca de imagens por ícones SOMENTE NO CELULAR (Jornada Aquapulse) ====== */
+/* Desktop: ícones ocultos, imagens visíveis */
+aquapulse-linha-tempo imagem-etapa .icon-etapa {
+  display: none;
+}
+
+/* Mobile: esconder imagens, mostrar ícones E GARANTIR TEXTO VISÍVEL */
+@media (max-width: 768px) {
+  aquapulse-linha-tempo imagem-etapa {
+    display: grid;
+    place-items: center;
+    min-width: 40px;
+    min-height: 40px;
+  }
+
+  aquapulse-linha-tempo imagem-etapa img {
+    display: none !important;
+  }
+
+  aquapulse-linha-tempo imagem-etapa .icon-etapa {
+    display: inline-block !important;
+    font-size: 28px;
+    line-height: 1;
+    color: #28a745;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.25);
+  }
+
+  /* AQUI GARANTIMOS QUE O TEXTO "1. Adquira", "2. Instale", etc. APAREÇA EMBAIXO DO ÍCONE */
+  aquapulse-linha-tempo descricao-etapa {
+    margin-top: 6px;
+    display: block !important;
+    text-align: center;
+    font-size: 0.85rem;
+    line-height: 1.3;
+    white-space: normal; /* permite quebrar linha no mobile */
+  }
+}
+
+/* === FIM DO CSS EMBUTIDO E ESCOPADO === */
