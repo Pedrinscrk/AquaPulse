@@ -217,7 +217,6 @@ body {
   width: 100%;
   height: auto;
   border-radius: 16px;
-  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.3));
 }
 
 /* === TEXTOS + ICONES CONTAINER === */
